@@ -76,9 +76,6 @@ public class GameEngine extends Canvas implements Runnable {
 				fpsTimer += 1000;
 			}
 		}
-		
-		
-		
 	}
 	
 
