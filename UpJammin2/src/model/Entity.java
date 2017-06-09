@@ -19,10 +19,16 @@ public abstract class Entity {
 	
 	public abstract void render(Graphics2D g);
 	
-	public abstract Point2D getPoint();
+	public Point2D getPoint() {
+		return point;
+	}
 	
-	public abstract int getHealth();
+	public int getHealth() {
+		return health;
+	}
 	
-	public abstract Map getMap();
+	public Map getMap() {
+		return map;
+	}
 	
 }
