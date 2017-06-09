@@ -8,7 +8,7 @@ public class Turret extends Entity {
 	private int range;
 	private int damage;
 	private int fireRate;
-	private Entity targetted;
+	private Enemy targetted;
 	private int ttNextFire;
 	private int fireSpeed;
 	
@@ -24,8 +24,17 @@ public class Turret extends Entity {
 
 	@Override
 	public void tick() {
+		ttNextFire--;
 		if(targetted == null){
-			
+			for(Entity ent : getMap().getEntities()){
+				if(ent instanceof Enemy)
+					if(ent.getPoint().distance(getPoint())<range) {
+						targetted = ent;
+						fireAtTarget();
+						return;
+					}
+				
+			}
 		} else{
 			fireAtTarget();
 		}
@@ -36,16 +45,12 @@ public class Turret extends Entity {
 		assert(targetted != null);
 		if(targetted.getHealth() < 0 || targetted.getPoint().distance(getPoint()) > range * getMap().getScale()){
 			targetted = null;
-			ttNextFire--;
 			return;
 		}
-		if(ttNextFire > 0) {
-			ttNextFire--;
+		if(ttNextFire > 0)
 			return;
-		}
 		
 		ttNextFire = fireRate;
-		
 		getMap().getEntities().add(new Projectile(getMap(), 1, getPoint(), targetted.getPoint(), fireSpeed));
 		
 	}
