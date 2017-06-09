@@ -1,7 +1,7 @@
 package model;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 public class Turret extends Entity {
 
@@ -12,7 +12,7 @@ public class Turret extends Entity {
 	private int ttNextFire;
 	private int fireSpeed;
 	
-	public Turret(Map map, int health, Point2D location, int range, int damage, int fireRate, int fireSpeed) {
+	public Turret(Map map, int health, Point location, int range, int damage, int fireRate, int fireSpeed) {
 		super(map, health, location);
 		this.range = range;
 		this.damage = damage;
