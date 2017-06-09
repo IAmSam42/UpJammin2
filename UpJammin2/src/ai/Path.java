@@ -15,6 +15,8 @@ public class Path {
 		PriorityQueue<Tuple> queue = new PriorityQueue<Tuple>();
 		queue.add(new Tuple(start, start.distance(goal)));
 		
+		
+		
 		return null;
 	}
 	
