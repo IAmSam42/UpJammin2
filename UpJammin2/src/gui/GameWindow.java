@@ -24,7 +24,7 @@ public class GameWindow extends JFrame{
 		
 		pack();
 	
-		game.setBounds(0, 64, w, h);
+		game.setBounds(0, 0, w, h);
 		add(game, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

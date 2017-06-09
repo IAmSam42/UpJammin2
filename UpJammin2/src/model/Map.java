@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Contains information about the dimensions of the map, and which tiles are
@@ -36,6 +37,14 @@ public class Map
 		this.setScale(scale);
 
 		this.blocked = new boolean[width][height];
+		
+//		for (int i = 0; i < 20; i++) {
+//			int x = new Random().nextInt(width);
+//			int y = new Random().nextInt(height);
+//			if(!this.blocked[x][y]){
+//				this.blocked[x][y] = true;
+//			}
+//		}
 
 		this.entities = new ArrayList<Entity>();
 	}

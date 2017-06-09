@@ -12,7 +12,7 @@ import model.Map;
 public class GameEngineHandler {
 
 	private Map map;
-	private static int BLOCKSIZE = 32;
+	private static int BLOCKSIZE = 64;
 	
 	public GameEngineHandler(){
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
@@ -34,12 +34,11 @@ public class GameEngineHandler {
 				if(!map.getBlockedLocation(j, i)){
 					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 				}else{
+					g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					System.out.println("something else should be rendered instead of the floor in this positon");
 				}
 			}
 		}
-		
-		
 	}
 	
 }
