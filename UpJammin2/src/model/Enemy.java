@@ -43,7 +43,15 @@ public class Enemy extends Entity {
 		
 		
 		//Work out the direction for the next point in the path.
+		int x_move = (int)Math.abs(grid_point.getX() - path.get(0).getX());
+		int y_move = (int)Math.abs(grid_point.getY() - path.get(0).getY());
 		
+		//Create a new point (old point plus the movement amount.
+		Point new_point = new Point((int)this.getPoint().getX() + x_move, 
+									(int)this.getPoint().getY() + y_move);
+		
+		//Set the new point of the enemy.
+		this.setPoint(new_point);
 
 	}
 
