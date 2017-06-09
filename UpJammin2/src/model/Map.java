@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public class Map
 {
-	private int height;
 	private int width;
+	private int height;
 	private int scale;
 	private boolean[][] blocked;
 	
@@ -24,10 +24,10 @@ public class Map
 	 * @param width The width of the map in grid references (not pixels).
 	 * @param scale How many pixels per grid point.
 	 */
-	public Map(int height, int width, int scale)
+	public Map(int width, int height, int scale)
 	{
-		this.setHeight(height);
 		this.setWidth(width);
+		this.setHeight(height);
 		this.setScale(scale);
 		
 		this.blocked = new boolean[width][height];
