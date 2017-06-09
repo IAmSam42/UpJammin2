@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Contains information about the dimensions of the map, and which tiles are
@@ -36,6 +37,14 @@ public class Map
 		this.setScale(scale);
 
 		this.blocked = new boolean[width][height];
+		
+//		for (int i = 0; i < 20; i++) {
+//			int x = new Random().nextInt(width);
+//			int y = new Random().nextInt(height);
+//			if(!this.blocked[x][y]){
+//				this.blocked[x][y] = true;
+//			}
+//		}
 
 		this.entities = new ArrayList<Entity>();
 	}
@@ -98,14 +107,28 @@ public class Map
 	}
 
 	/**
-	 * Get the array of blocked grid points.
-	 * 
-	 * @return The blocked grid points.
+	 * Check if a given x y coordinate is blocked in the grid.
+	 * @param x The x (width) part of the coordinate.
+	 * @param y The y (height) part of the coordinate.
+	 * @return If the coordinate is blocked.
 	 */
-	public boolean[][] getBlocked() {
-		return blocked;
+	public boolean isBlocked(int x, int y)
+	{
+		return blocked[x][y];
 	}
 
+	
+	/**
+	 * Get the location of the blocked array to determine if a location is blocked
+	 * @param x The x coord
+	 * @param y The y coord
+	 * @return
+	 */
+	public boolean getBlockedLocation(int x, int y){
+		return blocked[x][y];
+	}
+	
+	
 	/**
 	 * Get the ArrayList of all the entities in the game.
 	 * 
