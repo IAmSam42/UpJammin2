@@ -98,12 +98,14 @@ public class Map
 	}
 
 	/**
-	 * Get the array of blocked grid points.
-	 * 
-	 * @return The blocked grid points.
+	 * Check if a given x y coordinate is blocked in the grid.
+	 * @param x The x (width) part of the coordinate.
+	 * @param y The y (height) part of the coordinate.
+	 * @return If the coordinate is blocked.
 	 */
-	public boolean[][] getBlocked() {
-		return blocked;
+	public boolean isBlocked(int x, int y)
+	{
+		return blocked[x][y];
 	}
 
 	
