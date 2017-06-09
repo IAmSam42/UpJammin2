@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -9,9 +10,10 @@ import java.util.ArrayList;
  * @author sam
  *
  */
-public class Map {
-	private int height;
+public class Map
+{
 	private int width;
+	private int height;
 	private int scale;
 	private boolean[][] blocked;
 
@@ -27,9 +29,10 @@ public class Map {
 	 * @param scale
 	 *            How many pixels per grid point.
 	 */
-	public Map(int height, int width, int scale) {
-		this.setHeight(height);
+	public Map(int width, int height, int scale)
+	{
 		this.setWidth(width);
+		this.setHeight(height);
 		this.setScale(scale);
 
 		this.blocked = new boolean[width][height];
@@ -120,5 +123,18 @@ public class Map {
 	 */
 	public void AddEntity(Entity entity) {
 		entities.add(entity);
+	}
+	
+	/**
+	 * Convert a point from pixel space to grid space
+	 * @param pixel_point The pixel space point to covert to grid space.
+	 * @return The grid space point the pixel space point is located in.
+	 */
+	public Point toGridPoint(Point pixel_point)
+	{
+		Point grid_point = new Point((int)(pixel_point.getX() / scale), 
+				(int)(pixel_point.getY() / scale));
+		
+		return grid_point;
 	}
 }
