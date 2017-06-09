@@ -13,7 +13,7 @@ public class Main {
 	private static JFrame frame;
 	private static JPanel panel;
 
-	public static int HEIGHT = 900;
+	public static int HEIGHT = 896;
 	public static int WIDTH = (HEIGHT * 16)/9; 
 	
 
