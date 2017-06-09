@@ -30,7 +30,7 @@ public class Turret extends Entity {
 			for(Entity ent : getMap().getEntities()){
 				if(ent instanceof Enemy)
 					if(ent.getPoint().distance(getPoint())<range) {
-						targetted = ent;
+						targetted = (Enemy) ent;
 						fireAtTarget();
 						return;
 					}
