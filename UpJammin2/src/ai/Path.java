@@ -5,7 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
+import model.Map;
+
 public class Path {
+	
+	private Map map;
+	
+	public Path(Map map) {
+		this.map = map;
+	}
 	
 	/**
 	 * This function calculates a path from a start to a goal
@@ -15,7 +23,7 @@ public class Path {
 	 * @param height The height of the map
 	 * @return The path from the start to the goal
 	 */
-	public static ArrayList<Point> calculatePath(Point start, Point goal, int width, int height) {
+	public ArrayList<Point> calculatePath(Point start, Point goal, int width, int height) {
 		ArrayList<Point> visited = new ArrayList<Point>();
 		PriorityQueue<Triple> queue = new PriorityQueue<Triple>();
 		queue.add(new Triple(start, start.distance(goal), null));
@@ -26,7 +34,7 @@ public class Path {
 			visited.add(current.getPoint());
 			
 			for(Point point : neighbours) {
-				if(!visited.contains(point)) {
+				if(!visited.contains(point) && (map.isBlocked((int)point.getX(), (int)point.getY()) != true)) {
 					queue.add(new Triple(point, point.distance(goal), current));
 				}
 			}
