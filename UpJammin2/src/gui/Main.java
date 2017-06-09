@@ -16,7 +16,6 @@ public class Main {
 	public static int HEIGHT = 900;
 	public static int WIDTH = (HEIGHT * 16)/9; 
 	
-	Clip clip;
 
 	public Main(){
 		frame = new JFrame("Alpaca Attacker");
