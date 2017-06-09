@@ -14,6 +14,7 @@ public class Projectile extends Entity {
 	private int speed;
 	private int addToX;
 	private int addToY;
+	private int jumps;
 	
 	
 	public Projectile(Map map, int health, Point point, Point target, int speed) {
@@ -28,16 +29,21 @@ public class Projectile extends Entity {
 
 	@Override
 	public void tick() {
-		this.point.setLocation(this.point.getX() + addToX, this.point.getY() + addToY);
+		if(jumps > 0) {
+			this.point.setLocation(this.point.getX() + addToX, this.point.getY() + addToY);
+			jumps--;
+		}
+		else {
+			health = 0;
+		}
 	}
 	
 	public void calculate() {
 		this.distance = (int) point.distance(target);
-		//pixelsPerTick = (distance/speed);
 		int xdist = (int) (point.getX() - target.getX());
 		int ydist = (int) (point.getY() - target.getY());
 		pixelsPerTick = distance/speed;
-		int jumps = distance/pixelsPerTick;
+		jumps = distance/pixelsPerTick;
 		addToX = xdist/jumps;
 		addToY = ydist/jumps;
 	}
