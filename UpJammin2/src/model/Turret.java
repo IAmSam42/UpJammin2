@@ -1,0 +1,60 @@
+package model;
+
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+
+public class Turret extends Entity {
+
+	private int range;
+	private int damage;
+	private int fireRate;
+	private Entity targetted;
+	private int ttNextFire;
+	private int fireSpeed;
+	
+	public Turret(Map map, int health, Point2D location, int range, int damage, int fireRate, int fireSpeed) {
+		super(map, health, location);
+		this.range = range;
+		this.damage = damage;
+		this.fireRate = fireRate;
+		this.fireSpeed = fireSpeed;
+		targetted = null;
+		ttNextFire = 0; //<1 -> Ready to fire
+	}
+
+	@Override
+	public void tick() {
+		if(targetted == null){
+			
+		} else{
+			fireAtTarget();
+		}
+
+	}
+	
+	private void fireAtTarget() {
+		assert(targetted != null);
+		if(targetted.getHealth() < 0 || targetted.getPoint().distance(getPoint()) > range * getMap().getScale()){
+			targetted = null;
+			ttNextFire--;
+			return;
+		}
+		if(ttNextFire > 0) {
+			ttNextFire--;
+			return;
+		}
+		
+		ttNextFire = fireRate;
+		
+		getMap().getEntities().add(new Projectile(getMap(), 1, getPoint(), targetted.getPoint(), fireSpeed));
+		
+	}
+
+	@Override
+	public void render(Graphics2D g) {
+		
+
+	}
+
+
+}
