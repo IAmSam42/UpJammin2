@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -113,5 +114,18 @@ public class Map
 	public void AddEntity(Entity entity)
 	{
 		entities.add(entity);
+	}
+	
+	/**
+	 * Convert a point from pixel space to grid space
+	 * @param pixel_point The pixel space point to covert to grid space.
+	 * @return The grid space point the pixel space point is located in.
+	 */
+	public Point toGridPoint(Point pixel_point)
+	{
+		Point grid_point = new Point((int)(pixel_point.getX() / scale), 
+				(int)(pixel_point.getY() / scale));
+		
+		return grid_point;
 	}
 }
