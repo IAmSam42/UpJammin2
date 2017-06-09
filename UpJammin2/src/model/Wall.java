@@ -1,15 +1,15 @@
 package model;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 public class Wall extends Entity {
 
 	private Map map;
 	private int health;
-	private Point2D point;
+	private Point point;
 	
-	public Wall(Map map, int health, Point2D point) {
+	public Wall(Map map, int health, Point point) {
 		super(map, health, point);
 		this.map = map;
 		this.health = health;
