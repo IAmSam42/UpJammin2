@@ -23,7 +23,9 @@ public class Path {
 	 * @param height The height of the map
 	 * @return The path from the start to the goal
 	 */
-	public ArrayList<Point> calculatePath(Point start, Point goal, int width, int height) {
+	public ArrayList<Point> calculatePath(Point start, Point goal) {
+		int width = map.getWidth();
+		int height = map.getHeight();
 		ArrayList<Point> visited = new ArrayList<Point>();
 		PriorityQueue<Triple> queue = new PriorityQueue<Triple>();
 		queue.add(new Triple(start, start.distance(goal), null));
