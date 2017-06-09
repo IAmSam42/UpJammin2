@@ -7,7 +7,7 @@ public class Projectile extends Entity {
 
 	private Map map;
 	private int health;
-	private Point point;
+	private Point2D point;
 	private Point2D target;
 	private double distance;
 	private double pixelsPerTick;
