@@ -2,6 +2,8 @@ package engine;
 
 import java.awt.Graphics;
 
+import javax.swing.ImageIcon;
+
 import gui.GameWindow;
 import gui.Main;
 import model.Map;
@@ -13,21 +15,27 @@ public class GameEngineHandler {
 	private static int BLOCKSIZE = 32;
 	
 	public GameEngineHandler(){
-		this.map = new Map(Main.WIDTH, Main.HEIGHT, BLOCKSIZE);
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
 	}
 	
 	public void tick() {
-		System.out.println("HEYYY I TICKED");
+//		System.out.println("HEYYY I TICKED");
+//		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
+//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
 		
 		
 	}
 	
 
 	public void render(Graphics g) {
-		System.out.println("HEYYY I RENDERED");
-		for (int i = 0; i < Main.WIDTH; i++) {
-			for (int j = 0; j < Main.HEIGHT; j++) {
-				
+//		System.out.println("HEYYY I RENDERED");
+		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
+			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
+				if(!map.getBlockedLocation(j, i)){
+					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+				}else{
+					System.out.println("something else should be rendered instead of the floor in this positon");
+				}
 			}
 		}
 		

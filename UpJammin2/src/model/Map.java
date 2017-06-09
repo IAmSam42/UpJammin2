@@ -106,6 +106,18 @@ public class Map
 		return blocked;
 	}
 
+	
+	/**
+	 * Get the location of the blocked array to determine if a location is blocked
+	 * @param x The x coord
+	 * @param y The y coord
+	 * @return
+	 */
+	public boolean getBlockedLocation(int x, int y){
+		return blocked[x][y];
+	}
+	
+	
 	/**
 	 * Get the ArrayList of all the entities in the game.
 	 * 

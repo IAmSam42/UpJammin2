@@ -8,9 +8,15 @@ import javax.swing.JFrame;
 import engine.GameEngine;
 
 public class GameWindow extends JFrame{
+	
+	
 	private static final long serialVersionUID = 1L;
 	
+
+	
 	public GameWindow(int w, int h, String title, GameEngine game){
+		
+
 		Dimension dimention = new Dimension(w, h);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
