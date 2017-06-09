@@ -2,14 +2,16 @@ package ai;
 
 import java.awt.Point;
 
-public class Tuple implements Comparable<Tuple> {
+public class Triple implements Comparable<Triple> {
 
 	private Point point;
 	private double distance;
+	private Triple parent;
 	
-	public Tuple(Point point, double distance) {
+	public Triple(Point point, double distance, Triple parent) {
 		this.point = point;
 		this.distance = distance;
+		this.parent = parent;
 	}
 
 	public Point getPoint() {
@@ -20,12 +22,16 @@ public class Tuple implements Comparable<Tuple> {
 		return distance;
 	}
 	
+	public Triple getParent() {
+		return parent;
+	}
+	
 	@Override
-	public int compareTo(Tuple tuple) {
-		if(tuple.getDistance() > distance) {
+	public int compareTo(Triple Triple) {
+		if(Triple.getDistance() > distance) {
 			return -1;
 		}
-		else if(tuple.getDistance() < distance) {
+		else if(Triple.getDistance() < distance) {
 			return 1;
 		}
 		else {
