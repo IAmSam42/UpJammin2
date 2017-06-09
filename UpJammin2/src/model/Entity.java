@@ -31,4 +31,12 @@ public abstract class Entity {
 		return map;
 	}
 	
+	/**
+	 * Subtract the given damage from the health
+	 * @param damage The amount to subtract from the health
+	 */
+	public void takeDamage(int damage){
+		health -= damage;
+	}
+	
 }
