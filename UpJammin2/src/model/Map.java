@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Contains information about the dimensions of the map, and which tiles 
  * are being blocked by walls and turrets
@@ -12,6 +14,8 @@ public class Map
 	private int width;
 	private int scale;
 	private boolean[][] blocked;
+	
+	private ArrayList<Entity> entities;
 	
 	/**
 	 * Constructor for a map object.
@@ -26,6 +30,8 @@ public class Map
 		this.setScale(scale);
 		
 		this.blocked = new boolean[width][height];
+		
+		this.entities = new ArrayList<Entity>();
 	}
 
 	/**
@@ -89,5 +95,23 @@ public class Map
 	public boolean[][] getBlocked() 
 	{
 		return blocked;
+	}
+
+	/**
+	 * Get the ArrayList of all the entities in the game.
+	 * @return An ArrayList of all the entities in the game,
+ 	 */
+	public ArrayList<Entity> getEntities()
+	{
+		return entities;
+	}
+
+	/**
+	 * Add a new entity to the game.
+	 * @param entity The entity to add to the game.
+	 */
+	public void AddEntity(Entity entity)
+	{
+		entities.add(entity);
 	}
 }
