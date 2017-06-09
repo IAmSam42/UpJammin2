@@ -23,8 +23,16 @@ public abstract class Entity {
 		return point;
 	}
 	
+	public void setPoint(Point point) {
+		this.point = point;
+	}
+	
 	public int getHealth() {
 		return health;
+	}
+	
+	public void setHealth(int health) {
+		this.health = health;
 	}
 	
 	public Map getMap() {
