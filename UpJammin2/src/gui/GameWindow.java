@@ -19,7 +19,7 @@ public class GameWindow extends JFrame{
 
 	
 	public GameWindow(int w, int h, String title, GameEngine game){
-		
+		System.out.println(w + "  " + h);
 
 		Dimension dimention = new Dimension(w, h);
 		setMaximumSize(dimention);

@@ -38,13 +38,14 @@ public class Map
 
 		this.blocked = new boolean[width][height];
 		
-//		for (int i = 0; i < 20; i++) {
-//			int x = new Random().nextInt(width);
-//			int y = new Random().nextInt(height);
-//			if(!this.blocked[x][y]){
-//				this.blocked[x][y] = true;
-//			}
-//		}
+		for (int i = 0; i < 100; i++) {
+			int x = new Random().nextInt(width);
+			int y = new Random().nextInt(height);
+			if(!this.blocked[x][y]){
+				this.blocked[x][y] = true;
+			}
+		}
+		
 		this.enemies = new ArrayList<Enemy>();
 		this.notEnemies = new ArrayList<Entity>();
 	}
