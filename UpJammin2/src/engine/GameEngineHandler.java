@@ -37,7 +37,6 @@ public class GameEngineHandler {
 	private Point hover;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
-		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
@@ -45,6 +44,7 @@ public class GameEngineHandler {
 		String fileContents = ResourceManager.getResourceManager().getFileContents(Config.levels_file);
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
 		bank = new Bank();
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		newWave();
 		hover = null;
 

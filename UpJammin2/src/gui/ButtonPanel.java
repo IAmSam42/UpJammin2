@@ -27,6 +27,10 @@ public class ButtonPanel extends JPanel implements Observer {
 	private String cannonLabel;
 	private String wallLabel;
 	
+	private JToggleButton arrowTurret;
+	private JToggleButton cannonTurret;
+	private JToggleButton wall;
+	
 	public ButtonPanel(Bank bank) {
 		
 		this.button = Selected.None;
@@ -35,9 +39,10 @@ public class ButtonPanel extends JPanel implements Observer {
 		this.cannonLabel = "Cannon Turret - " + bank.getCost(blockType.CannonTurret);
 		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
 		
-		JToggleButton arrowTurret = new JToggleButton(arrowLabel);
-		JToggleButton cannonTurret = new JToggleButton(cannonLabel);
-		JToggleButton wall = new JToggleButton(wallLabel);
+		bank.addObserver(this);
+		arrowTurret = new JToggleButton(arrowLabel);
+		cannonTurret = new JToggleButton(cannonLabel);
+		wall = new JToggleButton(wallLabel);
 	
 		
 		JPanel buttonPanel = new JPanel();
@@ -107,9 +112,9 @@ public class ButtonPanel extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		this.arrowLabel = "Arrow Turret - " + bank.getCost(blockType.ArrowTurret);
-		this.cannonLabel = "Cannon Turret - " + bank.getCost(blockType.CannonTurret);
-		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
+		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
+		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
+		wall.setText("Wall - " + bank.getCost(blockType.Wall));
 		
 	}
 }
