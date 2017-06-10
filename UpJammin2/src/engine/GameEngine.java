@@ -123,4 +123,8 @@ public class GameEngine extends Canvas implements Runnable {
 		bs.show();
 	}
 	
+	public GameEngineHandler getGameEngineHandler() {
+		return gameEngineHandler;
+	}
+	
 }
