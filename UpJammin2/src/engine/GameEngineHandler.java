@@ -77,7 +77,7 @@ public class GameEngineHandler {
 		Long y = (Long) currentWave.get("enemyType1");
 		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new BowlerAlpaca(map, 10, new Point(0, gen.nextInt(map.getHeight() * map.getScale()))));
+			map.getEnemies().add(new BowlerAlpaca(map, 10, new Point(0, gen.nextInt((map.getHeight() -1) * map.getScale()))));
 		}
 		
 		y = (Long) currentWave.get("enemyType2");
