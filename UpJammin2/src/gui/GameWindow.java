@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import org.json.simple.parser.ParseException;
+
 import engine.GameEngine;
 
 public class GameWindow extends JFrame{
@@ -37,7 +39,7 @@ public class GameWindow extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
 	}
 

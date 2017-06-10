@@ -17,8 +17,8 @@ public class Map
 	private int height;
 	private int scale;
 	private boolean[][] blocked;
-
-	private ArrayList<Entity> entities;
+	private ArrayList<Enemy> enemies;
+	private ArrayList<Entity> notEnemies;
 
 	/**
 	 * Constructor for a map object.
@@ -46,7 +46,7 @@ public class Map
 //			}
 //		}
 
-		this.entities = new ArrayList<Entity>();
+		this.notEnemies = new ArrayList<Entity>();
 	}
 
 	/**
@@ -135,17 +135,18 @@ public class Map
 	 * @return An ArrayList of all the entities in the game,
 	 */
 	public ArrayList<Entity> getEntities() {
-		return entities;
+		return notEnemies;
 	}
 
 	/**
 	 * Add a new entity to the game.
 	 * 
 	 * @param entity
+	 * 
 	 *            The entity to add to the game.
 	 */
-	public void AddEntity(Entity entity) {
-		entities.add(entity);
+	public void addNotEnemy(Entity entity) {
+		notEnemies.add(entity);
 	}
 	
 	/**
@@ -159,5 +160,13 @@ public class Map
 				(int)(pixel_point.getY() / scale));
 		
 		return grid_point;
+	}
+
+	public ArrayList<Enemy> getEnemies() {
+		return enemies;
+	}
+
+	public void setEnemies(ArrayList<Enemy> enemies) {
+		this.enemies = enemies;
 	}
 }

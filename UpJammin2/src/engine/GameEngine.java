@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import org.json.simple.parser.ParseException;
+
 public class GameEngine extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1750355504600161501L;
 	public static boolean running;
@@ -15,7 +17,7 @@ public class GameEngine extends Canvas implements Runnable {
 	
 	private GameEngineHandler gameEngineHandler;
 	
-	public GameEngine(){
+	public GameEngine() throws ParseException{
 		this.gameEngineHandler = new GameEngineHandler();
 		running = false;
 	}
