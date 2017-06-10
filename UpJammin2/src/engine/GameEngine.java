@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
@@ -18,7 +20,7 @@ public class GameEngine extends Canvas implements Runnable {
 	
 	private GameEngineHandler gameEngineHandler;
 	
-	public GameEngine() throws ParseException{
+	public GameEngine() throws ParseException, FileNotFoundException, IOException{
 		this.gameEngineHandler = new GameEngineHandler();
 		running = false;
 	}

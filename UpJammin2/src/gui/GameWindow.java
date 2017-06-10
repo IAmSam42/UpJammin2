@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -39,7 +41,7 @@ public class GameWindow extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, FileNotFoundException, IOException {
 		new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
 	}
 

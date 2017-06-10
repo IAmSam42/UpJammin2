@@ -2,6 +2,10 @@ package engine;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -13,6 +17,7 @@ import org.json.simple.parser.ParseException;
 
 import gui.GameWindow;
 import gui.Main;
+import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
@@ -26,16 +31,19 @@ public class GameEngineHandler {
 	private JSONArray levelsArray;
 	private int wave;
 	int tickCounter;
+	private Bank bank;
 	
-	
-	public GameEngineHandler() throws ParseException{
+	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
 		
-		levelsArray = (JSONArray) ((JSONObject) parser.parse("resources/levels.json")).get("levels");
+
+
 		
+		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
+		bank = new Bank();
 		newWave();
 	}
 	
@@ -53,6 +61,10 @@ public class GameEngineHandler {
 			currentWave = ((JSONObject) currentWave.get(wave));
 		} else {
 			level++;
+			//PAUSE
+			bank.endDay();
+			
+			//PLAY
 			newWave();
 			return;
 		}
