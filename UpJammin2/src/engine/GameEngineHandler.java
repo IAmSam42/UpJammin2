@@ -121,7 +121,6 @@ public class GameEngineHandler {
 		}
 		for(Entity ent : map.getEnemies())
 			ent.tick();
-		System.out.println("size: "+ map.getNonEnemies().size());
 		for(int i = 0; i < map.getNonEnemies().size(); i++) 
 		{
 			map.getNonEnemies().get(i).tick();
