@@ -11,4 +11,7 @@ public class Config {
 	public static String cannon_left_file = "resources/cannonLeft.jpg";
 	public static String wall = "resources/wall.jpg";
 	public static String FinUpgradesScreen = "resources/FinUpgradesSplashScreen.png";
+	public static String greyWall = "resources/greyWall.jpg";
+	public static String greyCannonLeft= "resources/greyCannonLeft.jpg";
+
 }

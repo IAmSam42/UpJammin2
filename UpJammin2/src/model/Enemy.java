@@ -24,56 +24,82 @@ public class Enemy extends Entity {
 
 	@Override
 	public void tick() 
-	{
-		System.out.println(this.getPoint());
-		
+	{	
 		//If the path is empty:
 		if(path.isEmpty())
 		{
 			//Don't do anything in the tick.
 			return;
 		}
-		
 		
 		//Convert the current point to a grid reference.
-		Point grid_point = this.getMap().toGridPoint(this.getPoint());
+		Point target_point = path.get(0);
 		
-		//If the enemy is at the next part of the path:
-		if(path.get(0).equals(grid_point))
+		//Get the pixel coordinates of the top left.
+		Point pixel_point = this.getMap().toPixelPoint(target_point);
+		
+		//If the enemy is at the top left corner:
+		if(this.getPoint().equals(pixel_point))
 		{
-			//Then remove the next part of the path.
+			System.out.println("Next point!");
+			
+			//Remove the first element of the path.
 			path.remove(0);
 			
+			//If the next point is blocked:
 			if(this.getMap().isBlocked(path.get(0)))
 			{
+				System.out.println("Recalculating!");
+				//Recalculate the path.
 				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
 			}
-		}
-		
-		
-		//If the path is empty:
-		if(path.isEmpty())
-		{
-			//Don't do anything in the tick.
+			
+			//Move on the next tick.
 			return;
 		}
 		
+		//Get x and y coordinate of the enemy.
+		int x_coord = (int)this.getPoint().getX();
+		int y_coord = (int)this.getPoint().getY();
 		
-		//Work out the direction for the next point in the path.
-		int x_move = (int)Math.abs(grid_point.getX() - path.get(0).getX());
-		int y_move = (int)Math.abs(grid_point.getY() - path.get(0).getY());
+		//Work out the movement needed.
+		int x_diff = (int)pixel_point.getX() - x_coord;
+		int y_diff = (int)pixel_point.getY() - y_coord;
 		
-		//Create a new point (old point plus the movement amount.
-		Point new_point = new Point((int)this.getPoint().getX() + x_move, 
-									(int)this.getPoint().getY() + y_move);
+		//Normalise both differences.
+		x_diff = normalise(x_diff);
+		y_diff = normalise(y_diff);
 		
-		//Set the new point of the enemy.
+		//Get the new position of the enemy.
+		Point new_point = new Point(x_coord + x_diff, y_coord + y_diff);
+		
+		//Set the new position.
 		this.setPoint(new_point);
-
+	}
+	
+	/**
+	 * Reduce an int to an int between -1 and 1.
+	 * @param x The int to reduce.
+	 * @return The reduced int.
+	 */
+	private int normalise(int x)
+	{
+		if(x == 0)
+		{
+			return 0;
+		}
+		else if(x < 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
+		}
 	}
 
 	@Override
-	public void render(Graphics g) 
+	public void render(Graphics g, boolean hover) 
 	{
 		// TODO Auto-generated method stub
 

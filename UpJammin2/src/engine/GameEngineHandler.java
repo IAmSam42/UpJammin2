@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -77,7 +78,7 @@ public class GameEngineHandler {
 		Long y = (Long) currentWave.get("enemyType1");
 		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new BowlerAlpaca(map, 10, new Point(0, gen.nextInt(map.getHeight() * map.getScale()))));
+			map.getEnemies().add(new BowlerAlpaca(map, 10, new Point(0, gen.nextInt((map.getHeight() -1) * map.getScale()))));
 		}
 		
 		y = (Long) currentWave.get("enemyType2");
@@ -107,6 +108,16 @@ public class GameEngineHandler {
 			wave++;
 			newWave();
 		}
+		for(Entity ent : map.getEnemies()) {
+			if(ent.getHealth() == 0) {
+				map.removeEnemy(ent);
+			}
+		}
+		for(Entity ent : map.getNonEnemies()) {
+			if(ent.getHealth() == 0) {
+				map.removeNonEnemy(ent);
+			}
+		}
 		for(Entity ent : map.getEnemies())
 			ent.tick();
 		for(Entity ent : map.getNonEnemies())
@@ -122,6 +133,8 @@ public class GameEngineHandler {
 		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
 		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
 		ImageIcon wall = ResourceManager.getResourceManager().getImageIcon(Config.wall);
+		ImageIcon greyCannonLeft = ResourceManager.getResourceManager().getImageIcon(Config.greyCannonLeft);
+		ImageIcon greyWall = ResourceManager.getResourceManager().getImageIcon(Config.greyWall);
 		
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
@@ -132,22 +145,30 @@ public class GameEngineHandler {
 					else {
 						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					}
-				}else{
-					if(map.findNonEnemy(new Point(j, i)) == blockType.Turret) {
-						g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					}
-					else if(map.findNonEnemy(new Point(j, i)) == blockType.Wall) {
-						g.drawImage(wall.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					}
 				}
 			}
 		}
+				
+		ArrayList<Entity> entities = map.getNonEnemies();
+		for(int i = 0; i < entities.size(); i++) {
+			if(hover == null || (hover.getX() != map.toGridPoint(entities.get(i).getPoint()).getX() || hover.getY() != map.toGridPoint(entities.get(i).getPoint()).getY())) {
+				entities.get(i).render(g, false);
+			}
+			else {
+				entities.get(i).render(g, true);
+			}
+		}
+					
+	
+
+//		}
 //		System.out.println(map.getEnemies().size());
 		for(Entity ent : map.getEnemies()){
-			ent.render(g);
+			ent.render(g, false);
 			//System.out.println(ent.getPoint());
 		}
-	}
+}
+
 	
 	public void setHover(Point p) {
 		hover = p;

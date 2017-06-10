@@ -78,14 +78,14 @@ public class Path {
 		}
 		
 		//below
-		if(point.getY() + 1 <= height) {
+		if(point.getY() + 1 < height) {
 			Point x = new Point();
 			x.setLocation(point.getX(), point.getY()+1);
 			points.add(x);
 		}
 		
 		//right
-		if(point.getX() + 1 <= width) {
+		if(point.getX() + 1 < width) {
 			Point x = new Point();
 			x.setLocation(point.getX()+1, point.getY());
 			points.add(x);

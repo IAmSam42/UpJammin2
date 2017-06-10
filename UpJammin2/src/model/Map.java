@@ -3,7 +3,11 @@ package model;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import ai.Path;
+import model.turrets.ArrowTurret;
+import model.turrets.CannonTurret;
 /**
  * Contains information about the dimensions of the map, and which tiles are
  * being blocked by walls and turrets
@@ -27,7 +31,7 @@ public class Map {
 	private Path path_finder;
 	
 	public enum blockType {
-		Turret, Wall, None
+		ArrowTurret, CannonTurret, Wall, None
 	}
 	/**
 	 * Constructor for a map object.
@@ -75,7 +79,7 @@ public class Map {
 	 */
 	public Point toGridPoint(Point pixel_point) {
 		Point grid_point = new Point((int) (pixel_point.getX() / scale), (int) (pixel_point.getY() / scale));
-
+		
 		return grid_point;
 	}
 
@@ -138,6 +142,7 @@ public class Map {
 				//If the (i, j) coordinates are on the map and are not blocked:
 				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
+					System.out.println(new Point(i, j));
 					//Try setting the point as blocked.
 					setBlocked(new Point(i, j), true);
 					
@@ -301,6 +306,14 @@ public class Map {
 	public ArrayList<Entity> getNonEnemies() {
 		return nonEnemies;
 	}
+	
+	public void removeEnemy(Entity enemy) {
+		enemies.remove(enemy);
+	}
+	
+	public void removeNonEnemy(Entity nonEnemy) {
+		nonEnemies.remove(nonEnemy);
+	}
 
 	/**
 	 * Get the enemy array list.
@@ -313,14 +326,26 @@ public class Map {
 	public blockType findNonEnemy(Point p) {
 		for(int i = 0; i < nonEnemies.size(); i++) {
 			if(this.toGridPoint(nonEnemies.get(i).getPoint()).equals(p)) {
-				if(nonEnemies.get(i) instanceof Turret) {
-					return blockType.Turret;
+				if(nonEnemies.get(i) instanceof ArrowTurret) {
+					return blockType.ArrowTurret;
+				}
+				else if(nonEnemies.get(i) instanceof CannonTurret) {
+					return blockType.CannonTurret;
 				}
 				else {
 					return blockType.Wall;
 				}
 			}
 		}
-		return blockType.Turret;
+		return blockType.ArrowTurret;
+	}
+	
+	public Entity getNonEnemy(Point p) {
+		for(int i = 0; i < nonEnemies.size(); i++) {
+			if(this.toGridPoint(nonEnemies.get(i).getPoint()).equals(p)) {
+				return nonEnemies.get(i);
+			}
+		}
+		return null;
 	}
 }
