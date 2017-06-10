@@ -124,7 +124,8 @@ public class GameEngineHandler {
 		System.out.println("size: "+ map.getNonEnemies().size());
 		for(int i = 0; i < map.getNonEnemies().size(); i++) 
 		{
-			System.out.println(i + "  "+ map.getNonEnemies().get(i));
+			
+			
 			map.getNonEnemies().get(i).tick();
 		}
 		//for(Entity ent : map.getNonEnemies())

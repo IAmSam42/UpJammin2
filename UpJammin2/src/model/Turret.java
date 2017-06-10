@@ -50,7 +50,7 @@ public class Turret extends Entity {
 	
 	private void fireAtTarget() {
 		assert(targetted != null);
-		if(targetted.getHealth() < 0 || targetted.getPoint().distance(getPoint()) > range * getMap().getScale()){
+		if(targetted.getHealth() <= 0 || targetted.getPoint().distance(getPoint()) > range * getMap().getScale()){
 			targetted = null;
 			return;
 		}
