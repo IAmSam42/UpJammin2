@@ -1,12 +1,14 @@
 package engine;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.event.EventListenerList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +19,10 @@ import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
+
+import model.enemies.BowlerAlpaca;
+
+import model.Map.blockType;
 //import java.awt.Graphics2D;
 
 public class GameEngineHandler {
@@ -40,6 +46,8 @@ public class GameEngineHandler {
 		levelsArray = (JSONArray) ResourceManager.getResourceManager().getJSONArrayFromFile(Config.levels_file).get("levels");
 		
 		newWave();
+		
+		this.map.addEnemy(new BowlerAlpaca(this.map, 100, new Point(300,300)));
 	}
 	
 	public void newWave() {
@@ -111,9 +119,11 @@ public class GameEngineHandler {
 
 	public void render(Graphics g) {
 //		System.out.println("HEYYY I RENDERED");
+
 		ImageIcon grass_img = ResourceManager.getResourceManager().getImageIcon(Config.grass_file);
 		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
 		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
+		ImageIcon wall = ResourceManager.getResourceManager().getImageIcon(Config.wall);
 		
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
@@ -125,10 +135,19 @@ public class GameEngineHandler {
 						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					}
 				}else{
-					g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					System.out.println("something else should be rendered instead of the floor in this positon");
+					if(map.findNonEnemy(new Point(j, i)) == blockType.Turret) {
+						g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+					else if(map.findNonEnemy(new Point(j, i)) == blockType.Wall) {
+						g.drawImage(wall.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
 				}
 			}
+		}
+//		System.out.println(map.getEnemies().size());
+		for(Entity ent : map.getEnemies()){
+			ent.render(g);
+			//System.out.println(ent.getPoint());
 		}
 	}
 	

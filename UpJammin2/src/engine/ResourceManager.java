@@ -1,5 +1,7 @@
 package engine;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -43,6 +45,11 @@ public class ResourceManager {
 				file_cache.put(file_name, fileContent);
 			}
 		}
+		catch(FileNotFoundException e) {
+			System.err.println("File doesn't exists " + file_name + ".");
+			e.printStackTrace();
+			System.exit(-1);
+		}
 		catch(Exception e) {
 			System.err.println("Problems reading file " + file_name + ".");
 			e.printStackTrace();
@@ -54,9 +61,18 @@ public class ResourceManager {
 	public ImageIcon getImageIcon(String file_name) {
 		try {
 			if(! file_cache.containsKey(file_name)) {
+				File f = new File(file_name);
+				if(! f.exists()) {
+					throw new FileNotFoundException();
+				}
 				ImageIcon nii = new ImageIcon(file_name);
 				img_cache.put(file_name, nii);
 			}
+		}
+		catch(FileNotFoundException e) {
+			System.err.println("File doesn't exists " + file_name + ".");
+			e.printStackTrace();
+			System.exit(-1);
 		}
 		catch(Exception e) {
 			System.err.println("Problems reading image file " + file_name + ".");
@@ -85,7 +101,7 @@ public class ResourceManager {
 	public static void main(String[] args) throws ParseException {
 		System.out.println(ResourceManager.getResourceManager().getFileContents("resources/levels.json"));
 		JSONParser p = new JSONParser();
-		JSONArray a = (JSONArray) p.parse(ResourceManager.getResourceManager().getFileContents("resources/upgrades.json"));
+		JSONArray a = (JSONArray) p.parse(ResourceManager.getResourceManager().getFileContents("resources/featuresUpgrades.json"));
 		System.out.println(a.toJSONString());
 	}
 }

@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import ai.Path;
-
 /**
  * Contains information about the dimensions of the map, and which tiles are
  * being blocked by walls and turrets
@@ -26,7 +25,10 @@ public class Map {
 	private ArrayList<Entity> nonEnemies;
 	
 	private Path path_finder;
-
+	
+	public enum blockType {
+		Turret, Wall, None
+	}
 	/**
 	 * Constructor for a map object.
 	 * @param height The height of the map in grid references (not pixels).
@@ -306,5 +308,19 @@ public class Map {
 	 */
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
+	}
+	
+	public blockType findNonEnemy(Point p) {
+		for(int i = 0; i < nonEnemies.size(); i++) {
+			if(this.toGridPoint(nonEnemies.get(i).getPoint()).equals(p)) {
+				if(nonEnemies.get(i) instanceof Turret) {
+					return blockType.Turret;
+				}
+				else {
+					return blockType.Wall;
+				}
+			}
+		}
+		return blockType.Turret;
 	}
 }
