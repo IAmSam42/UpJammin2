@@ -112,7 +112,7 @@ public class GameEngineHandler {
 //		System.out.println("HEYYY I RENDERED");
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
-				if(!map.getBlockedLocation(j, i)){
+				if(!map.isBlocked(new Point(j, i))){
 					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 				}else{
 					g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
