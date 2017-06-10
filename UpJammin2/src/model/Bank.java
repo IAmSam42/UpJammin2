@@ -61,7 +61,7 @@ public class Bank {
 		this.seperateIncome = seperateIncome;
 	}
 	
-	public void increase_cost(Map.blockType blocktype)
+	public void increaseCost(Map.blockType blocktype)
 	{
 		switch (blocktype) {
 		case Wall:
@@ -78,6 +78,28 @@ public class Bank {
 			
 		default:
 			break;
+		}
+	}
+	
+	/**
+	 * Get the current cost of a given blocktype.
+	 * @param blocktype The blocktype to check.
+	 * @return The price of the blocktype.
+	 */
+	public int getCost(Map.blockType blocktype)
+	{
+		switch (blocktype) {
+		case Wall:
+			return price_wall;
+		
+		case ArrowTurret:
+			return price_arrow_tower;
+			
+		case CannonTurret:
+			return price_cannon_tower;
+			
+		default:
+			return 0;
 		}
 	}
 }

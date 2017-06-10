@@ -14,7 +14,7 @@ public class Wall extends Entity {
 		map.addBlockingEntity(this);
 		
 		//Increase the cost.
-		this.getMap().getBank().increase_cost(Map.blockType.Wall);
+		this.getMap().getBank().increaseCost(Map.blockType.Wall);
 	}
 
 	@Override
