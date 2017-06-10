@@ -108,6 +108,16 @@ public class GameEngineHandler {
 			wave++;
 			newWave();
 		}
+		for(Entity ent : map.getEnemies()) {
+			if(ent.getHealth() == 0) {
+				map.removeEnemy(ent);
+			}
+		}
+		for(Entity ent : map.getNonEnemies()) {
+			if(ent.getHealth() == 0) {
+				map.removeNonEnemy(ent);
+			}
+		}
 		for(Entity ent : map.getEnemies())
 			ent.tick();
 		for(Entity ent : map.getNonEnemies())
