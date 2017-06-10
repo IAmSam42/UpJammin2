@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import engine.Config;
+import engine.ResourceManager;
 
 public class UpgradeWindowModel {
 
@@ -14,8 +19,14 @@ public class UpgradeWindowModel {
 
 
 	public UpgradeWindowModel() {
-		//CODE TO READ IN THE FILE HERE
-		
+		String file_content = ResourceManager.getResourceManager().getFileContents(Config.upgrade_file);
+		JSONParser parser = new JSONParser();
+		try {
+			file = (JSONArray) parser.parse(file_content);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		progress = new int[file.size()];
 		for(int y : progress)
