@@ -15,7 +15,7 @@ public class Main {
 	private static JFrame frame;
 	private static JPanel panel;
 
-	public static int HEIGHT = 600;
+	public static int HEIGHT = 750;
 	//public static int WIDTH = ((HEIGHT * 16)/9); 
 	public static int WIDTH = ((HEIGHT * 16)/9) - (((HEIGHT * 16)/9) - ((((HEIGHT * 16)/9)/GameEngine.BLOCKSIZE)*GameEngine.BLOCKSIZE)); 
 	
