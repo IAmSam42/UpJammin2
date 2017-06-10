@@ -41,7 +41,7 @@ public class GameEngineHandler {
 		wave = 0;
 		JSONParser parser = new JSONParser();
 		
-		finUpgradeModel = new UpgradeWindowModel();
+		//finUpgradeModel = new UpgradeWindowModel();
 		
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
 		bank = new Bank();
