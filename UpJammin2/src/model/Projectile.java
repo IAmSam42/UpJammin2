@@ -5,8 +5,6 @@ import java.awt.Point;
 
 public class Projectile extends Entity {
 
-	private Map map;
-	private int health;
 	private Point point;
 	private Point target;
 	private int distance;
@@ -19,12 +17,12 @@ public class Projectile extends Entity {
 	
 	public Projectile(Map map, int health, Point point, Point target, int speed) {
 		super(map, health, point);
-		this.map = map;
-		this.health = health;
 		this.point = point;
 		this.target = target;
 		this.speed = speed;
 		calculate();
+		
+		map.addEntity(this);
 	}
 
 	@Override
@@ -34,7 +32,6 @@ public class Projectile extends Entity {
 			jumps--;
 		}
 		else {
-			health = 0;
 		}
 	}
 	
