@@ -20,6 +20,9 @@ public class Turret extends Entity {
 		this.fireSpeed = fireSpeed;
 		targetted = null;
 		ttNextFire = 0; //<1 -> Ready to fire
+		
+		//Register the turret on the map.
+		map.addBlockingEntity(this);
 	}
 
 	@Override

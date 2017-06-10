@@ -4,16 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 public class Wall extends Entity {
-
-	private Map map;
-	private int health;
-	private Point point;
 	
 	public Wall(Map map, int health, Point point) {
 		super(map, health, point);
-		this.map = map;
-		this.health = health;
-		this.point = point;
+		
+		//Register the wall on the map.
+		map.addBlockingEntity(this);
 	}
 
 	@Override

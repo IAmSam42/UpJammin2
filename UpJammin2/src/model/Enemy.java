@@ -39,7 +39,7 @@ public class Enemy extends Entity {
 			//Then remove the next part of the path.
 			path.remove(0);
 			
-			if(this.getMap().isBlocked((int)path.get(0).getX(), (int)path.get(0).getY()))
+			if(this.getMap().isBlocked(path.get(0)))
 			{
 				//path = path_finder.calculatePath(start, goal);
 			}
