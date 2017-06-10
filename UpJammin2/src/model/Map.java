@@ -69,6 +69,14 @@ public class Map {
 	}
 
 	/**
+	 * Add a non-blocking entity to the game.
+	 * @param entity The entity to add.
+	 */
+	public void addEntity(Entity entity) {
+		nonEnemies.add(entity);
+	}
+	
+	/**
 	 * Add a blocking entity to the game - both adding it to the array list to
 	 * receive ticks and blocking the relevant grip points to prevent unroutable
 	 * walls.
