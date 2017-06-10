@@ -22,7 +22,7 @@ public class Map {
 	
 	private boolean[][] blocked;
 	private boolean[][] placeable;
-	
+	private Bank bank;
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Entity> nonEnemies;
 	
@@ -37,11 +37,11 @@ public class Map {
 	 * @param width The width of the map in grid references (not pixels).
 	 * @param scale How many pixels per grid point.
 	 */
-	public Map(int width, int height, int scale) {
+	public Map(int width, int height, int scale, Bank bank) {
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setScale(scale);
-
+		this.bank = bank;
 		//Calculate the goal (the end column and half the height).
 		goal = new Point(width - 1, (int)(height / 2));
 		
@@ -357,5 +357,13 @@ public class Map {
 			}
 		}
 		return null;
+	}
+
+	public Bank getBank() {
+		return bank;
+	}
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
 	}
 }
