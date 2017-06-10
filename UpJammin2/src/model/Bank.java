@@ -7,7 +7,9 @@ public class Bank {
 	private int seperateIncome;
 	
 	public Bank() {
-		setBalance(1000000);
+		setBalance(500);
+		this.seperateIncome = 0;
+		this.interestRate = 20;
 	}
 	
 	public void endDay() {

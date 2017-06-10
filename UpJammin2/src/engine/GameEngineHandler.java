@@ -158,16 +158,16 @@ public class GameEngineHandler {
 				}
 			}
 		}
-		if(bank.getBalance() < 1000) {
+		if(bank.getBalance() < 250) {
 			g.drawImage(new ImageIcon("resources/GoldChestClosed.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
 		}
-		else if(bank.getBalance() < 50000) {
+		else if(bank.getBalance() < 750) {
 			g.drawImage(new ImageIcon("resources/GoldChestPhase1.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
 		}
-		else if(bank.getBalance() < 1000000) {
+		else if(bank.getBalance() < 1500) {
 			g.drawImage(new ImageIcon("resources/GoldChestPhase2.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
 		}
-		else if(bank.getBalance() < 1500000) {
+		else if(bank.getBalance() < 3000) {
 			g.drawImage(new ImageIcon("resources/GoldChestPhase3.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
 		}
 		else {
