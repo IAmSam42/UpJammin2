@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -59,7 +60,7 @@ public class Turret extends Entity {
 	}
 
 	@Override
-	public void render(Graphics2D g) {
+	public void render(Graphics g) {
 		
 
 	}

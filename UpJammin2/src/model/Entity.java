@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -17,7 +18,7 @@ public abstract class Entity {
 	
 	public abstract void tick();
 	
-	public abstract void render(Graphics2D g);
+	public abstract void render(Graphics g);
 	
 	public Point getPoint() {
 		return point;

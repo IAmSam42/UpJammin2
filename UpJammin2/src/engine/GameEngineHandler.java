@@ -1,6 +1,7 @@
 package engine;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.event.EventListenerList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,6 +23,7 @@ import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
+import model.enemies.BowlerAlpaca;
 //import java.awt.Graphics2D;
 
 public class GameEngineHandler {
@@ -43,6 +46,8 @@ public class GameEngineHandler {
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
 		bank = new Bank();
 		newWave();
+		
+		this.map.addEnemy(new BowlerAlpaca(this.map, 100, new Point(300,300)));
 	}
 	
 	@SuppressWarnings("null")
@@ -112,15 +117,21 @@ public class GameEngineHandler {
 
 	public void render(Graphics g) {
 //		System.out.println("HEYYY I RENDERED");
+		
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
 				if(!map.isBlocked(new Point(j, i))){
 					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 				}else{
-					g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					System.out.println("something else should be rendered instead of the floor in this positon");
+					g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatLeft.png").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					//System.out.println("something else should be rendered instead of the floor in this positon");
 				}
 			}
+		}
+//		System.out.println(map.getEnemies().size());
+		for(Entity ent : map.getEnemies()){
+			ent.render(g);
+			//System.out.println(ent.getPoint());
 		}
 	}
 	

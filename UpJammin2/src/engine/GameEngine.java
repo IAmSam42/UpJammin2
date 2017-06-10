@@ -3,6 +3,7 @@ package engine;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -113,7 +114,7 @@ public class GameEngine extends Canvas implements Runnable {
 		
 //		Create Graphics to draw
 		Graphics g = bs.getDrawGraphics();
-//		Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D)g;
 				
 //		Colour frame background
 		g.setColor(Color.BLACK);
