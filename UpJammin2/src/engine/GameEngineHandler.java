@@ -1,12 +1,14 @@
 package engine;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.event.EventListenerList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +20,9 @@ import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
+
+import model.enemies.BowlerAlpaca;
+
 import model.Map.blockType;
 //import java.awt.Graphics2D;
 
@@ -43,6 +48,7 @@ public class GameEngineHandler {
 		bank = new Bank();
 		newWave();
 		hover = null;
+
 	}
 	
 	public void newWave() {		
@@ -111,6 +117,7 @@ public class GameEngineHandler {
 
 	public void render(Graphics g) {
 //		System.out.println("HEYYY I RENDERED");
+
 		ImageIcon grass_img = ResourceManager.getResourceManager().getImageIcon(Config.grass_file);
 		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
 		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
@@ -134,6 +141,11 @@ public class GameEngineHandler {
 					}
 				}
 			}
+		}
+//		System.out.println(map.getEnemies().size());
+		for(Entity ent : map.getEnemies()){
+			ent.render(g);
+			//System.out.println(ent.getPoint());
 		}
 	}
 	
