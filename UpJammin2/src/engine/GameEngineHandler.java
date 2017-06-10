@@ -126,24 +126,27 @@ public class GameEngineHandler {
 		ImageIcon greyCannonLeft = ResourceManager.getResourceManager().getImageIcon(Config.greyCannonLeft);
 		ImageIcon greyWall = ResourceManager.getResourceManager().getImageIcon(Config.greyWall);
 		
-//		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
-//			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
-//				if(!map.isBlocked(new Point(j, i))){
-//					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
-//						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-//					}
-//					else {
-//						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-//					}
-//				} else {
-//					Entity entity = map.getNonEnemy(new Point(j,i));
-//					entity.render(g);
-//				}
+		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
+			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
+				if(!map.isBlocked(new Point(j, i))){
+					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
+						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+					else {
+						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+				}
+			}
+		}
 				
 		ArrayList<Entity> entities = map.getNonEnemies();
 		for(int i = 0; i < entities.size(); i++) {
-			System.out.println(i);
-			entities.get(i).render(g);
+			if(hover == null || (hover.getX() != map.toGridPoint(entities.get(i).getPoint()).getX() || hover.getY() != map.toGridPoint(entities.get(i).getPoint()).getY())) {
+				entities.get(i).render(g, false);
+			}
+			else {
+				entities.get(i).render(g, true);
+			}
 		}
 					
 	
@@ -151,7 +154,7 @@ public class GameEngineHandler {
 //		}
 //		System.out.println(map.getEnemies().size());
 		for(Entity ent : map.getEnemies()){
-			ent.render(g);
+			ent.render(g, false);
 			//System.out.println(ent.getPoint());
 		}
 }

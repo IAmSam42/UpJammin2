@@ -3,6 +3,8 @@ package model;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
+
 public class Wall extends Entity {
 	
 	public Wall(Map map, int health, Point point) {
@@ -19,9 +21,13 @@ public class Wall extends Entity {
 	}
 
 	@Override
-	public void render(Graphics g) {
-		
-		
+	public void render(Graphics g, boolean hover) {
+		if(hover == false) {
+			g.drawImage(new ImageIcon("resources/wall.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		}
+		else {
+			g.drawImage(new ImageIcon("resources/greyWall.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		}
 	}
 
 }

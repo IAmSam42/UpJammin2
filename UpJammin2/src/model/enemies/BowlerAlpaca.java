@@ -16,7 +16,7 @@ public class BowlerAlpaca extends Enemy{
 	}
 
 	@Override
-	public void render(Graphics g) 
+	public void render(Graphics g, boolean hover) 
 	{
 		g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);
 	}

@@ -17,15 +17,25 @@ public class CannonTurret extends Turret {
 	}
 
 	@Override
-	public void render(Graphics g) 
+	public void render(Graphics g, boolean hover) 
 	{
 		if(this.isFacingRight())
 		{
-			g.drawImage(new ImageIcon("resources/cannonRight.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			if(hover == false) {
+				g.drawImage(new ImageIcon("resources/cannonRight.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
+			else {
+				g.drawImage(new ImageIcon("resources/greyCannonRight.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
 		}
 		else
 		{
-			g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			if(hover == false) {
+				g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
+			else {
+				g.drawImage(new ImageIcon("resources/greyCannonLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
 		}
 	}
 }
