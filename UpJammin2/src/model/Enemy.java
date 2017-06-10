@@ -25,6 +25,7 @@ public class Enemy extends Entity {
 	@Override
 	public void tick() 
 	{	
+		System.out.println("tick");
 		//If the path is empty:
 		if(path.isEmpty())
 		{
@@ -74,6 +75,14 @@ public class Enemy extends Entity {
 		
 		//Set the new position.
 		this.setPoint(new_point);
+	}
+	
+	/**
+	 * Manually recalculate the path
+	 */
+	public void recalculatePath()
+	{
+		path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
 	}
 	
 	/**

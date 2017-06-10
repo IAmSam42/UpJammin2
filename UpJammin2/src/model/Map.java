@@ -156,6 +156,11 @@ public class Map {
 			}
 		}
 		
+		//Tell all enemies to recalculate paths.
+		for(Enemy enemy : enemies)
+		{
+			enemy.recalculatePath();
+		}
 		
 		return true;
 	}
