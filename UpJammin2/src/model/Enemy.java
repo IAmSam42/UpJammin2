@@ -25,7 +25,6 @@ public class Enemy extends Entity {
 	@Override
 	public void tick() 
 	{	
-		System.out.println("tick");
 		//If the path is empty:
 		if(path.isEmpty())
 		{
