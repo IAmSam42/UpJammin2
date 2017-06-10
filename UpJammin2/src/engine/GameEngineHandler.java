@@ -61,9 +61,9 @@ public class GameEngineHandler {
 			currentWave = ((JSONObject) currentWave.get(wave));
 		} else {
 			level++;
-			//PAUSE
+			GameEngine.paused = true;
 			bank.endDay();
-			
+			GameEngine.paused = false;
 			//PLAY
 			newWave();
 			return;
