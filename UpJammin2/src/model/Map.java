@@ -306,6 +306,14 @@ public class Map {
 	public ArrayList<Entity> getNonEnemies() {
 		return nonEnemies;
 	}
+	
+	public void removeEnemy(Entity enemy) {
+		enemies.remove(enemy);
+	}
+	
+	public void removeNonEnemy(Entity nonEnemy) {
+		nonEnemies.remove(nonEnemy);
+	}
 
 	/**
 	 * Get the enemy array list.
