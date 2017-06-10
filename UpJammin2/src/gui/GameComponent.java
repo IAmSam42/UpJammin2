@@ -4,30 +4,58 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
 import engine.GameEngine;
+import engine.GameEngineHandler;
 import gui.ButtonPanel.Selected;
+import model.Map;
 import model.Turret;
+import model.Wall;
 
 public class GameComponent extends JPanel {
 	public GameComponent(GameEngine game, ButtonPanel panel) {
+		
+		GameEngineHandler handler = game.getGameEngineHandler();
+		
+		Map map = handler.getMap();
+		
 		setLayout(new BorderLayout());
 		
 		add(game, BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
+		
+		game.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent arg0) {
+				handler.setHover(map.toGridPoint(arg0.getPoint()));
+			}
+			
+		});
 		
 		
 		game.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(panel.getSelected() == Selected.Tower) {
-					//System.out.println(arg0.getPoint());
-				}
-				else if (panel.getSelected() == Selected.Wall) {
-					//System.out.println(arg0.getPoint());
+				if(!map.isBlocked(map.toGridPoint(arg0.getPoint()))) {
+					if(panel.getSelected() == Selected.Tower) {
+						new Turret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 1, 1, 1, 1);
+						//System.out.println(arg0.getPoint());
+					}
+					else if (panel.getSelected() == Selected.Wall) {
+						new Wall(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())));
+						//System.out.println(arg0.getPoint());
+					}
 				}
 			}
 

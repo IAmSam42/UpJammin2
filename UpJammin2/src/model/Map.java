@@ -14,38 +14,29 @@ public class Map {
 	private int width;
 	private int height;
 	private int scale;
+	
+	private Point goal; //Where the gold be at.
+	
 	private boolean[][] blocked;
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Entity> nonEnemies;
 
 	/**
 	 * Constructor for a map object.
-	 * 
-	 * @param height
-	 *            The height of the map in grid references (not pixels).
-	 * @param width
-	 *            The width of the map in grid references (not pixels).
-	 * @param scale
-	 *            How many pixels per grid point.
+	 * @param height The height of the map in grid references (not pixels).
+	 * @param width The width of the map in grid references (not pixels).
+	 * @param scale How many pixels per grid point.
 	 */
 	public Map(int width, int height, int scale) {
-
-		
-		
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setScale(scale);
 
+		//Calculate the goal (the end column and half the height).
+		goal = new Point(width - 1, (int)(height / 2));
+		
+		//Setup all the arrays
 		this.blocked = new boolean[width][height];
-
-		// for (int i = 0; i < 20; i++) {
-		// int x = new Random().nextInt(width);
-		// int y = new Random().nextInt(height);
-		// if(!this.blocked[x][y]){
-		// this.blocked[x][y] = true;
-		// }
-		// }
-
 		this.enemies = new ArrayList<Enemy>();
 		this.nonEnemies = new ArrayList<Entity>();
 	}
@@ -77,6 +68,14 @@ public class Map {
 		return pixel_point;
 	}
 
+	/**
+	 * Add a non-blocking entity to the game.
+	 * @param entity The entity to add.
+	 */
+	public void addEntity(Entity entity) {
+		nonEnemies.add(entity);
+	}
+	
 	/**
 	 * Add a blocking entity to the game - both adding it to the array list to
 	 * receive ticks and blocking the relevant grip points to prevent unroutable
@@ -172,6 +171,15 @@ public class Map {
 	 */
 	public void setScale(int scale) {
 		this.scale = scale;
+	}
+	
+	/**
+	 * Get the goal point.
+	 * @return The goal.
+	 */
+	public Point getGoal()
+	{
+		return goal;
 	}
 
 	/**

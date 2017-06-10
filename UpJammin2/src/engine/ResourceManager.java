@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class ResourceManager {
 	static private ResourceManager instance = null;
 	private HashMap<String, String> file_cache;
@@ -61,7 +66,10 @@ public class ResourceManager {
 		return img_cache.get(file_name);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		System.out.println(ResourceManager.getResourceManager().getFileContents("resources/levels.json"));
+		JSONParser p = new JSONParser();
+		JSONArray a = (JSONArray) p.parse(ResourceManager.getResourceManager().getFileContents("resources/upgrades.json"));
+		System.out.println(a.toJSONString());
 	}
 }
