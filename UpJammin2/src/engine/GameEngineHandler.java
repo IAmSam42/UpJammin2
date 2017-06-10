@@ -2,9 +2,7 @@ package engine;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
@@ -15,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import gui.GameWindow;
 import gui.Main;
 import model.Bank;
 import model.Enemy;
@@ -40,14 +37,13 @@ public class GameEngineHandler {
 		wave = 0;
 		JSONParser parser = new JSONParser();
 
-		
-		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
+		String fileContents = ResourceManager.getResourceManager().getFileContents(Config.levels_file);
+		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
 		bank = new Bank();
 		newWave();
 		hover = null;
 	}
 	
-	@SuppressWarnings("null")
 	public void newWave() {		
 		JSONArray currentLevel = null;
 		System.out.println(levelsArray.size() > level);
@@ -114,17 +110,21 @@ public class GameEngineHandler {
 
 	public void render(Graphics g) {
 //		System.out.println("HEYYY I RENDERED");
+		ImageIcon grass_img = ResourceManager.getResourceManager().getImageIcon(Config.grass_file);
+		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
+		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
+		
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
 				if(!map.isBlocked(new Point(j, i))){
 					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
-						g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					}
 					else {
-						g.drawImage(new ImageIcon("resources/brighterGrassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					}
 				}else{
-					g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					System.out.println("something else should be rendered instead of the floor in this positon");
 				}
 			}
