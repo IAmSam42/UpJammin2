@@ -41,7 +41,12 @@ public class Path {
 					queue.add(new Triple(point, point.distance(goal), current));
 				}
 			}
-			current = queue.poll();
+			if(queue.isEmpty()) {
+				return new ArrayList<Point>();
+			}
+			else {
+				current = queue.poll();
+			}
 		}
 		
 		ArrayList<Point> path = new ArrayList<Point>();
