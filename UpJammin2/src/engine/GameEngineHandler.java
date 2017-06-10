@@ -44,6 +44,7 @@ public class GameEngineHandler {
 		String fileContents = ResourceManager.getResourceManager().getFileContents(Config.levels_file);
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
 		bank = new Bank();
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		newWave();
 		hover = null;
 		
@@ -202,6 +203,10 @@ public class GameEngineHandler {
 	
 	public Map getMap() {
 		return map;
+	}
+	
+	public Bank getBank() {
+		return bank;
 	}
 	
 }

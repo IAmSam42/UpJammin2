@@ -28,7 +28,6 @@ public class Turret extends Entity {
 
 	@Override
 	public void tick() {
-		System.out.println("tick");
 		ttNextFire--;
 		if(targetted == null) {
 			System.out.println("enemies: " + getMap().getEnemies().size());
