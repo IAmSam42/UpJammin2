@@ -149,10 +149,30 @@ public class GameEngineHandler {
 						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					}
 					else {
-						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+						if(map.isPlaceable(new Point(j, i))) {
+							g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+						}
+						else {
+							g.drawImage(new ImageIcon("resources/greyGrass.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+						}
 					}
 				}
 			}
+		}
+		if(bank.getBalance() < 1000) {
+			g.drawImage(new ImageIcon("resources/GoldChestClosed.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
+		}
+		else if(bank.getBalance() < 50000) {
+			g.drawImage(new ImageIcon("resources/GoldChestPhase1.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
+		}
+		else if(bank.getBalance() < 1000000) {
+			g.drawImage(new ImageIcon("resources/GoldChestPhase2.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
+		}
+		else if(bank.getBalance() < 1500000) {
+			g.drawImage(new ImageIcon("resources/GoldChestPhase3.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
+		}
+		else {
+			g.drawImage(new ImageIcon("resources/GoldChestPhase4.png").getImage(), (int)map.toPixelPoint(map.getGoal()).getX(), (int)map.toPixelPoint(map.getGoal()).getY(), null);
 		}
 				
 		ArrayList<Entity> entities = map.getNonEnemies();
@@ -164,6 +184,8 @@ public class GameEngineHandler {
 				entities.get(i).render(g, true);
 			}
 		}
+		
+		
 					
 //		}
 //		System.out.println(map.getEnemies().size());
