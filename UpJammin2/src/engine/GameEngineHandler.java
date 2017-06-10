@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import gui.Main;
@@ -24,11 +23,12 @@ import model.Map.blockType;
 public class GameEngineHandler {
 
 	private Map map;
-	private static int BLOCKSIZE = 64;
+	private static int BLOCKSIZE = Config.block_size;
 	private int level;
-	private JSONArray levelsArray;
 	private int wave;
 	int tickCounter;
+	
+	private JSONArray levelsArray;
 	private Bank bank;
 	private Point hover;
 	
@@ -36,16 +36,15 @@ public class GameEngineHandler {
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
 		level = 0;
 		wave = 0;
-		JSONParser parser = new JSONParser();
-
-		String fileContents = ResourceManager.getResourceManager().getFileContents(Config.levels_file);
-		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
-		bank = new Bank();
-		newWave();
 		hover = null;
+		bank = new Bank();
+		levelsArray = (JSONArray) ResourceManager.getResourceManager().getJSONArrayFromFile(Config.levels_file).get("levels");
+		
+		newWave();
 	}
 	
-	public void newWave() {		
+	public void newWave() {
+		/*get current game level; if passed the game level print game over*/
 		JSONArray currentLevel = null;
 		System.out.println(levelsArray.size() > level);
 		if(levelsArray.size() > level) {
@@ -54,6 +53,8 @@ public class GameEngineHandler {
 			System.out.println("GAME WON");
 			return;
 		}
+		
+		/*get current wave; if done start again*/
 		JSONObject currentWave = null;
 		if(currentLevel.size() > wave) {
 			currentWave = ((JSONObject) currentLevel.get(wave));
@@ -96,7 +97,7 @@ public class GameEngineHandler {
 	public void tick() {
 //		System.out.println("HEYYY I TICKED");
 //		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
-//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
+//		System.out.println("Height: " + Main.HEIGHT/BLOCKSIZE);
 		if(map.getEnemies().size() == 0){
 			wave++;
 			newWave();
