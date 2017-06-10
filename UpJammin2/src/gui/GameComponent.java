@@ -14,6 +14,8 @@ import gui.ButtonPanel.Selected;
 import model.Map;
 import model.Turret;
 import model.Wall;
+import model.turrets.ArrowTurret;
+import model.turrets.CannonTurret;
 
 public class GameComponent extends JPanel {
 	public GameComponent(GameEngine game, ButtonPanel panel) {
@@ -48,14 +50,18 @@ public class GameComponent extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(!map.isBlocked(map.toGridPoint(arg0.getPoint()))) {
-					if(panel.getSelected() == Selected.Tower) {
-						new Turret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 1, 1, 1, 1);
+					if(panel.getSelected() == Selected.ArrowTurret) {
+						new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 1, 1, 1, 1);
 						//System.out.println(arg0.getPoint());
 					}
 					else if (panel.getSelected() == Selected.Wall) {
 						new Wall(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())));
 						//System.out.println(arg0.getPoint());
 					}
+					else if(panel.getSelected() == Selected.CannonTurret) {
+						new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 1, 1, 1, 1);
+						//System.out.println(arg0.getPoint());
+					} 
 				}
 			}
 

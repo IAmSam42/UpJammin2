@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -122,32 +123,39 @@ public class GameEngineHandler {
 		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
 		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
 		ImageIcon wall = ResourceManager.getResourceManager().getImageIcon(Config.wall);
+		ImageIcon greyCannonLeft = ResourceManager.getResourceManager().getImageIcon(Config.greyCannonLeft);
+		ImageIcon greyWall = ResourceManager.getResourceManager().getImageIcon(Config.greyWall);
 		
-		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
-			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
-				if(!map.isBlocked(new Point(j, i))){
-					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
-						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					}
-					else {
-						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					}
-				}else{
-					if(map.findNonEnemy(new Point(j, i)) == blockType.Turret) {
-						g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					}
-					else if(map.findNonEnemy(new Point(j, i)) == blockType.Wall) {
-						g.drawImage(wall.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					}
-				}
-			}
+//		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
+//			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
+//				if(!map.isBlocked(new Point(j, i))){
+//					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
+//						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+//					}
+//					else {
+//						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+//					}
+//				} else {
+//					Entity entity = map.getNonEnemy(new Point(j,i));
+//					entity.render(g);
+//				}
+				
+		ArrayList<Entity> entities = map.getNonEnemies();
+		for(int i = 0; i < entities.size(); i++) {
+			System.out.println(i);
+			entities.get(i).render(g);
 		}
+					
+	
+
+//		}
 //		System.out.println(map.getEnemies().size());
 		for(Entity ent : map.getEnemies()){
 			ent.render(g);
 			//System.out.println(ent.getPoint());
 		}
-	}
+}
+
 	
 	public void setHover(Point p) {
 		hover = p;

@@ -1,5 +1,6 @@
 package model.turrets;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -16,15 +17,20 @@ public class ArrowTurret extends Turret
 		super(map, health, location, range, damage, fireRate, fireSpeed);
 		// TODO Auto-generated constructor stub
 	}
-	public void render(Graphics2D g) 
+	
+	@Override
+	public void render(Graphics g) 
 	{
 		if(this.isFacingRight())
 		{
-			g.drawImage(new ImageIcon("resources/crossbowRight.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+			System.out.println("Right");
+			g.drawImage(new ImageIcon("resources/crossbowRight.jpg").getImage(), (this.getPoint()).x,(this.getPoint()).y, null);
 		}
 		else
 		{
-			g.drawImage(new ImageIcon("resources/crossbowLeft.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+			System.out.println("Left");
+			System.out.println(this.getMap().toGridPoint((this.getPoint())).x);
+			g.drawImage(new ImageIcon("resources/crossbowLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 		}
 	}
 }

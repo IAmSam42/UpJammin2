@@ -11,7 +11,7 @@ import javax.swing.JToggleButton;
 
 public class ButtonPanel extends JPanel {
 	public enum Selected {
-		None, Tower, Wall
+		None, ArrowTurret, CannonTurret, Wall
 	}
 	
 	private Selected button;
@@ -20,21 +20,41 @@ public class ButtonPanel extends JPanel {
 		
 		this.button = Selected.None;
 		
-		JToggleButton tower = new JToggleButton("Tower");
+		JToggleButton arrowTurret = new JToggleButton("ArrowTurret");
+		JToggleButton cannonTurret = new JToggleButton("CannonTurret");
 		JToggleButton wall = new JToggleButton("Wall");
+		
+		
 		JPanel buttonPanel = new JPanel();
 		//if not set to tower, set to tower, otherwise set to none
-		tower.addActionListener(new ActionListener() {
+		arrowTurret.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					if(button != Selected.Tower) {
-						button = Selected.Tower;
-						tower.setSelected(true);
+					if(button != Selected.ArrowTurret) {
+						button = Selected.ArrowTurret;
+						arrowTurret.setSelected(true);
 						wall.setSelected(false);
+						cannonTurret.setSelected(false);
 					}
 					else {
 						button = Selected.None;
-						tower.setSelected(false);
+						arrowTurret.setSelected(false);
+					}
+			}
+		});
+		
+		cannonTurret.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+					if(button != Selected.CannonTurret) {
+						button = Selected.CannonTurret;
+						cannonTurret.setSelected(true);
+						wall.setSelected(false);
+						arrowTurret.setSelected(false);
+					}
+					else {
+						button = Selected.None;
+						cannonTurret.setSelected(false);
 					}
 			}
 		});
@@ -47,7 +67,8 @@ public class ButtonPanel extends JPanel {
 				if(button != Selected.Wall) {
 					button = Selected.Wall;
 					wall.setSelected(true);
-					tower.setSelected(false);
+					arrowTurret.setSelected(false);
+					cannonTurret.setSelected(false);
 				}
 				else {
 					button = Selected.None;
@@ -56,9 +77,9 @@ public class ButtonPanel extends JPanel {
 			}
 		});
 		
-		buttonPanel.setLayout(new GridLayout(1,2));
-		buttonPanel.add(tower);
-		
+		buttonPanel.setLayout(new GridLayout(1,3));
+		buttonPanel.add(arrowTurret);
+		buttonPanel.add(cannonTurret);
 		buttonPanel.add(wall);
 		
 		add(buttonPanel,BorderLayout.CENTER);
