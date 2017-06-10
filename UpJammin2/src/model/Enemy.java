@@ -28,6 +28,8 @@ public class Enemy extends Entity {
 		//If the path is empty:
 		if(path.isEmpty())
 		{
+			this.setHealth(0);
+			
 			//Don't do anything in the tick.
 			return;
 		}
@@ -44,8 +46,8 @@ public class Enemy extends Entity {
 			//Remove the first element of the path.
 			path.remove(0);
 			
-			//If the next point is blocked:
-			if(this.getMap().isBlocked(path.get(0)))
+			//If there are still points in the path and the next point is blocked:
+			if(!path.isEmpty() && this.getMap().isBlocked(path.get(0)))
 			{
 				//Recalculate the path.
 				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());

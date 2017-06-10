@@ -2,7 +2,7 @@
   "levels" : [
       [
           {
-            "enemyType1" : 1,
+            "enemyType1" : 20,
             "enemyType2" : 0,
             "enemyType3" : 0,
             "enemyType4" : 0
