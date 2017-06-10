@@ -47,7 +47,6 @@ public class GameEngineHandler {
 		newWave();
 	}
 	
-	@SuppressWarnings("null")
 	public void newWave() {		
 		JSONArray currentLevel = null;
 		System.out.println(levelsArray.size() > level);
@@ -97,9 +96,6 @@ public class GameEngineHandler {
 	}
 		
 	public void tick() {
-//		System.out.println("HEYYY I TICKED");
-//		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
-//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
 		if(map.getEnemies().size() == 0){
 			wave++;
 			newWave();
@@ -120,7 +116,7 @@ public class GameEngineHandler {
 					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 				}else{
 					g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					System.out.println("something else should be rendered instead of the floor in this positon");
+//					System.out.println("something else should be rendered instead of the floor in this positon");
 				}
 			}
 		}
