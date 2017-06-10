@@ -3,9 +3,7 @@ package engine;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
@@ -14,44 +12,46 @@ import javax.swing.event.EventListenerList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import gui.GameWindow;
 import gui.Main;
 import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
+
 import model.enemies.BowlerAlpaca;
+
+import model.Map.blockType;
 //import java.awt.Graphics2D;
 
 public class GameEngineHandler {
 
 	private Map map;
-	private static int BLOCKSIZE = 64;
+	private static int BLOCKSIZE = Config.block_size;
 	private int level;
-	private JSONArray levelsArray;
 	private int wave;
 	int tickCounter;
+	
+	private JSONArray levelsArray;
 	private Bank bank;
+	private Point hover;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
 		level = 0;
 		wave = 0;
-		JSONParser parser = new JSONParser();
-
-		
-		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
+		hover = null;
 		bank = new Bank();
+		levelsArray = (JSONArray) ResourceManager.getResourceManager().getJSONArrayFromFile(Config.levels_file).get("levels");
+		
 		newWave();
 		
 		this.map.addEnemy(new BowlerAlpaca(this.map, 100, new Point(300,300)));
 	}
 	
-	@SuppressWarnings("null")
-	public void newWave() {		
+	public void newWave() {
+		/*get current game level; if passed the game level print game over*/
 		JSONArray currentLevel = null;
 		System.out.println(levelsArray.size() > level);
 		if(levelsArray.size() > level) {
@@ -60,6 +60,8 @@ public class GameEngineHandler {
 			System.out.println("GAME WON");
 			return;
 		}
+		
+		/*get current wave; if done start again*/
 		JSONObject currentWave = null;
 		if(currentLevel.size() > wave) {
 			currentWave = ((JSONObject) currentLevel.get(wave));
@@ -102,7 +104,7 @@ public class GameEngineHandler {
 	public void tick() {
 //		System.out.println("HEYYY I TICKED");
 //		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
-//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
+//		System.out.println("Height: " + Main.HEIGHT/BLOCKSIZE);
 		if(map.getEnemies().size() == 0){
 			wave++;
 			newWave();
@@ -117,14 +119,28 @@ public class GameEngineHandler {
 
 	public void render(Graphics g) {
 //		System.out.println("HEYYY I RENDERED");
+
+		ImageIcon grass_img = ResourceManager.getResourceManager().getImageIcon(Config.grass_file);
+		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
+		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
+		ImageIcon wall = ResourceManager.getResourceManager().getImageIcon(Config.wall);
 		
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
 				if(!map.isBlocked(new Point(j, i))){
-					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
+						g.drawImage(grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+					else {
+						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
 				}else{
-					g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatLeft.png").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					//System.out.println("something else should be rendered instead of the floor in this positon");
+					if(map.findNonEnemy(new Point(j, i)) == blockType.Turret) {
+						g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+					else if(map.findNonEnemy(new Point(j, i)) == blockType.Wall) {
+						g.drawImage(wall.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
 				}
 			}
 		}
@@ -133,6 +149,10 @@ public class GameEngineHandler {
 			ent.render(g);
 			//System.out.println(ent.getPoint());
 		}
+	}
+	
+	public void setHover(Point p) {
+		hover = p;
 	}
 	
 	public Map getMap() {

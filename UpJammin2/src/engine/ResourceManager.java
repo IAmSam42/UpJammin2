@@ -1,19 +1,28 @@
 package engine;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class ResourceManager {
 	static private ResourceManager instance = null;
 	private HashMap<String, String> file_cache;
 	private HashMap<String, ImageIcon> img_cache;
+	private HashMap<String, JSONObject> json_cache;
 	
 	private ResourceManager() {
 		file_cache = new HashMap<String, String>();
 		img_cache = new HashMap<String, ImageIcon>();
+		json_cache = new HashMap<String, JSONObject>();
 	}
 	
 	static public ResourceManager getResourceManager() {
@@ -36,32 +45,63 @@ public class ResourceManager {
 				file_cache.put(file_name, fileContent);
 			}
 		}
-		catch(Exception e) {
-			System.err.println("Problems reading file " + file_name + ".");
-			System.err.println(e);
+		catch(FileNotFoundException e) {
+			System.err.println("File doesn't exists " + file_name + ".");
+			e.printStackTrace();
 			System.exit(-1);
 		}
-		
+		catch(Exception e) {
+			System.err.println("Problems reading file " + file_name + ".");
+			e.printStackTrace();
+			System.exit(-1);
+		}
 		return file_cache.get(file_name);
 	}
 	
 	public ImageIcon getImageIcon(String file_name) {
 		try {
 			if(! file_cache.containsKey(file_name)) {
+				File f = new File(file_name);
+				if(! f.exists()) {
+					throw new FileNotFoundException();
+				}
 				ImageIcon nii = new ImageIcon(file_name);
 				img_cache.put(file_name, nii);
 			}
 		}
-		catch(Exception e) {
-			System.err.println("Problems reading image file " + file_name + ".");
-			System.err.println(e);
+		catch(FileNotFoundException e) {
+			System.err.println("File doesn't exists " + file_name + ".");
+			e.printStackTrace();
 			System.exit(-1);
 		}
-		
+		catch(Exception e) {
+			System.err.println("Problems reading image file " + file_name + ".");
+			e.printStackTrace();
+			System.exit(-1);
+		}
 		return img_cache.get(file_name);
 	}
 	
-	public static void main(String[] args) {
+	public JSONObject getJSONArrayFromFile(String file_name) {
+		try {
+			if(! json_cache.containsKey(file_name)) {
+				JSONParser parser = new JSONParser();
+				JSONObject jo = (JSONObject) parser.parse(getFileContents(file_name));
+				json_cache.put(file_name, jo);
+			}
+		}
+		catch(Exception e) {
+			System.err.println("Problems reading json file " + file_name + ".");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		return json_cache.get(file_name);
+	}
+	
+	public static void main(String[] args) throws ParseException {
 		System.out.println(ResourceManager.getResourceManager().getFileContents("resources/levels.json"));
+		JSONParser p = new JSONParser();
+		JSONArray a = (JSONArray) p.parse(ResourceManager.getResourceManager().getFileContents("resources/featuresUpgrades.json"));
+		System.out.println(a.toJSONString());
 	}
 }

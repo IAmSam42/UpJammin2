@@ -1,0 +1,7 @@
+[
+    {
+        "interest_upgrades": [{"title": "Small Interest", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}, {"title": "A little more Interest", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}, {"title": "A lot of interest", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}],
+	"killing_upgrades": [{"title": "Upgrade", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}, {"title": "UUpgrade", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}, {"title": "UUUPGRADE!", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}],
+        "constant_income_upgrades": [{"title": "Payday", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}, {"title": "me very rich!!", "subtitle": "", "cost": 0, "image_file": "resources/upgrade.jpg"}]
+    }
+]

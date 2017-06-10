@@ -12,6 +12,7 @@ public class Turret extends Entity {
 	private Enemy targetted;
 	private int ttNextFire;
 	private int fireSpeed;
+	private boolean facingRight;
 	
 	public Turret(Map map, int health, Point location, int range, int damage, int fireRate, int fireSpeed) {
 		super(map, health, location);
@@ -21,7 +22,7 @@ public class Turret extends Entity {
 		this.fireSpeed = fireSpeed;
 		targetted = null;
 		ttNextFire = 0; //<1 -> Ready to fire
-		
+		setFacingRight(false);
 		//Register the turret on the map.
 		map.addBlockingEntity(this);
 	}
@@ -56,13 +57,25 @@ public class Turret extends Entity {
 		
 		ttNextFire = fireRate;
 		getMap().getNonEnemies().add(new Projectile(getMap(), 1, getPoint(), targetted.getPoint(), fireSpeed));
-		
+		setDir();
 	}
 
+	private void setDir() {
+		facingRight = (getPoint().x - targetted.getPoint().x) > 0; 
+	}
+	
 	@Override
 	public void render(Graphics g) {
 		
 
+	}
+
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
 	}
 
 
