@@ -197,21 +197,4 @@ public class Map {
 		this.blocked[(int) point.getX()][(int) point.getY()] = blocked;
 	}
 
-	/**
-	 * Get the ArrayList of all the none-enemy entities in the game.
-	 * 
-	 * @return An ArrayList of all the entities in the game,
-	 */
-	public ArrayList<Entity> getNonEnemies() {
-		return nonEnemies;
-	}
-
-	/**
-	 * Get the enemy array list.
-	 * 
-	 * @return The array list of the enemies.
-	 */
-	public ArrayList<Enemy> getEnemies() {
-		return enemies;
-	}
 }
