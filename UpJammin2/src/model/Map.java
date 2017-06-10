@@ -3,6 +3,8 @@ package model;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import ai.Path;
+
 /**
  * Contains information about the dimensions of the map, and which tiles are
  * being blocked by walls and turrets
@@ -22,6 +24,8 @@ public class Map {
 	
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Entity> nonEnemies;
+	
+	private Path path_finder;
 
 	/**
 	 * Constructor for a map object.
@@ -43,6 +47,8 @@ public class Map {
 		
 		this.enemies = new ArrayList<Enemy>();
 		this.nonEnemies = new ArrayList<Entity>();
+		
+		path_finder = new Path(this);
 	}
 
 	/**
@@ -118,7 +124,17 @@ public class Map {
 				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
 					//Try setting the point as blocked.
-					//setBlocked(new Point(i, j), true);
+					setBlocked(new Point(i, j), true);
+					
+					//If a path does not exist from (0, 0):
+					if(path_finder.calculatePath(new Point(0, 0), grid_point).isEmpty())
+					{
+						//Set the point to be not placeable.
+						this.placeable[i][j] = false;
+					}
+					
+					//Removed the blocked status.
+					setBlocked(new Point(i, j), false);
 				}
 			}
 		}
