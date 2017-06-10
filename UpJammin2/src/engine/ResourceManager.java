@@ -15,12 +15,10 @@ public class ResourceManager {
 	static private ResourceManager instance = null;
 	private HashMap<String, String> file_cache;
 	private HashMap<String, ImageIcon> img_cache;
-	private HashMap<String, JSONObject> json_cache;
 	
 	private ResourceManager() {
 		file_cache = new HashMap<String, String>();
 		img_cache = new HashMap<String, ImageIcon>();
-		json_cache = new HashMap<String, JSONObject>();
 	}
 	
 	static public ResourceManager getResourceManager() {
@@ -45,9 +43,10 @@ public class ResourceManager {
 		}
 		catch(Exception e) {
 			System.err.println("Problems reading file " + file_name + ".");
-			e.printStackTrace();
+			System.err.println(e);
 			System.exit(-1);
 		}
+		
 		return file_cache.get(file_name);
 	}
 	
@@ -60,26 +59,11 @@ public class ResourceManager {
 		}
 		catch(Exception e) {
 			System.err.println("Problems reading image file " + file_name + ".");
-			e.printStackTrace();
+			System.err.println(e);
 			System.exit(-1);
 		}
+		
 		return img_cache.get(file_name);
-	}
-	
-	public JSONObject getJSONArrayFromFile(String file_name) {
-		try {
-			if(! json_cache.containsKey(file_name)) {
-				JSONParser parser = new JSONParser();
-				JSONObject jo = (JSONObject) parser.parse(getFileContents(file_name));
-				json_cache.put(file_name, jo);
-			}
-		}
-		catch(Exception e) {
-			System.err.println("Problems reading json file " + file_name + ".");
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		return json_cache.get(file_name);
 	}
 	
 	public static void main(String[] args) throws ParseException {
