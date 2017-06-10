@@ -47,7 +47,9 @@ public class GameComponent extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(!map.isBlocked(map.toGridPoint(arg0.getPoint()))) {
+				System.out.println();
+				
+				if(map.isPlaceable(map.toGridPoint(arg0.getPoint()))) {
 					if(panel.getSelected() == Selected.Tower) {
 						new Turret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 1, 1, 1, 1);
 						//System.out.println(arg0.getPoint());
