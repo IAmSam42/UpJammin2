@@ -25,11 +25,11 @@ public class GameWindow extends JFrame{
 		
 		pack();
 		
-		//ButtonPanel panel = new ButtonPanel();
-		//GameComponent comp = new GameComponent(game, panel);
+		ButtonPanel panel = new ButtonPanel();
+		GameComponent comp = new GameComponent(game, panel);
 		
-		//comp.setBounds(0, 0, w, h);
-		//add(comp, BorderLayout.CENTER);
+		comp.setBounds(0, 0, w, h);
+		add(comp, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);

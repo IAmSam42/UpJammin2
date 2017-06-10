@@ -72,42 +72,40 @@ public class GameEngineHandler {
 		Long y = (Long) currentWave.get("enemyType1");
 		Integer x = y != null ? y.intValue() : null;
 	
-		System.out.println("hello1");
 		for(int i = 0; i < x; i++) {
-			System.out.println(map.getEnemies());
-			//map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+				new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight())));
 		}
 
 		y = (Long) currentWave.get("enemyType2");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight())));
 		}
 		
 		y = (Long) currentWave.get("enemyType3");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight())));
 		}
 		
 		y = (Long) currentWave.get("enemyType4");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight())));
 		}
 
 		
 	}
 		
 	public void tick() {
-		if(map.getEnemies().size() == 0){
-			wave++;
-			newWave();
-		}
-		for(Entity ent : map.getEnemies())
-			ent.tick();
-		for(Entity ent : map.getNonEnemies())
-			ent.tick();
+//		if(map.getEnemies().size() == 0){
+//			wave++;
+//			newWave();
+//		}
+//		for(Entity ent : map.getEnemies())
+//			ent.tick();
+//		for(Entity ent : map.getNonEnemies())
+//			ent.tick();
 		
 	}
 	
