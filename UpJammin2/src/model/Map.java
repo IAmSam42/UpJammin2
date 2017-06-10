@@ -83,19 +83,15 @@ public class Map
 		//Get the grid coordinates of the entity.
 		Point grid_point = this.toGridPoint(entity.getPoint());
 		
-		//Get the x and y coord of the grid point.
-		int x_coord = (int)grid_point.getX();
-		int y_coord = (int)grid_point.getY();
-		
 		//If the tile is blocked:
-		if(this.isBlocked(x_coord, y_coord))
+		if(this.isBlocked(grid_point))
 		{
 			//The entity cannot be added, so return false.
 			return false;
 		}
 		
 		//Mark the grip point as blocked.
-		blocked[x_coord][y_coord] = true;
+		this.setBlocked(grid_point, true);
 		
 		//Add the entity to the none enemy array list.
 		nonEnemies.add(entity);
@@ -163,14 +159,23 @@ public class Map
 	}
 
 	/**
-	 * Check if a given x y coordinate is blocked in the grid.
-	 * @param x The x (width) part of the coordinate.
-	 * @param y The y (height) part of the coordinate.
-	 * @return If the coordinate is blocked.
+	 * Check if a given point is blocked in the grid.
+	 * @param point The point to check.
+	 * @return If the point is blocked.
 	 */
-	public boolean isBlocked(int x, int y)
+	public boolean isBlocked(Point point)
 	{
-		return blocked[x][y];
+		return blocked[(int)point.getX()][(int)point.getY()];
+	}
+	
+	/**
+	 * Set a given point to be blocked or unblocked.
+	 * @param point The point to mark as blocked or not.
+	 * @param blocked If the point is blocked or not.
+	 */
+	public void setBlocked(Point point, boolean blocked)
+	{
+		this.blocked[(int)point.getX()][(int)point.getY()] = blocked;
 	}
 
 	/**
