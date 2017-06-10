@@ -67,6 +67,13 @@ public class Map {
 				placeable[i][j] = true;
 			}
 		}
+		
+		//Set the first row of the map to be none-placeable.
+		for(int i = 0; i < height; i++)
+		{
+			placeable[0][i] = false;
+			placeable[width-1][i] = false;
+		}
 	}
 
 	/**
