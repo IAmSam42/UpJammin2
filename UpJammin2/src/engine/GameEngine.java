@@ -20,8 +20,14 @@ public class GameEngine extends Canvas implements Runnable {
 	
 	private GameEngineHandler gameEngineHandler;
 	
-	public GameEngine() throws ParseException, FileNotFoundException, IOException{
-		this.gameEngineHandler = new GameEngineHandler();
+	public GameEngine(){
+		
+		try {
+			this.gameEngineHandler = new GameEngineHandler();
+		} catch (ParseException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		running = false;
 	}
 	

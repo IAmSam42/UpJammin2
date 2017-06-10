@@ -17,6 +17,7 @@ public class GameWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	public GameWindow(int w, int h, String title, GameEngine game){
+		System.out.println("hello");
 		Dimension dimention = new Dimension(w, h);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
@@ -40,8 +41,8 @@ public class GameWindow extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) throws ParseException, FileNotFoundException, IOException {
-		new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
+	public static void main(String[] args) {
+			new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
 	}
 
 }
