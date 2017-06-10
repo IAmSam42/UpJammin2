@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -14,20 +16,20 @@ public class GameWindow extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
-
-	
 	public GameWindow(int w, int h, String title, GameEngine game){
 		
-
 		Dimension dimention = new Dimension(w, h);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
 		setPreferredSize(dimention);
 		
 		pack();
-	
-		game.setBounds(0, 0, w, h);
-		add(game, BorderLayout.CENTER);
+		
+		ButtonPanel panel = new ButtonPanel();
+		GameComponent comp = new GameComponent(game, panel);
+		
+		comp.setBounds(0, 0, w, h);
+		add(comp, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);
@@ -39,7 +41,7 @@ public class GameWindow extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, FileNotFoundException, IOException {
 		new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
 	}
 

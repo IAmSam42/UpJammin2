@@ -2,6 +2,10 @@ package engine;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -13,6 +17,7 @@ import org.json.simple.parser.ParseException;
 
 import gui.GameWindow;
 import gui.Main;
+import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
@@ -26,56 +31,69 @@ public class GameEngineHandler {
 	private JSONArray levelsArray;
 	private int wave;
 	int tickCounter;
+	private Bank bank;
 	
-	
-	public GameEngineHandler() throws ParseException{
+	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
 		
-		levelsArray = (JSONArray) ((JSONObject) parser.parse("resources/levels.json")).get("levels");
+
+
 		
+		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
+		bank = new Bank();
 		newWave();
 	}
 	
 	@SuppressWarnings("null")
 	public void newWave() {		
 		JSONArray currentLevel = null;
-		if(levelsArray.size() < level) {
+		System.out.println(levelsArray.size() > level);
+		if(levelsArray.size() > level) {
 			currentLevel = ((JSONArray) levelsArray.get(level));
 		} else {
 			System.out.println("GAME WON");
 			return;
 		}
 		JSONObject currentWave = null;
-		if(currentLevel.size() < wave) {
-			currentWave = ((JSONObject) currentWave.get(wave));
+		if(currentLevel.size() > wave) {
+			currentWave = ((JSONObject) currentLevel.get(wave));
 		} else {
 			level++;
+			//PAUSE
+			bank.endDay();
+			
+			//PLAY
 			newWave();
 			return;
 		}
 
 		Random gen = new Random();
-		int x;
-		x = (int) currentWave.get("enemyType1");
-		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
-		}
-		x = (int) currentWave.get("enemyType2");
-		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
-		}
-		x = (int) currentWave.get("enemyType3");
-		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
-		}
-		x = (int) currentWave.get("enemyType4");
+		Long y = (Long) currentWave.get("enemyType1");
+		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
 			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
 		}
 		
+		y = (Long) currentWave.get("enemyType2");
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+		}
+		
+		y = (Long) currentWave.get("enemyType3");
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+		}
+		
+		y = (Long) currentWave.get("enemyType4");
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+		}
 	}
 		
 	public void tick() {

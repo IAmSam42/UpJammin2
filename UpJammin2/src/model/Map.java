@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Contains information about the dimensions of the map, and which tiles are
