@@ -18,6 +18,7 @@ public class GameComponent extends JPanel {
 		add(game, BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
 		
+		
 		game.addMouseListener(new MouseListener() {
 
 			@Override

@@ -17,6 +17,7 @@ public class GameWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	public GameWindow(int w, int h, String title, GameEngine game){
+		System.out.println("hello");
 		Dimension dimention = new Dimension(w, h);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);
@@ -24,11 +25,11 @@ public class GameWindow extends JFrame{
 		
 		pack();
 		
-		ButtonPanel panel = new ButtonPanel();
-		GameComponent comp = new GameComponent(game, panel);
+		//ButtonPanel panel = new ButtonPanel();
+		//GameComponent comp = new GameComponent(game, panel);
 		
-		comp.setBounds(0, 0, w, h);
-		add(comp, BorderLayout.CENTER);
+		//comp.setBounds(0, 0, w, h);
+		//add(comp, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(title);
@@ -40,8 +41,8 @@ public class GameWindow extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) throws ParseException, FileNotFoundException, IOException {
-		new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
+	public static void main(String[] args) {
+			new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
 	}
 
 }
