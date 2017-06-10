@@ -44,6 +44,7 @@ public class Map {
 		
 		//Setup all the arrays
 		this.blocked = new boolean[width][height];
+		this.placeable = new boolean[width][height];
 		this.enemies = new ArrayList<Enemy>();
 		this.nonEnemies = new ArrayList<Entity>();
 		
