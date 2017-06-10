@@ -18,7 +18,13 @@ public class ArrowTurret extends Turret
 	}
 	public void render(Graphics2D g) 
 	{
-
+		if(this.isFacingRight())
+		{
+			g.drawImage(new ImageIcon("resources/crossbowRight.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+		}
+		else
+		{
+			g.drawImage(new ImageIcon("resources/crossbowLeft.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+		}
 	}
-
 }

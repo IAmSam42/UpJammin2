@@ -26,5 +26,4 @@ public class CannonTurret extends Turret {
 			g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
 		}
 	}
-
 }
