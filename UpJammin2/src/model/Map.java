@@ -18,6 +18,8 @@ public class Map {
 	private Point goal; //Where the gold be at.
 	
 	private boolean[][] blocked;
+	private boolean[][] placeable;
+	
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Entity> nonEnemies;
 
@@ -37,6 +39,8 @@ public class Map {
 		
 		//Setup all the arrays
 		this.blocked = new boolean[width][height];
+		this.placeable = new boolean[width][height];
+		
 		this.enemies = new ArrayList<Enemy>();
 		this.nonEnemies = new ArrayList<Entity>();
 	}
@@ -101,7 +105,48 @@ public class Map {
 		// Add the entity to the none enemy array list.
 		nonEnemies.add(entity);
 
+		//Get the x and y coordinate of the entity.
+		int x_coord = (int)grid_point.getX();
+		int y_coord = (int)grid_point.getY();
+		
+		//Go through all the grid points around the newly blocked grid point.
+		for(int i = x_coord - 1; i<= x_coord + 1; i++)
+		{
+			for(int j = y_coord - 1; j<=y_coord + 1; i++)
+			{
+				//If the (i, j) coordinates are on the map and are not blocked:
+				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
+				{
+					//Try setting the point as blocked.
+					//setBlocked(new Point(i, j), true);
+				}
+			}
+		}
+		
+		
 		return true;
+	}
+	
+	/**
+	 * Test if a point is on the map (i.e in between the height and width)
+	 * @param point The point to test.
+	 * @return If the point is on the map.
+	 */
+	public boolean onGrid(Point point)
+	{
+		//Get the x and y coordinate of the point to test.
+		int x_coord = (int)point.getX();
+		int y_coord = (int)point.getY();
+		
+		if(0 <= x_coord && x_coord < width)
+		{
+			if(0 <= y_coord && y_coord < height)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	/**
@@ -203,6 +248,19 @@ public class Map {
 	 */
 	public void setBlocked(Point point, boolean blocked) {
 		this.blocked[(int) point.getX()][(int) point.getY()] = blocked;
+		
+		//Also mark the grid point as not placeable
+		this.placeable[(int) point.getX()][(int) point.getY()] = !blocked;
+	}
+	
+	/**
+	 * Check if it is possible to place in a given point.
+	 * @param point The point to check.
+	 * @return If it is possible to place in that point.
+	 */
+	public boolean isPlaceable(Point point)
+	{
+		return this.placeable[(int) point.getX()][(int) point.getY()];
 	}
 
 	/**
