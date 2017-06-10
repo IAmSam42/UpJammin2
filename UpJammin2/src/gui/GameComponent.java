@@ -63,7 +63,6 @@ public class GameComponent extends JPanel {
 					else if(panel.getSelected() == Selected.CannonTurret) {
 
 						new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 2, 1, 20, 1);
-
 						//System.out.println(arg0.getPoint());
 					} 
 				}

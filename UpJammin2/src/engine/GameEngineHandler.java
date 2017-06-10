@@ -37,7 +37,7 @@ public class GameEngineHandler {
 	private Point hover;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
-		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
@@ -201,6 +201,10 @@ public class GameEngineHandler {
 	
 	public Map getMap() {
 		return map;
+	}
+	
+	public Bank getBank() {
+		return bank;
 	}
 	
 }
