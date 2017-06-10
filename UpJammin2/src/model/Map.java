@@ -22,13 +22,9 @@ public class Map
 
 	/**
 	 * Constructor for a map object.
-	 * 
-	 * @param height
-	 *            The height of the map in grid references (not pixels).
-	 * @param width
-	 *            The width of the map in grid references (not pixels).
-	 * @param scale
-	 *            How many pixels per grid point.
+	 * @param height The height of the map in grid references (not pixels).
+	 * @param width The width of the map in grid references (not pixels).
+	 * @param scale How many pixels per grid point.
 	 */
 	public Map(int width, int height, int scale)
 	{
@@ -48,10 +44,36 @@ public class Map
 
 		this.notEnemies = new ArrayList<Entity>();
 	}
+	
+	/**
+	 * Convert a point from pixel space to grid space
+	 * @param pixel_point The pixel space point to covert to grid space.
+	 * @return The grid space point the pixel space point is located in.
+	 */
+	public Point toGridPoint(Point pixel_point)
+	{
+		Point grid_point = new Point((int)(pixel_point.getX() / scale), 
+									 (int)(pixel_point.getY() / scale));
+		
+		return grid_point;
+	}
+	
+	/**
+	 * Convert a grip point to a pixel point. Method returns the top left
+	 * pixel for a given grid point.
+	 * @param grid_point The grid point to convert.
+	 * @return The top left pixel for the given grid point.
+	 */
+	public Point toPixelPoint(Point grid_point)
+	{
+		Point pixel_point = new Point((int)grid_point.getX() * scale, 
+									  (int)grid_point.getY() * scale);
+		
+		return pixel_point;
+	}
 
 	/**
 	 * Get the height of the map.
-	 * 
 	 * @return The height of the map.
 	 */
 	public int getHeight() {
@@ -60,9 +82,7 @@ public class Map
 
 	/**
 	 * Set the height of the map.
-	 * 
-	 * @param height
-	 *            The new height of the map.
+	 * @param height The new height of the map.
 	 */
 	public void setHeight(int height) {
 		this.height = height;
@@ -70,7 +90,6 @@ public class Map
 
 	/**
 	 * Set the width of the map.
-	 * 
 	 * @return The width of the map.
 	 */
 	public int getWidth() {
@@ -79,9 +98,7 @@ public class Map
 
 	/**
 	 * Set the width of the map.
-	 * 
-	 * @param width
-	 *            The new width of the map.
+	 * @param width The new width of the map.
 	 */
 	public void setWidth(int width) {
 		this.width = width;
@@ -89,7 +106,6 @@ public class Map
 
 	/**
 	 * Get the scale of the map.
-	 * 
 	 * @return The scale of the map.
 	 */
 	public int getScale() {
@@ -98,9 +114,7 @@ public class Map
 
 	/**
 	 * Set the scale of the map.
-	 * 
-	 * @param scale
-	 *            The new scale of the map.
+	 * @param scale The new scale of the map.
 	 */
 	public void setScale(int scale) {
 		this.scale = scale;
@@ -119,10 +133,10 @@ public class Map
 
 	
 	/**
-	 * Get the location of the blocked array to determine if a location is blocked
-	 * @param x The x coord
-	 * @param y The y coord
-	 * @return
+	 * Get the location of the blocked array to determine if a location is blocked,
+	 * @param x The x coord to check.
+	 * @param y The y coord to check.
+	 * @return If the specified coordinate is blocked.
 	 */
 	public boolean getBlockedLocation(int x, int y){
 		return blocked[x][y];
@@ -130,8 +144,7 @@ public class Map
 	
 	
 	/**
-	 * Get the ArrayList of all the entities in the game.
-	 * 
+	 * Get the ArrayList of all the none-enemy entities in the game.
 	 * @return An ArrayList of all the entities in the game,
 	 */
 	public ArrayList<Entity> getNonEnemies() {
@@ -139,33 +152,25 @@ public class Map
 	}
 
 	/**
-	 * Add a new entity to the game.
-	 * 
-	 * @param entity
-	 * 
-	 *            The entity to add to the game.
+	 * Add a new none-enemy entity to the game.
+	 * @param entity The entity to add to the game.
 	 */
 	public void addNotEnemy(Entity entity) {
 		notEnemies.add(entity);
 	}
-	
-	/**
-	 * Convert a point from pixel space to grid space
-	 * @param pixel_point The pixel space point to covert to grid space.
-	 * @return The grid space point the pixel space point is located in.
-	 */
-	public Point toGridPoint(Point pixel_point)
-	{
-		Point grid_point = new Point((int)(pixel_point.getX() / scale), 
-				(int)(pixel_point.getY() / scale));
-		
-		return grid_point;
-	}
 
+	/**
+	 * Get the enemy array list.
+	 * @return The array list of the enemies.
+	 */
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
 
+	/**
+	 * Set the enemy array list.
+	 * @param enemies The new list of all the enemies.
+	 */
 	public void setEnemies(ArrayList<Enemy> enemies) {
 		this.enemies = enemies;
 	}
