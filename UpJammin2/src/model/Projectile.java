@@ -5,7 +5,6 @@ import java.awt.Point;
 
 public class Projectile extends Entity {
 
-	private Point point;
 	private Point target;
 	private int distance;
 	private int pixelsPerTick;
@@ -17,7 +16,6 @@ public class Projectile extends Entity {
 	
 	public Projectile(Map map, int health, Point point, Point target, int speed) {
 		super(map, health, point);
-		this.point = point;
 		this.target = target;
 		this.speed = speed;
 		calculate();
@@ -28,7 +26,7 @@ public class Projectile extends Entity {
 	@Override
 	public void tick() {
 		if(jumps > 0) {
-			this.point.setLocation(this.point.getX() + addToX, this.point.getY() + addToY);
+			this.getPoint().setLocation(this.getPoint().getX() + addToX, this.getPoint().getY() + addToY);
 			jumps--;
 		}
 		else {
@@ -37,9 +35,9 @@ public class Projectile extends Entity {
 	}
 	
 	public void calculate() {
-		this.distance = (int) point.distance(target);
-		int xdist = (int) (point.getX() - target.getX());
-		int ydist = (int) (point.getY() - target.getY());
+		this.distance = (int) this.getPoint().distance(target);
+		int xdist = (int) (target.getX() - this.getPoint().getX());
+		int ydist = (int) (target.getY()- this.getPoint().getY());
 		pixelsPerTick = distance/speed;
 		jumps = distance/pixelsPerTick;
 		addToX = xdist/jumps;
