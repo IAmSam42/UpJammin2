@@ -24,9 +24,7 @@ public class Enemy extends Entity {
 
 	@Override
 	public void tick() 
-	{
-		System.out.println(this.getPoint());
-		
+	{	
 		//If the path is empty:
 		if(path.isEmpty())
 		{
@@ -34,9 +32,35 @@ public class Enemy extends Entity {
 			return;
 		}
 		
-		
 		//Convert the current point to a grid reference.
 		Point grid_point = this.getMap().toGridPoint(this.getPoint());
+		
+		//Work out the direction for the next point in the path.
+		int x_move = (int)(path.get(0).getX() - grid_point.getX());
+		int y_move = (int)(path.get(0).getY() - grid_point.getY());
+		
+		//Create a new point (old point plus the movement amount.
+		Point new_point = new Point((int)this.getPoint().getX() + x_move, 
+									(int)this.getPoint().getY() + y_move);
+		
+		System.out.println(new_point + " -> " + this.getMap().toGridPoint(new_point));
+		
+		//If the next point is blocked:
+		if(this.getMap().isBlocked(this.getMap().toGridPoint(new_point)))
+		{
+			//Recalculate the path.
+			path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
+			
+			//Move on the next tick.
+			return;
+		}
+		
+		//Set the new point of the enemy.
+		this.setPoint(new_point);
+		
+		
+		//Refresh the grid point
+		grid_point = this.getMap().toGridPoint(this.getPoint());
 		
 		//If the enemy is at the next part of the path:
 		if(path.get(0).equals(grid_point))
@@ -44,32 +68,9 @@ public class Enemy extends Entity {
 			//Then remove the next part of the path.
 			path.remove(0);
 			
-			if(this.getMap().isBlocked(path.get(0)))
-			{
-				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
-			}
-		}
-		
-		
-		//If the path is empty:
-		if(path.isEmpty())
-		{
-			//Don't do anything in the tick.
+			//Move on next tick.
 			return;
 		}
-		
-		
-		//Work out the direction for the next point in the path.
-		int x_move = (int)Math.abs(grid_point.getX() - path.get(0).getX());
-		int y_move = (int)Math.abs(grid_point.getY() - path.get(0).getY());
-		
-		//Create a new point (old point plus the movement amount.
-		Point new_point = new Point((int)this.getPoint().getX() + x_move, 
-									(int)this.getPoint().getY() + y_move);
-		
-		//Set the new point of the enemy.
-		this.setPoint(new_point);
-
 	}
 
 	@Override

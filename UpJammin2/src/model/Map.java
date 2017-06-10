@@ -3,6 +3,8 @@ package model;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import ai.Path;
 /**
  * Contains information about the dimensions of the map, and which tiles are
@@ -75,7 +77,7 @@ public class Map {
 	 */
 	public Point toGridPoint(Point pixel_point) {
 		Point grid_point = new Point((int) (pixel_point.getX() / scale), (int) (pixel_point.getY() / scale));
-
+		
 		return grid_point;
 	}
 
@@ -138,6 +140,7 @@ public class Map {
 				//If the (i, j) coordinates are on the map and are not blocked:
 				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
+					System.out.println(new Point(i, j));
 					//Try setting the point as blocked.
 					setBlocked(new Point(i, j), true);
 					
