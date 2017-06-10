@@ -4,12 +4,19 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import ai.Path;
+
 public class Enemy extends Entity {
 
 	private ArrayList<Point> path;
+	private Path path_finder;
 	
 	public Enemy(Map map, int health, Point point) {
 		super(map, health, point);
+		
+		path_finder = new Path(this.getMap());
+		
+		//path_finder.calculatePath(map.toGridPoint(point), goal);
 	}
 
 	@Override
@@ -31,6 +38,11 @@ public class Enemy extends Entity {
 		{
 			//Then remove the next part of the path.
 			path.remove(0);
+			
+			if(this.getMap().isBlocked((int)path.get(0).getX(), (int)path.get(0).getY()))
+			{
+				//path = path_finder.calculatePath(start, goal);
+			}
 		}
 		
 		
