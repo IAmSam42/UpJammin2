@@ -14,6 +14,9 @@ public class Wall extends Entity {
 		this.map = map;
 		this.health = health;
 		this.point = point;
+		
+		//Register the wall on the map.
+		map.addBlockingEntity(this);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class Map
 	private int scale;
 	private boolean[][] blocked;
 	private ArrayList<Enemy> enemies;
-	private ArrayList<Entity> notEnemies;
+	private ArrayList<Entity> nonEnemies;
 
 	/**
 	 * Constructor for a map object.
@@ -42,7 +42,7 @@ public class Map
 //			}
 //		}
 
-		this.notEnemies = new ArrayList<Entity>();
+		this.nonEnemies = new ArrayList<Entity>();
 	}
 	
 	/**
@@ -70,6 +70,49 @@ public class Map
 									  (int)grid_point.getY() * scale);
 		
 		return pixel_point;
+	}
+	
+	/**
+	 * Add a blocking entity to the game - both adding it to the
+	 * array list to receive ticks and blocking the relevant grip
+	 * points to prevent unroutable walls.
+	 * @param entity The entity to add to the game.
+	 * @return Whether the entity was added to the game.
+	 */
+	public boolean addBlockingEntity(Entity entity)
+	{
+		//Get the grid coordinates of the entity.
+		Point grid_point = this.toGridPoint(entity.getPoint());
+		
+		//Get the x and y coord of the grid point.
+		int x_coord = (int)grid_point.getX();
+		int y_coord = (int)grid_point.getY();
+		
+		//If the tile is blocked:
+		if(this.isBlocked(x_coord, y_coord))
+		{
+			//The entity cannot be added, so return false.
+			return false;
+		}
+		
+		//Mark the grip point as blocked.
+		blocked[x_coord][y_coord] = true;
+		
+		//Add the entity to the none enemy array list.
+		nonEnemies.add(entity);
+		
+		return true;
+	}
+	
+	/**
+	 * Add an enemy to the game, registering it in the enemy array list 
+	 * so it can receive ticks.
+	 * @param enemy The enemy to add to the game.
+	 */
+	public void addEnemy(Enemy enemy)
+	{
+		//Add the enemy to the enemy array list.
+		enemies.add(enemy);
 	}
 
 	/**
@@ -131,32 +174,12 @@ public class Map
 		return blocked[x][y];
 	}
 
-	
-	/**
-	 * Get the location of the blocked array to determine if a location is blocked,
-	 * @param x The x coord to check.
-	 * @param y The y coord to check.
-	 * @return If the specified coordinate is blocked.
-	 */
-	public boolean getBlockedLocation(int x, int y){
-		return blocked[x][y];
-	}
-	
-	
 	/**
 	 * Get the ArrayList of all the none-enemy entities in the game.
 	 * @return An ArrayList of all the entities in the game,
 	 */
 	public ArrayList<Entity> getNonEnemies() {
-		return notEnemies;
-	}
-
-	/**
-	 * Add a new none-enemy entity to the game.
-	 * @param entity The entity to add to the game.
-	 */
-	public void addNotEnemy(Entity entity) {
-		notEnemies.add(entity);
+		return nonEnemies;
 	}
 
 	/**
@@ -165,13 +188,5 @@ public class Map
 	 */
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
-	}
-
-	/**
-	 * Set the enemy array list.
-	 * @param enemies The new list of all the enemies.
-	 */
-	public void setEnemies(ArrayList<Enemy> enemies) {
-		this.enemies = enemies;
 	}
 }
