@@ -15,7 +15,7 @@ public class Cannonball extends Projectile{
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g, boolean hover) {
 		g.drawImage(new ImageIcon("resources/cannonball.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 
 	}
