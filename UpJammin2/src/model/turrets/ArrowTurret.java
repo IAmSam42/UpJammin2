@@ -19,18 +19,25 @@ public class ArrowTurret extends Turret
 	}
 	
 	@Override
-	public void render(Graphics g) 
+	public void render(Graphics g, boolean hover) 
 	{
 		if(this.isFacingRight())
 		{
-			System.out.println("Right");
-			g.drawImage(new ImageIcon("resources/crossbowRight.jpg").getImage(), (this.getPoint()).x,(this.getPoint()).y, null);
+			if(hover == false) {
+				g.drawImage(new ImageIcon("resources/crossbowRight.jpg").getImage(), (this.getPoint()).x,(this.getPoint()).y, null);
+			}
+			else {
+				g.drawImage(new ImageIcon("resources/greyCrossbowRight.jpg").getImage(), (this.getPoint()).x,(this.getPoint()).y, null);
+			}
 		}
 		else
 		{
-			System.out.println("Left");
-			System.out.println(this.getMap().toGridPoint((this.getPoint())).x);
-			g.drawImage(new ImageIcon("resources/crossbowLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			if(hover == false) {
+				g.drawImage(new ImageIcon("resources/crossbowLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
+			else {
+				g.drawImage(new ImageIcon("resources/greyCrossbowLeft.jpg").getImage(), (this.getPoint()).x,(this.getPoint()).y, null);
+			}
 		}
 	}
 }
