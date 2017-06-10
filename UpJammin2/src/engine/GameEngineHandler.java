@@ -38,8 +38,6 @@ public class GameEngineHandler {
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
-		
-
 
 		
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
