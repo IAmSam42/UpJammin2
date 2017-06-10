@@ -33,6 +33,7 @@ public class Map
 
 		this.blocked = new boolean[width][height];
 		
+
 //		for (int i = 0; i < 20; i++) {
 //			int x = new Random().nextInt(width);
 //			int y = new Random().nextInt(height);
@@ -41,6 +42,7 @@ public class Map
 //			}
 //		}
 
+		this.enemies = new ArrayList<Enemy>();
 		this.nonEnemies = new ArrayList<Entity>();
 	}
 	
