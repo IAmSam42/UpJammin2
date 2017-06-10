@@ -20,7 +20,7 @@ public class Wall extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

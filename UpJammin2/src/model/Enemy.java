@@ -17,7 +17,7 @@ public class Enemy extends Entity {
 		path_finder = new Path(this.getMap());
 		path = new ArrayList<Point>();
 		
-		path_finder.calculatePath(map.toGridPoint(this.getPoint()), map.getGoal());
+		path = path_finder.calculatePath(map.toGridPoint(this.getPoint()), map.getGoal());
 
 		map.addEnemy(this);
 	}
@@ -25,6 +25,8 @@ public class Enemy extends Entity {
 	@Override
 	public void tick() 
 	{
+		System.out.println(this.getPoint());
+		
 		//If the path is empty:
 		if(path.isEmpty())
 		{

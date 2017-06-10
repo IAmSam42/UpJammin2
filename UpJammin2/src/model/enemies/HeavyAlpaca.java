@@ -1,7 +1,6 @@
 package model.enemies;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
@@ -19,7 +18,7 @@ public class HeavyAlpaca extends Enemy {
 	@Override
 	public void render(Graphics g) 
 	{
-		g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+		g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);
 	}
 
 }

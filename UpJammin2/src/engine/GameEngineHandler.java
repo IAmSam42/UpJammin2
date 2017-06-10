@@ -78,25 +78,25 @@ public class GameEngineHandler {
 		Long y = (Long) currentWave.get("enemyType1");
 		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			map.getEnemies().add(new BowlerAlpaca(map, 10, new Point(0, gen.nextInt(map.getHeight() * map.getScale()))));
 		}
 		
 		y = (Long) currentWave.get("enemyType2");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			map.getEnemies().add(new Enemy(map, 10, new Point(0, gen.nextInt(map.getHeight()))));
 		}
 		
 		y = (Long) currentWave.get("enemyType3");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			map.getEnemies().add(new Enemy(map, 10, new Point(0, gen.nextInt(map.getHeight()))));
 		}
 		
 		y = (Long) currentWave.get("enemyType4");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+			map.getEnemies().add(new Enemy(map, 10, new Point(0, gen.nextInt(map.getHeight()))));
 		}
 	}
 		
