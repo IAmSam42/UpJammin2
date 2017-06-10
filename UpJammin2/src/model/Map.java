@@ -67,8 +67,7 @@ public class Map {
 	/**
 	 * Convert a point from pixel space to grid space
 	 * 
-	 * @param pixel_point
-	 *            The pixel space point to covert to grid space.
+	 * @param pixel_point The pixel space point to covert to grid space.
 	 * @return The grid space point the pixel space point is located in.
 	 */
 	public Point toGridPoint(Point pixel_point) {
