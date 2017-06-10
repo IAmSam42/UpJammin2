@@ -11,12 +11,16 @@ public class Enemy extends Entity {
 	private ArrayList<Point> path;
 	private Path path_finder;
 	
+	private Point goal;
+	
 	public Enemy(Map map, int health, Point point) {
 		super(map, health, point);
 		
 		path_finder = new Path(this.getMap());
+		path = new ArrayList<Point>();
 		
-		//path_finder.calculatePath(map.toGridPoint(point), goal);
+		goal = new Point(map.getWidth(), (int)(map.getHeight() / 2));
+		path_finder.calculatePath(map.toGridPoint(this.getPoint()), goal);
 	}
 
 	@Override
@@ -39,9 +43,9 @@ public class Enemy extends Entity {
 			//Then remove the next part of the path.
 			path.remove(0);
 			
-			if(this.getMap().isBlocked((int)path.get(0).getX(), (int)path.get(0).getY()))
+			if(this.getMap().isBlocked(path.get(0)))
 			{
-				//path = path_finder.calculatePath(start, goal);
+				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), goal);
 			}
 		}
 		
