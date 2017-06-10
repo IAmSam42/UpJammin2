@@ -21,7 +21,6 @@ public class UpgradeWindow extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6133882654143544083L;
 	private UpgradeWindowModel model;
 	
 	public UpgradeWindow(UpgradeWindowModel model) {
@@ -34,8 +33,6 @@ public class UpgradeWindow extends JFrame {
 		setVisible(true);
 		setLayout(new BorderLayout());
 		JComponent centralThing = new JComponent() {
-
-			private static final long serialVersionUID = 6454770393291273247L;
 		
 		   @Override
 		    protected void paintComponent(Graphics g) {

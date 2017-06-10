@@ -108,14 +108,16 @@ public class GameEngineHandler {
 			wave++;
 			newWave();
 		}
-		for(Entity ent : map.getEnemies()) {
-			if(ent.getHealth() == 0) {
-				map.removeEnemy(ent);
+		for(int i = 0; i < map.getEnemies().size(); i++) {
+			if(map.getEnemies().get(i).getHealth() == 0) {
+				map.removeEnemy(map.getEnemies().get(i));
+				i--;
 			}
 		}
-		for(Entity ent : map.getNonEnemies()) {
-			if(ent.getHealth() == 0) {
-				map.removeNonEnemy(ent);
+		for(int i = 0; i < map.getNonEnemies().size(); i++) {
+			if(map.getEnemies().get(i).getHealth() == 0) {
+				map.removeNonEnemy(map.getEnemies().get(i));
+				i--;
 			}
 		}
 		for(Entity ent : map.getEnemies())
@@ -159,8 +161,6 @@ public class GameEngineHandler {
 			}
 		}
 					
-	
-
 //		}
 //		System.out.println(map.getEnemies().size());
 		for(Entity ent : map.getEnemies()){
