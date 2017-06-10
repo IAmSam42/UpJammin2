@@ -20,6 +20,7 @@ public class Map {
 	
 	private boolean[][] blocked;
 	private boolean[][] placeable;
+	
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Entity> nonEnemies;
 	
@@ -45,9 +46,11 @@ public class Map {
 		//Setup all the arrays
 		this.blocked = new boolean[width][height];
 		this.placeable = new boolean[width][height];
+		
 		this.enemies = new ArrayList<Enemy>();
 		this.nonEnemies = new ArrayList<Entity>();
 		
+		//Create the path finder.
 		path_finder = new Path(this);
 		
 		//Initialise both of the boolean arrays
@@ -127,29 +130,29 @@ public class Map {
 		int x_coord = (int)grid_point.getX();
 		int y_coord = (int)grid_point.getY();
 		
-		/*//Go through all the grid points around the newly blocked grid point.
+		//Go through all the grid points around the newly blocked grid point.
 		for(int i = x_coord - 1; i<= x_coord + 1; i++)
 		{
-			for(int j = y_coord - 1; j<=y_coord + 1; i++)
+			for(int j = y_coord - 1; j<=y_coord + 1; j++)
 			{
 				//If the (i, j) coordinates are on the map and are not blocked:
-				//if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
+				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
 					//Try setting the point as blocked.
 					setBlocked(new Point(i, j), true);
 					
 					//If a path does not exist from (0, 0):
-					if(path_finder.calculatePath(new Point(0, 0), grid_point).isEmpty())
-					{
+					//if(path_finder.calculatePath(new Point(0, 0), grid_point).isEmpty())
+					//{
 						//Set the point to be not placeable.
 						this.placeable[i][j] = false;
-					}
+					//}
 					
 					//Removed the blocked status.
 					setBlocked(new Point(i, j), false);
 				}
 			}
-		}*/
+		}
 		
 		
 		return true;
@@ -277,6 +280,18 @@ public class Map {
 	 */
 	public void setBlocked(Point point, boolean blocked) {
 		this.blocked[(int) point.getX()][(int) point.getY()] = blocked;
+		
+		//Also set the square to be none-placeable.
+		placeable[(int) point.getX()][(int) point.getY()] = !blocked;
+	}
+	
+	/**
+	 * Check if a given point is placeable.
+	 * @param point The point to check.
+	 * @return If the point is placeable.
+	 */
+	public boolean isPlaceable(Point point){
+		return placeable[(int) point.getX()][(int) point.getY()];
 	}
 
 	/**
