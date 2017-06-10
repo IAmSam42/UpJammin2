@@ -41,15 +41,12 @@ public class Enemy extends Entity {
 		//If the enemy is at the top left corner:
 		if(this.getPoint().equals(pixel_point))
 		{
-			System.out.println("Next point!");
-			
 			//Remove the first element of the path.
 			path.remove(0);
 			
 			//If the next point is blocked:
 			if(this.getMap().isBlocked(path.get(0)))
 			{
-				System.out.println("Recalculating!");
 				//Recalculate the path.
 				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
 			}
