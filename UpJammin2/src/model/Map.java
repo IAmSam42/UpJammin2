@@ -49,6 +49,19 @@ public class Map {
 		this.nonEnemies = new ArrayList<Entity>();
 		
 		path_finder = new Path(this);
+		
+		//Initialise both of the boolean arrays
+		for(int i = 0; i < width; i++)
+		{
+			for(int j = 0; j < height; j++)
+			{
+				//All grid points are not blocked.
+				blocked[i][j] = false;
+				
+				//All grid tiles are placeable.
+				placeable[i][j] = true;
+			}
+		}
 	}
 
 	/**
