@@ -33,6 +33,7 @@ public class Path {
 		
 		while(!current.getPoint().equals(goal)) {
 			ArrayList<Point> neighbours = getNeighbours(current.getPoint(), width, height);
+			
 			visited.add(current.getPoint());
 			
 			for(Point point : neighbours) {
@@ -40,6 +41,7 @@ public class Path {
 					queue.add(new Triple(point, point.distance(goal), current));
 				}
 			}
+			current = queue.poll();
 		}
 		
 		ArrayList<Point> path = new ArrayList<Point>();
