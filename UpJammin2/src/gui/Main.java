@@ -9,15 +9,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import engine.GameEngine;
+
 public class Main {
 	private static JFrame frame;
 	private static JPanel panel;
 
 	public static int HEIGHT = 896;
-	public static int WIDTH = (HEIGHT * 16)/9; 
+	//public static int WIDTH = ((HEIGHT * 16)/9); 
+	public static int WIDTH = ((HEIGHT * 16)/9) - (((HEIGHT * 16)/9) - ((((HEIGHT * 16)/9)/GameEngine.BLOCKSIZE)*GameEngine.BLOCKSIZE)); 
+	
 	
 
 	public Main(){
+		
+		
 		frame = new JFrame("Alpaca Attacker");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(WIDTH, HEIGHT);

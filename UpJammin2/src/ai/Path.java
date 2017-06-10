@@ -36,7 +36,7 @@ public class Path {
 			visited.add(current.getPoint());
 			
 			for(Point point : neighbours) {
-				if(!visited.contains(point) && (map.isBlocked((int)point.getX(), (int)point.getY()) != true)) {
+				if(!visited.contains(point) && (map.isBlocked(point) != true)) {
 					queue.add(new Triple(point, point.distance(goal), current));
 				}
 			}
