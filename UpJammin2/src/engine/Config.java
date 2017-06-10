@@ -6,6 +6,8 @@ public class Config {
 	public static String levels_file = "resources/levels.json";
 	
 	//imgs
+	public static int block_size = 64;
+	
 	public static String grass_file = "resources/grassTexture.jpg";
 	public static String brighter_grass_file = "resources/brighterGrassTexture.jpg";
 	public static String cannon_left_file = "resources/cannonLeft.jpg";
