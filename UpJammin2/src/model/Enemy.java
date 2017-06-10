@@ -19,8 +19,10 @@ public class Enemy extends Entity {
 		path_finder = new Path(this.getMap());
 		path = new ArrayList<Point>();
 		
-		goal = new Point(map.getWidth(), (int)(map.getHeight() / 2));
+		goal = new Point(map.getWidth()-1, (int)(map.getHeight() / 2));
 		path_finder.calculatePath(map.toGridPoint(this.getPoint()), goal);
+
+		map.addEnemy(this);
 	}
 
 	@Override
