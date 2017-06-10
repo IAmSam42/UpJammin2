@@ -64,7 +64,7 @@ public class Turret extends Entity {
 	}
 	
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g, boolean hover) {
 		
 
 	}

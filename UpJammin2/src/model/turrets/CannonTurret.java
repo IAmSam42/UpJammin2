@@ -1,5 +1,6 @@
 package model.turrets;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -15,15 +16,26 @@ public class CannonTurret extends Turret {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void render(Graphics2D g) 
+	@Override
+	public void render(Graphics g, boolean hover) 
 	{
 		if(this.isFacingRight())
 		{
-			g.drawImage(new ImageIcon("resources/cannonRight.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+			if(hover == false) {
+				g.drawImage(new ImageIcon("resources/cannonRight.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
+			else {
+				g.drawImage(new ImageIcon("resources/greyCannonRight.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
 		}
 		else
 		{
-			g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), this.getMap().toGridPoint((this.getPoint())).x, this.getMap().toGridPoint((this.getPoint())).y, null);
+			if(hover == false) {
+				g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
+			else {
+				g.drawImage(new ImageIcon("resources/greyCannonLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			}
 		}
 	}
 }

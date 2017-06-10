@@ -46,7 +46,7 @@ public class Projectile extends Entity {
 	}
 	
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g, boolean hover) {
 		// TODO Auto-generated method stub
 		
 	}

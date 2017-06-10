@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import ai.Path;
+import model.turrets.ArrowTurret;
+import model.turrets.CannonTurret;
 /**
  * Contains information about the dimensions of the map, and which tiles are
  * being blocked by walls and turrets
@@ -29,7 +31,7 @@ public class Map {
 	private Path path_finder;
 	
 	public enum blockType {
-		Turret, Wall, None
+		ArrowTurret, CannonTurret, Wall, None
 	}
 	/**
 	 * Constructor for a map object.
@@ -316,14 +318,26 @@ public class Map {
 	public blockType findNonEnemy(Point p) {
 		for(int i = 0; i < nonEnemies.size(); i++) {
 			if(this.toGridPoint(nonEnemies.get(i).getPoint()).equals(p)) {
-				if(nonEnemies.get(i) instanceof Turret) {
-					return blockType.Turret;
+				if(nonEnemies.get(i) instanceof ArrowTurret) {
+					return blockType.ArrowTurret;
+				}
+				else if(nonEnemies.get(i) instanceof CannonTurret) {
+					return blockType.CannonTurret;
 				}
 				else {
 					return blockType.Wall;
 				}
 			}
 		}
-		return blockType.Turret;
+		return blockType.ArrowTurret;
+	}
+	
+	public Entity getNonEnemy(Point p) {
+		for(int i = 0; i < nonEnemies.size(); i++) {
+			if(this.toGridPoint(nonEnemies.get(i).getPoint()).equals(p)) {
+				return nonEnemies.get(i);
+			}
+		}
+		return null;
 	}
 }
