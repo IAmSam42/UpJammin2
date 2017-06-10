@@ -50,15 +50,16 @@ public class GameEngineHandler {
 	@SuppressWarnings("null")
 	public void newWave() {		
 		JSONArray currentLevel = null;
-		if(levelsArray.size() < level) {
+		System.out.println(levelsArray.size() > level);
+		if(levelsArray.size() > level) {
 			currentLevel = ((JSONArray) levelsArray.get(level));
 		} else {
 			System.out.println("GAME WON");
 			return;
 		}
 		JSONObject currentWave = null;
-		if(currentLevel.size() < wave) {
-			currentWave = ((JSONObject) currentWave.get(wave));
+		if(currentLevel.size() > wave) {
+			currentWave = ((JSONObject) currentLevel.get(wave));
 		} else {
 			level++;
 			//PAUSE
@@ -70,24 +71,29 @@ public class GameEngineHandler {
 		}
 
 		Random gen = new Random();
-		int x;
-		x = (int) currentWave.get("enemyType1");
-		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
-		}
-		x = (int) currentWave.get("enemyType2");
-		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
-		}
-		x = (int) currentWave.get("enemyType3");
-		for(int i = 0; i < x; i++) {
-			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
-		}
-		x = (int) currentWave.get("enemyType4");
+		Long y = (Long) currentWave.get("enemyType1");
+		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
 			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
 		}
 		
+		y = (Long) currentWave.get("enemyType2");
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+		}
+		
+		y = (Long) currentWave.get("enemyType3");
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+		}
+		
+		y = (Long) currentWave.get("enemyType4");
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			map.getEnemies().add(new Enemy(map, 10, new Point(map.getWidth(), gen.nextInt(map.getHeight()))));
+		}
 	}
 		
 	public void tick() {
