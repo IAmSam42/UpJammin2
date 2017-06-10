@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -25,6 +26,21 @@ public class GameComponent extends JPanel {
 		
 		add(game, BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
+		
+		game.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent arg0) {
+				handler.setHover(map.toGridPoint(arg0.getPoint()));
+			}
+			
+		});
 		
 		
 		game.addMouseListener(new MouseListener() {

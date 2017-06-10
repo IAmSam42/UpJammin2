@@ -32,6 +32,7 @@ public class GameEngineHandler {
 	private int wave;
 	int tickCounter;
 	private Bank bank;
+	private Point hover;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
@@ -43,6 +44,7 @@ public class GameEngineHandler {
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
 		bank = new Bank();
 		newWave();
+		hover = null;
 	}
 	
 	@SuppressWarnings("null")
@@ -115,13 +117,22 @@ public class GameEngineHandler {
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
 				if(!map.isBlocked(new Point(j, i))){
-					g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					if(hover == null || (hover.getX() != j || hover.getY() != i)) {
+						g.drawImage(new ImageIcon("resources/grassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+					else {
+						g.drawImage(new ImageIcon("resources/brighterGrassTexture.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
 				}else{
 					g.drawImage(new ImageIcon("resources/cannonLeft.jpg").getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					System.out.println("something else should be rendered instead of the floor in this positon");
 				}
 			}
 		}
+	}
+	
+	public void setHover(Point p) {
+		hover = p;
 	}
 	
 	public Map getMap() {
