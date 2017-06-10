@@ -4,26 +4,46 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-public class ButtonPanel extends JPanel {
+import model.Bank;
+import model.Map.blockType;
+
+public class ButtonPanel extends JPanel implements Observer {
 	public enum Selected {
 		None, ArrowTurret, CannonTurret, Wall
 	}
 	
+	private Bank bank;
 	private Selected button;
+	private String arrowLabel;
+	private String cannonLabel;
+	private String wallLabel;
 	
-	public ButtonPanel() {
+	private JToggleButton arrowTurret;
+	private JToggleButton cannonTurret;
+	private JToggleButton wall;
+	
+	public ButtonPanel(Bank bank) {
 		
 		this.button = Selected.None;
+		this.bank = bank;
+		this.arrowLabel = "Arrow Turret - " + bank.getCost(blockType.ArrowTurret);
+		this.cannonLabel = "Cannon Turret - " + bank.getCost(blockType.CannonTurret);
+		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
 		
-		JToggleButton arrowTurret = new JToggleButton("ArrowTurret");
-		JToggleButton cannonTurret = new JToggleButton("CannonTurret");
-		JToggleButton wall = new JToggleButton("Wall");
-		
+		bank.addObserver(this);
+		arrowTurret = new JToggleButton(arrowLabel);
+		cannonTurret = new JToggleButton(cannonLabel);
+		wall = new JToggleButton(wallLabel);
+	
 		
 		JPanel buttonPanel = new JPanel();
 		//if not set to tower, set to tower, otherwise set to none
@@ -88,5 +108,13 @@ public class ButtonPanel extends JPanel {
 	
 	public Selected getSelected() {
 		return button;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
+		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
+		wall.setText("Wall - " + bank.getCost(blockType.Wall));
+		
 	}
 }

@@ -1,6 +1,8 @@
 package model;
 
-public class Bank {
+import java.util.Observable;
+
+public class Bank extends Observable {
 	
 	private int balance;
 	private double interestRate;
@@ -61,23 +63,48 @@ public class Bank {
 		this.seperateIncome = seperateIncome;
 	}
 	
-	public void increase_cost(Map.blockType blocktype)
+	public void increaseCost(Map.blockType blocktype)
 	{
+		System.out.println("increased" + price_wall);
 		switch (blocktype) {
 		case Wall:
-			price_wall = (int)((double)price_wall * ((double)cost_interest / 100.0));
+			price_wall += (int)((double)price_wall * ((double)cost_interest / 100.0));
 			break;
 
 		case ArrowTurret:
-			price_arrow_tower = (int)((double)price_arrow_tower * ((double)cost_interest / 100.0));
+			price_arrow_tower += (int)((double)price_arrow_tower * ((double)cost_interest / 100.0));
 			break;
 		
 		case CannonTurret:
-			price_cannon_tower = (int)((double)price_cannon_tower * ((double)cost_interest / 100.0));
+			price_cannon_tower += (int)((double)price_cannon_tower * ((double)cost_interest / 100.0));
 			break;
 			
 		default:
 			break;
+		}
+		setChanged();
+		notifyObservers();
+	}
+	
+	/**
+	 * Get the current cost of a given blocktype.
+	 * @param blocktype The blocktype to check.
+	 * @return The price of the blocktype.
+	 */
+	public int getCost(Map.blockType blocktype)
+	{
+		switch (blocktype) {
+		case Wall:
+			return price_wall;
+		
+		case ArrowTurret:
+			return price_arrow_tower;
+			
+		case CannonTurret:
+			return price_cannon_tower;
+			
+		default:
+			return 0;
 		}
 	}
 }

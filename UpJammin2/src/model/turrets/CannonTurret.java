@@ -13,7 +13,9 @@ public class CannonTurret extends Turret {
 
 	public CannonTurret(Map map, int health, Point location, int range, int damage, int fireRate, int fireSpeed) {
 		super(map, health, location, range, damage, fireRate, fireSpeed);
-		// TODO Auto-generated constructor stub
+		
+		//Increase the cost.
+		this.getMap().getBank().increaseCost(Map.blockType.CannonTurret);
 	}
 
 	@Override

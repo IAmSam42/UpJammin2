@@ -12,6 +12,9 @@ public class Wall extends Entity {
 		
 		//Register the wall on the map.
 		map.addBlockingEntity(this);
+		
+		//Increase the cost.
+		this.getMap().getBank().increaseCost(Map.blockType.Wall);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class GameWindow extends JFrame{
 		
 		pack();
 		
-		ButtonPanel panel = new ButtonPanel();
+		ButtonPanel panel = new ButtonPanel(game.getGameEngineHandler().getBank());
 		GameComponent comp = new GameComponent(game, panel);
 		
 		comp.setBounds(0, 0, w, h);

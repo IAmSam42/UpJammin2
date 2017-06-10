@@ -39,7 +39,6 @@ public class GameEngineHandler {
 	private SoundModel soundModel;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
-		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
@@ -48,6 +47,7 @@ public class GameEngineHandler {
 		soundModel = new SoundModel();
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
 		bank = new Bank();
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		newWave();
 		hover = null;
 
@@ -205,6 +205,10 @@ public class GameEngineHandler {
 	
 	public Map getMap() {
 		return map;
+	}
+	
+	public Bank getBank() {
+		return bank;
 	}
 	
 }
