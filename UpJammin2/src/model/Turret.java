@@ -31,7 +31,10 @@ public class Turret extends Entity {
 		ttNextFire--;
 		if(targetted == null){
 			for(Entity ent : getMap().getEnemies()){
-					if(ent.getPoint().distance(getPoint())<range) {
+				System.out.println("looking for enemy");
+				System.out.println("Wc "+ent.getPoint()+" fefw "+this.getPoint() + " ffefe " + ent.getPoint().distance(this.getPoint()));
+					if(ent.getPoint().distance(this.getPoint())<range) {
+						System.out.println("found enemy");
 						targetted = (Enemy) ent;
 						fireAtTarget();
 						return;
@@ -59,7 +62,7 @@ public class Turret extends Entity {
 	}
 
 	private void setDir() {
-		facingRight = (getPoint().x - targetted.getPoint().x) > 0; 
+		facingRight = (getPoint().x - targetted.getPoint().x) < 0; 
 	}
 	
 	@Override
