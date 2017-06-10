@@ -77,7 +77,7 @@ public class Map {
 	 */
 	public Point toGridPoint(Point pixel_point) {
 		Point grid_point = new Point((int) (pixel_point.getX() / scale), (int) (pixel_point.getY() / scale));
-
+		
 		return grid_point;
 	}
 
@@ -140,18 +140,18 @@ public class Map {
 				//If the (i, j) coordinates are on the map and are not blocked:
 				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
-					//Try setting the point as blocked.
-					setBlocked(new Point(i, j), true);
+					//Set the grip point to be blocked.
+					blocked[i][j] = true;
 					
 					//If a path does not exist from (0, 0):
-					//if(path_finder.calculatePath(new Point(0, 0), grid_point).isEmpty())
-					//{
+					if(path_finder.calculatePath(new Point(0, 0), goal).isEmpty())
+					{
 						//Set the point to be not placeable.
 						this.placeable[i][j] = false;
-					//}
+					}
 					
 					//Removed the blocked status.
-					setBlocked(new Point(i, j), false);
+					blocked[i][j] = false;
 				}
 			}
 		}
@@ -172,9 +172,9 @@ public class Map {
 		int y_coord = (int)point.getY();
 		
 		//If the point is in the grid.
-		if(0 <= x_coord & x_coord < width)
+		if(0 <= x_coord && x_coord < width)
 		{
-			if(0 <= y_coord & y_coord < height)
+			if(0 <= y_coord && y_coord < height)
 			{
 				return true;
 			}
