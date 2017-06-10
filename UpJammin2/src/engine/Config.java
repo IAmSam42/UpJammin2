@@ -10,4 +10,5 @@ public class Config {
 	public static String brighter_grass_file = "resources/brighterGrassTexture.jpg";
 	public static String cannon_left_file = "resources/cannonLeft.jpg";
 	public static String wall = "resources/wall.jpg";
+	public static String FinUpgradesScreen = "resources/FinUpgradesSplashScreen.png";
 }
