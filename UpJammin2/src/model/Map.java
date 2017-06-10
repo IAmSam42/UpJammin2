@@ -123,36 +123,59 @@ public class Map {
 		// Add the entity to the none enemy array list.
 		nonEnemies.add(entity);
 
-//		//Get the x and y coordinate of the entity.
-//		int x_coord = (int)grid_point.getX();
-//		int y_coord = (int)grid_point.getY();
-//		
-//		//Go through all the grid points around the newly blocked grid point.
-//		for(int i = x_coord - 1; i<= x_coord + 1; i++)
-//		{
-//			for(int j = y_coord - 1; j<=y_coord + 1; i++)
-//			{
-//				//If the (i, j) coordinates are on the map and are not blocked:
-//				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
-//				{
-//					//Try setting the point as blocked.
-//					setBlocked(new Point(i, j), true);
-//					
-//					//If a path does not exist from (0, 0):
-//					if(path_finder.calculatePath(new Point(0, 0), grid_point).isEmpty())
-//					{
-//						//Set the point to be not placeable.
-//						this.placeable[i][j] = false;
-//					}
-//					
-//					//Removed the blocked status.
-//					setBlocked(new Point(i, j), false);
-//				}
-//			}
-//		}
-//		
+		//Get the x and y coordinate of the entity.
+		int x_coord = (int)grid_point.getX();
+		int y_coord = (int)grid_point.getY();
+		
+		//Go through all the grid points around the newly blocked grid point.
+		for(int i = x_coord - 1; i<= x_coord + 1; i++)
+		{
+			for(int j = y_coord - 1; j<=y_coord + 1; i++)
+			{
+				//If the (i, j) coordinates are on the map and are not blocked:
+				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
+				{
+					//Try setting the point as blocked.
+					setBlocked(new Point(i, j), true);
+					
+					//If a path does not exist from (0, 0):
+					if(path_finder.calculatePath(new Point(0, 0), grid_point).isEmpty())
+					{
+						//Set the point to be not placeable.
+						this.placeable[i][j] = false;
+					}
+					
+					//Removed the blocked status.
+					setBlocked(new Point(i, j), false);
+				}
+			}
+		}
+		
 		
 		return true;
+	}
+	
+	/**
+	 * Check whether a given point is on the grid.
+	 * @param point The point to check.
+	 * @return If the point is on the grid.
+	 */
+	public boolean onGrid(Point point)
+	{
+		//Get the x and y coordinate of the point.
+		int x_coord = (int)point.getX();
+		int y_coord = (int)point.getY();
+		
+		//If the point is in the grid.
+		if(0 <= x_coord & x_coord < width)
+		{
+			if(0 <= y_coord & y_coord < height)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	/**
