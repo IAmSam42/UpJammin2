@@ -22,6 +22,7 @@ import model.Enemy;
 import model.Entity;
 import model.Map;
 //import java.awt.Graphics2D;
+import model.UpgradeWindowModel;
 
 public class GameEngineHandler {
 
@@ -32,6 +33,7 @@ public class GameEngineHandler {
 	private int wave;
 	int tickCounter;
 	private Bank bank;
+	private UpgradeWindowModel finUpgradeModel;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE);
@@ -39,8 +41,7 @@ public class GameEngineHandler {
 		wave = 0;
 		JSONParser parser = new JSONParser();
 		
-
-
+		finUpgradeModel = new UpgradeWindowModel();
 		
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(new FileReader("resources/levels.json"))).get("levels");
 		bank = new Bank();
