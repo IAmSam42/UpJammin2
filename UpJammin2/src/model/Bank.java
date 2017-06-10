@@ -6,10 +6,27 @@ public class Bank {
 	private double interestRate;
 	private int seperateIncome;
 	
+	//Cost increase for every tower/wall placed.
+	private int cost_interest;
+	
+	//Cost for each type of tower/wall.
+	private int price_wall;
+	private int price_arrow_tower;
+	private int price_cannon_tower;
+	
+	
 	public Bank() {
 		setBalance(500);
 		this.seperateIncome = 0;
 		this.interestRate = 20;
+		
+		//Set the cost interest,
+		cost_interest = 5;
+		
+		//Set the costs for each wall/tower.
+		price_wall = 20;
+		price_arrow_tower = 70;
+		price_cannon_tower = 100;
 	}
 	
 	public void endDay() {
@@ -44,5 +61,23 @@ public class Bank {
 		this.seperateIncome = seperateIncome;
 	}
 	
-	
+	public void increase_cost(Map.blockType blocktype)
+	{
+		switch (blocktype) {
+		case Wall:
+			price_wall = (int)((double)price_wall * ((double)cost_interest / 100.0));
+			break;
+
+		case ArrowTurret:
+			price_arrow_tower = (int)((double)price_arrow_tower * ((double)cost_interest / 100.0));
+			break;
+		
+		case CannonTurret:
+			price_cannon_tower = (int)((double)price_cannon_tower * ((double)cost_interest / 100.0));
+			break;
+			
+		default:
+			break;
+		}
+	}
 }
