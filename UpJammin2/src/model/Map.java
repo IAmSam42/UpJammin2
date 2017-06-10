@@ -127,13 +127,13 @@ public class Map {
 		int x_coord = (int)grid_point.getX();
 		int y_coord = (int)grid_point.getY();
 		
-		//Go through all the grid points around the newly blocked grid point.
+		/*//Go through all the grid points around the newly blocked grid point.
 		for(int i = x_coord - 1; i<= x_coord + 1; i++)
 		{
 			for(int j = y_coord - 1; j<=y_coord + 1; i++)
 			{
 				//If the (i, j) coordinates are on the map and are not blocked:
-				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
+				//if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
 					//Try setting the point as blocked.
 					setBlocked(new Point(i, j), true);
@@ -149,7 +149,7 @@ public class Map {
 					setBlocked(new Point(i, j), false);
 				}
 			}
-		}
+		}*/
 		
 		
 		return true;
