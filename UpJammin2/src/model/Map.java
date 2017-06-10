@@ -45,7 +45,7 @@ public class Map
 //				this.blocked[x][y] = true;
 //			}
 //		}
-
+		this.enemies = new ArrayList<Enemy>();
 		this.notEnemies = new ArrayList<Entity>();
 	}
 
