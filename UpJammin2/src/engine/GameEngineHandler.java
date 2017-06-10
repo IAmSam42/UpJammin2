@@ -121,14 +121,8 @@ public class GameEngineHandler {
 		}
 		for(Entity ent : map.getEnemies())
 			ent.tick();
-		System.out.println("size: "+ map.getNonEnemies().size());
 		for(int i = 0; i < map.getNonEnemies().size(); i++) 
 		{
-<<<<<<< HEAD
-			
-			
-=======
->>>>>>> branch 'master' of https://github.com/IAmSam42/UpJammin2
 			map.getNonEnemies().get(i).tick();
 		}
 		//for(Entity ent : map.getNonEnemies())
