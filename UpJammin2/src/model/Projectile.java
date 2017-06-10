@@ -32,6 +32,7 @@ public class Projectile extends Entity {
 			jumps--;
 		}
 		else {
+			this.setHealth(0);
 		}
 	}
 	
