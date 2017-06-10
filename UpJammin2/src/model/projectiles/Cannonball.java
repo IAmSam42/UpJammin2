@@ -5,13 +5,14 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
+import model.Enemy;
 import model.Map;
 import model.Projectile;
 
 public class Cannonball extends Projectile{
 
-	public Cannonball(Map map, int health, Point point, Point target, int speed) {
-		super(map, health, point, target, speed);
+	public Cannonball(Map map, int health, Point point, Enemy target, int speed,int damage) {
+		super(map, health, point, target, speed,damage);
 		// TODO Auto-generated constructor stub
 	}
 	@Override

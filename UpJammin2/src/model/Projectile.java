@@ -5,43 +5,42 @@ import java.awt.Point;
 
 public class Projectile extends Entity {
 
-	private Point target;
+	private Enemy target;
 	private int distance;
-	private int pixelsPerTick;
 	private int speed;
-	private int addToX;
-	private int addToY;
-	private int jumps;
+	private int damage;
+	private double angle;
 	
 	
-	public Projectile(Map map, int health, Point point, Point target, int speed) {
+	public Projectile(Map map, int health, Point point, Enemy target, int speed, int damage) {
 		super(map, health, point);
 		this.target = target;
-		this.speed = speed;
-		calculate();
-		
+		this.speed = 4;
+		this.damage = 1000;
 		map.addEntity(this);
 	}
 
 	@Override
-	public void tick() {
-		if(jumps > 0) {
-			this.getPoint().setLocation(this.getPoint().getX() + addToX, this.getPoint().getY() + addToY);
-			jumps--;
-		}
-		else {
+	public void tick() 
+	{
+		if((this.getPoint().getX() == target.getPoint().getX())&&(this.getPoint().getY() == target.getPoint().getY()))
+		{
+			System.out.println("health before: " + target.getHealth());
 			this.setHealth(0);
+			target.takeDamage(damage);
+			System.out.println("health after: "+ target.getHealth());
 		}
-	}
-	
-	public void calculate() {
-		this.distance = (int) this.getPoint().distance(target);
-		int xdist = (int) (target.getX() - this.getPoint().getX());
-		int ydist = (int) (target.getY()- this.getPoint().getY());
-		pixelsPerTick = distance/speed;
-		jumps = distance/pixelsPerTick;
-		addToX = xdist/jumps;
-		addToY = ydist/jumps;
+		else
+		{
+			double xdiff = target.getPoint().getX() - this.getPoint().getX();
+			double ydiff =  target.getPoint().getY() - this.getPoint().getY();
+			
+			//System.out.println("xdiff: " + xdiff + " ydiff: " + ydiff);
+			angle = Math.atan((this.getPoint().getY()-target.getPoint().getY())/(this.getPoint().getX()-target.getPoint().getX()));
+			//System.out.println("arrow" + this + "start = " + this.getPoint());
+			this.setPoint(new Point((int) (this.getPoint().getX()-(speed*Math.cos(angle))), (int)(this.getPoint().getY() - (speed*Math.sin(angle)))));
+			//System.out.println(" target = " + target.getPoint() + "after move = " + this.getPoint());
+		}
 	}
 	
 	@Override
