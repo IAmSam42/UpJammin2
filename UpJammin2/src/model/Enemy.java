@@ -11,16 +11,13 @@ public class Enemy extends Entity {
 	private ArrayList<Point> path;
 	private Path path_finder;
 	
-	private Point goal;
-	
 	public Enemy(Map map, int health, Point point) {
 		super(map, health, point);
 		
 		path_finder = new Path(this.getMap());
 		path = new ArrayList<Point>();
 		
-		goal = new Point(map.getWidth()-1, (int)(map.getHeight() / 2));
-		path_finder.calculatePath(map.toGridPoint(this.getPoint()), goal);
+		path_finder.calculatePath(map.toGridPoint(this.getPoint()), map.getGoal());
 
 		map.addEnemy(this);
 	}
@@ -47,7 +44,7 @@ public class Enemy extends Entity {
 			
 			if(this.getMap().isBlocked(path.get(0)))
 			{
-				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), goal);
+				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
 			}
 		}
 		
