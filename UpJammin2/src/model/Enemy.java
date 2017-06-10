@@ -33,43 +33,68 @@ public class Enemy extends Entity {
 		}
 		
 		//Convert the current point to a grid reference.
-		Point grid_point = this.getMap().toGridPoint(this.getPoint());
+		Point target_point = path.get(0);
 		
-		//Work out the direction for the next point in the path.
-		int x_move = (int)(path.get(0).getX() - grid_point.getX());
-		int y_move = (int)(path.get(0).getY() - grid_point.getY());
+		//Get the pixel coordinates of the top left.
+		Point pixel_point = this.getMap().toPixelPoint(target_point);
 		
-		//Create a new point (old point plus the movement amount.
-		Point new_point = new Point((int)this.getPoint().getX() + x_move, 
-									(int)this.getPoint().getY() + y_move);
-		
-		System.out.println(new_point + " -> " + this.getMap().toGridPoint(new_point));
-		
-		//If the next point is blocked:
-		if(this.getMap().isBlocked(this.getMap().toGridPoint(new_point)))
+		//If the enemy is at the top left corner:
+		if(this.getPoint().equals(pixel_point))
 		{
-			//Recalculate the path.
-			path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
+			System.out.println("Next point!");
+			
+			//Remove the first element of the path.
+			path.remove(0);
+			
+			//If the next point is blocked:
+			if(this.getMap().isBlocked(path.get(0)))
+			{
+				System.out.println("Recalculating!");
+				//Recalculate the path.
+				path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
+			}
 			
 			//Move on the next tick.
 			return;
 		}
 		
-		//Set the new point of the enemy.
+		//Get x and y coordinate of the enemy.
+		int x_coord = (int)this.getPoint().getX();
+		int y_coord = (int)this.getPoint().getY();
+		
+		//Work out the movement needed.
+		int x_diff = (int)pixel_point.getX() - x_coord;
+		int y_diff = (int)pixel_point.getY() - y_coord;
+		
+		//Normalise both differences.
+		x_diff = normalise(x_diff);
+		y_diff = normalise(y_diff);
+		
+		//Get the new position of the enemy.
+		Point new_point = new Point(x_coord + x_diff, y_coord + y_diff);
+		
+		//Set the new position.
 		this.setPoint(new_point);
-		
-		
-		//Refresh the grid point
-		grid_point = this.getMap().toGridPoint(this.getPoint());
-		
-		//If the enemy is at the next part of the path:
-		if(path.get(0).equals(grid_point))
+	}
+	
+	/**
+	 * Reduce an int to an int between -1 and 1.
+	 * @param x The int to reduce.
+	 * @return The reduced int.
+	 */
+	private int normalise(int x)
+	{
+		if(x == 0)
 		{
-			//Then remove the next part of the path.
-			path.remove(0);
-			
-			//Move on next tick.
-			return;
+			return 0;
+		}
+		else if(x < 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
 		}
 	}
 
