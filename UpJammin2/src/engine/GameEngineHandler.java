@@ -17,6 +17,7 @@ import model.Bank;
 import model.Enemy;
 import model.Entity;
 import model.Map;
+import model.Map.blockType;
 //import java.awt.Graphics2D;
 
 public class GameEngineHandler {
@@ -114,6 +115,7 @@ public class GameEngineHandler {
 		ImageIcon grass_img = ResourceManager.getResourceManager().getImageIcon(Config.grass_file);
 		ImageIcon brighter_grass_img = ResourceManager.getResourceManager().getImageIcon(Config.brighter_grass_file);
 		ImageIcon cannon_left_img = ResourceManager.getResourceManager().getImageIcon(Config.cannon_left_file);
+		ImageIcon wall = ResourceManager.getResourceManager().getImageIcon(Config.wall);
 		
 		for (int i = 0; i < Main.HEIGHT/BLOCKSIZE; i++) {
 			for (int j = 0; j < Main.WIDTH/BLOCKSIZE; j++) {
@@ -125,8 +127,12 @@ public class GameEngineHandler {
 						g.drawImage(brighter_grass_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
 					}
 				}else{
-					g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
-					System.out.println("something else should be rendered instead of the floor in this positon");
+					if(map.findNonEnemy(new Point(j, i)) == blockType.Turret) {
+						g.drawImage(cannon_left_img.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
+					else if(map.findNonEnemy(new Point(j, i)) == blockType.Wall) {
+						g.drawImage(wall.getImage(), j*BLOCKSIZE, i*BLOCKSIZE, null);
+					}
 				}
 			}
 		}
