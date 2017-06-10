@@ -14,6 +14,7 @@ import org.json.simple.parser.ParseException;
 import gui.GameWindow;
 import gui.Main;
 import model.Enemy;
+import model.Entity;
 import model.Map;
 //import java.awt.Graphics2D;
 
@@ -85,6 +86,10 @@ public class GameEngineHandler {
 			wave++;
 			newWave();
 		}
+		for(Entity ent : map.getEnemies())
+			ent.tick();
+		for(Entity ent : map.getNonEnemies())
+			ent.tick();
 		
 	}
 	

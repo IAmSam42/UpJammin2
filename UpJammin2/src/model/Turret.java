@@ -26,7 +26,7 @@ public class Turret extends Entity {
 	public void tick() {
 		ttNextFire--;
 		if(targetted == null){
-			for(Entity ent : getMap().getEntities()){
+			for(Entity ent : getMap().getNonEnemies()){
 				if(ent instanceof Enemy)
 					if(ent.getPoint().distance(getPoint())<range) {
 						targetted = (Enemy) ent;
@@ -51,7 +51,7 @@ public class Turret extends Entity {
 			return;
 		
 		ttNextFire = fireRate;
-		getMap().getEntities().add(new Projectile(getMap(), 1, getPoint(), targetted.getPoint(), fireSpeed));
+		getMap().getNonEnemies().add(new Projectile(getMap(), 1, getPoint(), targetted.getPoint(), fireSpeed));
 		
 	}
 

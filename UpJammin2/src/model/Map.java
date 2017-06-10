@@ -134,7 +134,7 @@ public class Map
 	 * 
 	 * @return An ArrayList of all the entities in the game,
 	 */
-	public ArrayList<Entity> getEntities() {
+	public ArrayList<Entity> getNonEnemies() {
 		return notEnemies;
 	}
 
