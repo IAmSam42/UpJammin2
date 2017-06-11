@@ -17,7 +17,7 @@ public class Lightning extends Projectile{
 		
 	}
 	public void render(Graphics g, boolean hover) {
-		if (this.getRight())
+		if (!this.getRight())
 		{
 			g.drawImage(new ImageIcon("resources/lightning.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 		}
