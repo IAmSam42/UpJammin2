@@ -18,6 +18,7 @@ public class Bank extends Observable {
 	private int price_wall;
 	private int price_arrow_tower;
 	private int price_cannon_tower;
+	private int price_wizard_tower;
 	
 	
 	public Bank() {
@@ -35,6 +36,7 @@ public class Bank extends Observable {
 		price_wall = 20;
 		price_arrow_tower = 70;
 		price_cannon_tower = 100;
+		price_wizard_tower = 250;
 	}
 	
 	public void endDay() {
@@ -100,6 +102,11 @@ public class Bank extends Observable {
 			price_cannon_tower += (int)((double)price_cannon_tower * ((double)cost_interest / 100.0));
 			break;
 			
+		case Wizard:
+			balance -= price_wizard_tower;
+			price_wizard_tower += (int)((double)price_wizard_tower * ((double)cost_interest / 100.0));
+			break;
+			
 		default:
 			break;
 		}
@@ -125,6 +132,9 @@ public class Bank extends Observable {
 		case CannonTurret:
 			return price_cannon_tower;
 			
+		case Wizard:
+			return price_wizard_tower;
+			
 		default:
 			return 0;
 		}
@@ -147,6 +157,9 @@ public class Bank extends Observable {
 		case CannonTurret:
 			return price_cannon_tower <= balance;
 		
+		case Wizard:
+			return price_wizard_tower <= balance;
+			
 		default:
 			return false;
 		}

@@ -29,7 +29,7 @@ public class Map {
 	private Path path_finder;
 	
 	public enum blockType {
-		ArrowTurret, CannonTurret, Wall, None
+		ArrowTurret, CannonTurret, Wizard, Wall, None
 	}
 	/**
 	 * Constructor for a map object.
