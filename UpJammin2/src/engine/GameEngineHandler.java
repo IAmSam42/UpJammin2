@@ -73,8 +73,11 @@ public class GameEngineHandler {
 			currentWave = ((JSONObject) currentLevel.get(wave));
 		} else {
 			level++;
+			wave = 0;
+			System.out.println("current day balance"+bank.getBalance());
 			//PAUSE
 			bank.endDay();
+			System.out.println("next day balance: "+bank.getBalance());
 			
 			//PLAY
 			newWave();
@@ -83,6 +86,7 @@ public class GameEngineHandler {
 
 		Random gen = new Random();
 		Long y = (Long) currentWave.get("enemyType1");
+		System.out.println("enemyType1: "+y+" wave: "+wave+" level "+level);
 		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
 			new BowlerAlpaca(map, 200, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
@@ -90,28 +94,36 @@ public class GameEngineHandler {
 		//System.out.println(map.getEnemies().size());
 		
 		y = (Long) currentWave.get("enemyType2");
+		System.out.println("enemyType2: "+y+" wave: "+wave+" level "+level);
+		x = y != null ? y.intValue() : null;
+		for(int i = 0; i < x; i++) {
+			new TopHatAlpaca(map, 500, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
+
+		}
+		
+		y = (Long) currentWave.get("enemyType3");
+		System.out.println("enemyType3: "+y+" wave: "+wave+" level "+level);
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
 			new HeavyAlpaca(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 		
-		y = (Long) currentWave.get("enemyType3");
-		x = y != null ? y.intValue() : null;
-		for(int i = 0; i < x; i++) {
-			new TopHatAlpaca(map, 500, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
-		}
-		
-		y = (Long) currentWave.get("enemyType4");
-		x = y != null ? y.intValue() : null;
-		for(int i = 0; i < x; i++) {
-			new Enemy(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
-		}
+//		y = (Long) currentWave.get("enemyType4");
+//		x = y != null ? y.intValue() : null;
+//		for(int i = 0; i < x; i++) {
+//			new Enemy(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
+//		}
 	}
 		
 	public void tick() {
 //		System.out.println("HEYYY I TICKED");
 //		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
-//		System.out.println("Height: " + Main.HEIGHT/BLOCKSIZE);
+//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
+		if(bank.getBalance() <= 0) {
+			gameEngine.stop();
+		}
+		
+
 		soundModel.tick();
 		if(map.getEnemies().size() == 0){
 			wave++;

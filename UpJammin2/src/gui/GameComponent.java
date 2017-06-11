@@ -17,6 +17,7 @@ import model.Turret;
 import model.Wall;
 import model.turrets.ArrowTurret;
 import model.turrets.CannonTurret;
+import model.turrets.WizardTower;
 
 public class GameComponent extends JPanel {
 	public GameComponent(GameEngine game, ButtonPanel panel) {
@@ -76,6 +77,15 @@ public class GameComponent extends JPanel {
 						if(map.getBank().canAfford(Map.blockType.CannonTurret))
 						{
 							new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 200, 200, 20);
+						}
+						//System.out.println(arg0.getPoint());
+					} 
+						else if(panel.getSelected() == Selected.Wizard) {
+						
+						//If the player can afford the cannon turret:
+						if(map.getBank().canAfford(Map.blockType.CannonTurret))
+						{
+							new WizardTower(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 1, 60, 10);
 						}
 						//System.out.println(arg0.getPoint());
 					} 
