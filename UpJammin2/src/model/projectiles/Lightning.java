@@ -11,13 +11,20 @@ import model.Projectile;
 
 public class Lightning extends Projectile{
 
-	public Lightning(Map map, int health, Point point, Enemy target, int speed, int damage) {
-		super(map, health, point, target, speed, damage);
+	public Lightning(Map map, int health, Point point, Enemy target, int speed, int damage, boolean right) {
+		super(map, health, point, target, speed, damage,right);
 		// TODO Auto-generated constructor stub
 		
 	}
 	public void render(Graphics g, boolean hover) {
-		g.drawImage(new ImageIcon("resources/lightning.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		if (this.getRight())
+		{
+			g.drawImage(new ImageIcon("resources/lightning.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		}
+		else
+		{
+			g.drawImage(new ImageIcon("resources/lightningFlip.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		}
 	}
 
 }

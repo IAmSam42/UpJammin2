@@ -47,6 +47,6 @@ public class CannonTurret extends Turret {
 	@Override
 	public void createProjectile(Map map, int i, Point point, Enemy targetted, int fireSpeed, int damage) 
 	{
-		new Cannonball(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
+		new Cannonball(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage, this.isFacingRight());
 	}
 }

@@ -11,12 +11,19 @@ import model.Projectile;
 
 public class Arrow extends Projectile{
 
-	public Arrow(Map map, int health, Point point, Enemy target, int speed,int damage) {
-		super(map, health, point, target, speed,damage);
+	public Arrow(Map map, int health, Point point, Enemy target, int speed,int damage, boolean right) {
+		super(map, health, point, target, speed,damage, right);
 		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public void render(Graphics g, boolean hover) {
-		g.drawImage(new ImageIcon("resources/Arrow.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		if (this.getRight())
+		{
+			g.drawImage(new ImageIcon("resources/Arrow.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		}else
+		{
+			g.drawImage(new ImageIcon("resources/ArrowFlip.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+		}
+		
 	}
 }
