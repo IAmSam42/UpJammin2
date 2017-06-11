@@ -76,7 +76,9 @@ public class Map {
 		}
 		
 		//Set the grid infront of the goal to be none-placeable.
+		placeable[(int)goal.getX() - 1][(int)goal.getY()-1] = false;
 		placeable[(int)goal.getX() - 1][(int)goal.getY()] = false;
+		placeable[(int)goal.getX() - 1][(int)goal.getY()+1] = false;
 	}
 
 	/**

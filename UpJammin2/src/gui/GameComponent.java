@@ -57,7 +57,7 @@ public class GameComponent extends JPanel {
 						//If the player can afford the ArrowTurret:
 						if(map.getBank().canAfford(Map.blockType.ArrowTurret))
 						{
-							new ArrowTurret(map, 50, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 1, 40, 5);
+							new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 50, 40, 5);
 						}
 						//System.out.println(arg0.getPoint());
 					}
@@ -75,7 +75,7 @@ public class GameComponent extends JPanel {
 						//If the player can afford the cannon turret:
 						if(map.getBank().canAfford(Map.blockType.CannonTurret))
 						{
-							new CannonTurret(map, 200, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 1, 60, 20);
+							new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 200, 60, 20);
 						}
 						//System.out.println(arg0.getPoint());
 					} 
