@@ -101,13 +101,16 @@ public class ButtonPanel extends JPanel implements Observer {
 		
 		money = new JLabel();
 		money.setText("£" + bank.getBalance());
-		buttonPanel.setLayout(new GridLayout(1,4));
+		buttonPanel.setLayout(new GridLayout(1,3));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
 		buttonPanel.add(wall);
-		buttonPanel.add(money);
-		add(buttonPanel,BorderLayout.CENTER);
-		
+		//buttonPanel.add(money);
+		setLayout(new GridLayout(1,2));
+		add(buttonPanel);
+		JPanel moneyPanel = new JPanel();
+		moneyPanel.add(money, BorderLayout.CENTER);
+		add(moneyPanel);
 	}
 	
 	public Selected getSelected() {
