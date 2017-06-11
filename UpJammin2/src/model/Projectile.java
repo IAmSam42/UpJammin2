@@ -12,6 +12,14 @@ public class Projectile extends Entity {
 	private double angle;
 	
 	
+	public double getAngle() {
+		return angle;
+	}
+
+	public void setAngle(double angle) {
+		this.angle = angle;
+	}
+
 	public Projectile(Map map, int health, Point point, Enemy target, int speed, int damage) {
 		super(map, health, point);
 		this.target = target;

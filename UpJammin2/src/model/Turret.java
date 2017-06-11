@@ -31,9 +31,9 @@ public abstract class Turret extends Entity {
 	@Override
 	public void tick() {
 		ttNextFire--;
+		System.out.println(ttNextFire);
 		if(targetted == null) {
 			for(Enemy ent : getMap().getEnemies()){
-				//System.out.println("looking for enemy");
 				//System.out.println("Wc "+ent.getPoint()+" fefw "+ this.getPoint() + " ffefe " + ent.getPoint().distance(this.getPoint()));
 					if(ent.getPoint().distance(this.getPoint())< range  * getMap().getScale()) {
 						targetted = ent;
@@ -50,6 +50,7 @@ public abstract class Turret extends Entity {
 	
 	private void fireAtTarget() {
 		assert(targetted != null);
+		System.out.println("no hp" + (targetted.getHealth() <= 0) + " in distance " + (targetted.getPoint().distance(getPoint()) > range * getMap().getScale()));
 		if(targetted.getHealth() <= 0 || targetted.getPoint().distance(getPoint()) > range * getMap().getScale()){
 			targetted = null;
 			return;

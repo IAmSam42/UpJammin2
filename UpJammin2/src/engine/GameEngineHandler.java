@@ -108,13 +108,13 @@ public class GameEngineHandler {
 			newWave();
 		}
 		for(int i = 0; i < map.getEnemies().size(); i++) {
-			if(map.getEnemies().get(i).getHealth() == 0) {
+			if(map.getEnemies().get(i).getHealth() <= 0) {
 				map.removeEnemy(map.getEnemies().get(i));
 				i--;
 			}
 		}
 		for(int i = 0; i < map.getNonEnemies().size(); i++) {
-			if(map.getNonEnemies().get(i).getHealth() == 0) {
+			if(map.getNonEnemies().get(i).getHealth() <= 0) {
 				map.removeNonEnemy(map.getNonEnemies().get(i));
 				i--;
 			}
