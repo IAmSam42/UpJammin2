@@ -21,7 +21,8 @@ import model.Entity;
 import model.Map;
 
 import model.enemies.BowlerAlpaca;
-
+import model.enemies.HeavyAlpaca;
+import model.enemies.TopHatAlpaca;
 import model.Map.blockType;
 //import java.awt.Graphics2D;
 import model.SoundModel;
@@ -88,19 +89,19 @@ public class GameEngineHandler {
 		y = (Long) currentWave.get("enemyType2");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			new Enemy(map, 1000, new Point(0, gen.nextInt(map.getHeight())));
+			new HeavyAlpaca(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 		
 		y = (Long) currentWave.get("enemyType3");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			new Enemy(map, 1000, new Point(0, gen.nextInt(map.getHeight())));
+			new TopHatAlpaca(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 		
 		y = (Long) currentWave.get("enemyType4");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			new Enemy(map, 1000, new Point(0, gen.nextInt(map.getHeight())));
+			new Enemy(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 	}
 		

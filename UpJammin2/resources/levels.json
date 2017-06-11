@@ -2,15 +2,15 @@
   "levels" : [
       [
           {
-            "enemyType1" : 20,
-            "enemyType2" : 0,
-            "enemyType3" : 0,
+            "enemyType1" : 5,
+            "enemyType2" : 3,
+            "enemyType3" : 2,
             "enemyType4" : 0
           },
           {
-            "enemyType1" : 3,
-            "enemyType2" : 0,
-            "enemyType3" : 0,
+            "enemyType1" : 1,
+            "enemyType2" : 1,
+            "enemyType3" : 1,
             "enemyType4" : 0
           },
           {

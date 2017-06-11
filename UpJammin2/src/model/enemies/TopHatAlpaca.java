@@ -19,6 +19,6 @@ public class TopHatAlpaca extends Enemy {
 	@Override
 	public void render(Graphics g, boolean hover) 
 	{
-		g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);	
+		g.drawImage(new ImageIcon("resources/EnemyAlpacaTopHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);	
 	}
 }
