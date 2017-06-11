@@ -31,10 +31,12 @@ public class ButtonPanel extends JPanel implements Observer {
 	private JToggleButton cannonTurret;
 	private JToggleButton wall;
 	
+	private JLabel progress;
 	private JLabel money;
 	
 	public ButtonPanel(Bank bank) {
 		
+		this.progress = new JLabel("Evade that tax!");
 		this.button = Selected.None;
 		this.bank = bank;
 		this.arrowLabel = "Arrow Turret - " + bank.getCost(blockType.ArrowTurret);
@@ -110,7 +112,15 @@ public class ButtonPanel extends JPanel implements Observer {
 		add(buttonPanel);
 		JPanel moneyPanel = new JPanel();
 		moneyPanel.add(money, BorderLayout.CENTER);
-		add(moneyPanel);
+		
+		JPanel progressPanel = new JPanel();
+		progressPanel.add(progress, BorderLayout.CENTER);
+		
+		JPanel labels = new JPanel();
+		labels.setLayout(new GridLayout(1,2));
+		labels.add(moneyPanel);
+		labels.add(progressPanel);
+		add(labels);
 	}
 	
 	public Selected getSelected() {
@@ -119,6 +129,9 @@ public class ButtonPanel extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(bank.getBalance() <= 0) {
+			progress.setText("YOU LOSE");
+		}
 		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
 		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
 		wall.setText("Wall - " + bank.getCost(blockType.Wall));
