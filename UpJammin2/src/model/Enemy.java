@@ -35,8 +35,8 @@ public class Enemy extends Entity {
 		
 		if(grid_point.equals(this.getMap().getGoal()))
 		{
-			//Set health to 0.
-			this.setHealth(0);
+			//Set health to be MIN_VALUE, so no gold is added.
+			this.setHealth(Integer.MIN_VALUE);
 			
 			//Take away some gold.
 			this.getMap().getBank().addBalance(-stolen_gold);

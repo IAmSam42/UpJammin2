@@ -118,16 +118,23 @@ public class GameEngineHandler {
 	public void tick() {
 //		System.out.println("HEYYY I TICKED");
 //		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
-//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
+//		System.out.println("Height: " + Main.HEIGHT/BLOCKSIZE);
 		soundModel.tick();
 		if(map.getEnemies().size() == 0){
 			wave++;
 			newWave();
 		}
 		for(int i = 0; i < map.getEnemies().size(); i++) {
-			if(map.getEnemies().get(i).getHealth() <= 0) {
+			if(map.getEnemies().get(i).getHealth() == -Integer.MIN_VALUE) {
 				map.removeEnemy(map.getEnemies().get(i));
 				i--;
+			}
+			else if(map.getEnemies().get(i).getHealth() <= 0) {
+				map.removeEnemy(map.getEnemies().get(i));
+				i--;
+				
+				//Get a reward for killing the enemy.
+				bank.addBalance(bank.getReward());
 			}
 		}
 		for(int i = 0; i < map.getNonEnemies().size(); i++) {
