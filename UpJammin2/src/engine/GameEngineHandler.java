@@ -60,12 +60,13 @@ public class GameEngineHandler {
 	
 	public void newWave() {		
 		JSONArray currentLevel = null;
+		System.out.println("Heree");
 		//System.out.println(levelsArray.size() > level);
 		if(levelsArray.size() > level) {
 			currentLevel = ((JSONArray) levelsArray.get(level));
 			System.out.println(currentLevel);
 		} else {
-			//System.out.println("GAME WON");
+			System.out.println("GAME WON");
 			return;
 		}
 		JSONObject currentWave = null;
@@ -74,9 +75,11 @@ public class GameEngineHandler {
 		} else {
 			level++;
 			//PAUSE
+			System.out.println("heEREEE");
 			bank.endDay();
 			
 			//PLAY
+			
 			newWave();
 			return;
 		}
@@ -119,8 +122,10 @@ public class GameEngineHandler {
 
 		soundModel.tick();
 		if(map.getEnemies().size() == 0){
-			wave++;
-			newWave();
+				System.out.println("level: "+level+" wave "+wave);
+				wave++;
+				newWave();
+			
 		}
 		for(int i = 0; i < map.getEnemies().size(); i++) {
 			if(map.getEnemies().get(i).getHealth() == -Integer.MIN_VALUE) {

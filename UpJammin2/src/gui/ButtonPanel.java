@@ -33,6 +33,7 @@ public class ButtonPanel extends JPanel implements Observer {
 	
 	private JLabel progress;
 	private JLabel money;
+	private JLabel day;
 	
 	public ButtonPanel(Bank bank) {
 		
@@ -110,15 +111,22 @@ public class ButtonPanel extends JPanel implements Observer {
 		//buttonPanel.add(money);
 		setLayout(new GridLayout(1,2));
 		add(buttonPanel);
+		
 		JPanel moneyPanel = new JPanel();
 		moneyPanel.add(money, BorderLayout.CENTER);
 		
 		JPanel progressPanel = new JPanel();
 		progressPanel.add(progress, BorderLayout.CENTER);
 		
+		day = new JLabel();
+		day.setText("Day: " + bank.getDay());
+		JPanel dayPanel = new JPanel();
+		dayPanel.add(day, BorderLayout.CENTER);
+		
 		JPanel labels = new JPanel();
-		labels.setLayout(new GridLayout(1,2));
+		labels.setLayout(new GridLayout(1,3));
 		labels.add(moneyPanel);
+		labels.add(dayPanel);
 		labels.add(progressPanel);
 		add(labels);
 	}
@@ -136,6 +144,9 @@ public class ButtonPanel extends JPanel implements Observer {
 		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
 		wall.setText("Wall - " + bank.getCost(blockType.Wall));
 		money.setText("£" + bank.getBalance());
+		
+		day.setText("Day: " + bank.getDay());
+		
 		
 	}
 }
