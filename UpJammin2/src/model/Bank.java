@@ -110,4 +110,26 @@ public class Bank extends Observable {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Check if the player can afford a specific type of tower/wall.
+	 * @param blocktype The tower/wall type to check.
+	 * @return If the player can afford that tower/wall.
+	 */
+	public boolean canAfford(Map.blockType blocktype)
+	{
+		switch (blocktype) {
+		case Wall:
+			return price_wall <= balance;
+			
+		case ArrowTurret:
+			return price_arrow_tower <= balance;
+			
+		case CannonTurret:
+			return price_cannon_tower <= balance;
+		
+		default:
+			return false;
+		}
+	}
 }
