@@ -42,10 +42,10 @@ public class ButtonPanel extends JPanel implements Observer {
 		this.progress = new JLabel("Evade that tax!");
 		this.button = Selected.None;
 		this.bank = bank;
-		this.arrowLabel = "Arrow - " + bank.getCost(blockType.ArrowTurret);
-		this.cannonLabel = "Cannon - " + bank.getCost(blockType.CannonTurret);
-		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
-		this.wizardLabel = "Wizard - " + bank.getCost(blockType.Wizard);
+		this.arrowLabel = "Arrow : " + bank.getCost(blockType.ArrowTurret);
+		this.cannonLabel = "Cannon : " + bank.getCost(blockType.CannonTurret);
+		this.wallLabel = "Wall : " + bank.getCost(blockType.Wall);
+		this.wizardLabel = "Wizard : " + bank.getCost(blockType.Wizard);
 		bank.addObserver(this);
 		arrowTurret = new JToggleButton(arrowLabel);
 		cannonTurret = new JToggleButton(cannonLabel);
@@ -124,7 +124,7 @@ public class ButtonPanel extends JPanel implements Observer {
 	});
 		
 		money = new JLabel();
-		money.setText("�" + bank.getBalance());
+		money.setText("£" + bank.getBalance());
 		buttonPanel.setLayout(new GridLayout(1,2));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
@@ -171,12 +171,12 @@ public class ButtonPanel extends JPanel implements Observer {
 		if(bank.getBalance() <= 0) {
 			progress.setText("YOU LOSE");
 		}
-		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
-		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
-		wall.setText("Wall - " + bank.getCost(blockType.Wall));
-		wizard.setText("Wizard - " + bank.getCost(blockType.Wizard));
+		arrowTurret.setText("Arrow : " + bank.getCost(blockType.ArrowTurret));
+		cannonTurret.setText("Cannon : " + bank.getCost(blockType.CannonTurret));
+		wall.setText("Wall : " + bank.getCost(blockType.Wall));
+		wizard.setText("Wizard : " + bank.getCost(blockType.Wizard));
 
-		money.setText("�" + bank.getBalance());
+		money.setText("£" + bank.getBalance());
 
 		
 		day.setText("Day: " + bank.getDay());
