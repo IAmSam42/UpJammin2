@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
 public class GameEngine extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1750355504600161501L;
 	public static boolean running;
-	public static boolean paused;
+	public boolean paused;
 	private Thread thread;
 	
 	
@@ -24,7 +24,7 @@ public class GameEngine extends Canvas implements Runnable {
 	public GameEngine(){
 		
 		try {
-			this.gameEngineHandler = new GameEngineHandler();
+			this.gameEngineHandler = new GameEngineHandler(this);
 		} catch (ParseException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -88,7 +88,18 @@ public class GameEngine extends Canvas implements Runnable {
 				fpsTimer += 1000;
 			}
 		}
-		while(paused){}
+		while(this.paused){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void isPaused(boolean paused){
+		this.paused = paused;
 	}
 	
 

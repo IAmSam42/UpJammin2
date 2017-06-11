@@ -38,8 +38,10 @@ public class GameEngineHandler {
 	private Bank bank;
 	private Point hover;
 	private SoundModel soundModel;
+	private GameEngine gameEngine;
 	
-	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
+	public GameEngineHandler(GameEngine gameEngine) throws ParseException, FileNotFoundException, IOException{
+		this.gameEngine = gameEngine;
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
