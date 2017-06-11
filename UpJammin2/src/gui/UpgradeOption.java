@@ -28,6 +28,7 @@ public class UpgradeOption extends JPanel {
 		titlepanel.add(subtitleLabel, BorderLayout.CENTER);
 		
 		add(titlepanel);
+		setBounds(0, 0, 100, 300);
 		
 	}
 }

@@ -13,5 +13,6 @@ public class Config {
 	public static String FinUpgradesScreen = "resources/FinUpgradesSplashScreen.png";
 	public static String greyWall = "resources/greyWall.jpg";
 	public static String greyCannonLeft= "resources/greyCannonLeft.jpg";
+	public static String FinUpgradesBottomBar = "resources/BottomBar.png";
 
 }

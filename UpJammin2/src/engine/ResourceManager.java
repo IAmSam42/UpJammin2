@@ -51,6 +51,7 @@ public class ResourceManager {
 		catch(Exception e) {
 			System.err.println("Problems reading file " + file_name + ".");
 			System.err.println(e);
+			e.printStackTrace();
 			System.exit(-1);
 		}
 		
@@ -76,6 +77,7 @@ public class ResourceManager {
 		catch(Exception e) {
 			System.err.println("Problems reading image file " + file_name + ".");
 			System.err.println(e);
+			e.printStackTrace();
 			System.exit(-1);
 		}
 		
