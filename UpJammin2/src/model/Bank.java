@@ -32,8 +32,11 @@ public class Bank extends Observable {
 	}
 	
 	public void endDay() {
+		
 		balance += balance*(interestRate/100);
 		balance +=seperateIncome;
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void addBalance(int increment) {
