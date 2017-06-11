@@ -38,8 +38,10 @@ public class GameEngineHandler {
 	private Bank bank;
 	private Point hover;
 	private SoundModel soundModel;
+	private GameEngine gameEngine;
 	
-	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
+	public GameEngineHandler(GameEngine gameEngine) throws ParseException, FileNotFoundException, IOException{
+		this.gameEngine = gameEngine;
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
@@ -83,7 +85,7 @@ public class GameEngineHandler {
 		Long y = (Long) currentWave.get("enemyType1");
 		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			new BowlerAlpaca(map, 20, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
+			new BowlerAlpaca(map, 200, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 		//System.out.println(map.getEnemies().size());
 		
@@ -96,7 +98,7 @@ public class GameEngineHandler {
 		y = (Long) currentWave.get("enemyType3");
 		x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			new TopHatAlpaca(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
+			new TopHatAlpaca(map, 500, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 		
 		y = (Long) currentWave.get("enemyType4");
