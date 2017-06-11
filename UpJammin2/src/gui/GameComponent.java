@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -13,7 +11,6 @@ import engine.GameEngine;
 import engine.GameEngineHandler;
 import gui.ButtonPanel.Selected;
 import model.Map;
-import model.Turret;
 import model.Wall;
 import model.turrets.ArrowTurret;
 import model.turrets.CannonTurret;
@@ -80,8 +77,8 @@ public class GameComponent extends JPanel {
 						}
 						//System.out.println(arg0.getPoint());
 					} 
-						else if(panel.getSelected() == Selected.Wizard) {
-						
+					else if(panel.getSelected() == Selected.Wizard) {
+					
 						//If the player can afford the cannon turret:
 						if(map.getBank().canAfford(Map.blockType.Wizard))
 						{
