@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -23,12 +24,11 @@ public class GameComponent extends JPanel {
 		GameEngineHandler handler = game.getGameEngineHandler();
 		
 		Map map = handler.getMap();
-		
 		setLayout(new BorderLayout());
-		
 		add(game, BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
 		
+	
 		game.addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
