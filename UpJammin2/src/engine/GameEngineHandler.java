@@ -81,7 +81,7 @@ public class GameEngineHandler {
 		Long y = (Long) currentWave.get("enemyType1");
 		Integer x = y != null ? y.intValue() : null;
 		for(int i = 0; i < x; i++) {
-			new BowlerAlpaca(map, 1000, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
+			new BowlerAlpaca(map, 20, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
 		System.out.println(map.getEnemies().size());
 		
