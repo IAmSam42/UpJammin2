@@ -29,7 +29,7 @@ public class Bank extends Observable {
 		this.interestRate = 20;
 		
 		//Set the reward for killing enemies.
-		reward = 1;
+		reward = 6;
 		
 		//Set the cost interest,
 		cost_interest = 5;

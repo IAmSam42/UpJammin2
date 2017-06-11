@@ -82,7 +82,7 @@ public class GameComponent extends JPanel {
 						//If the player can afford the cannon turret:
 						if(map.getBank().canAfford(Map.blockType.Wizard))
 						{
-							new WizardTower(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 500, 400, 10);
+							new WizardTower(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 400, 250, 10);
 						}
 						//System.out.println(arg0.getPoint());
 					} 
