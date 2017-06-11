@@ -51,18 +51,32 @@ public class GameComponent extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 
 				if(map.isPlaceable(map.toGridPoint(arg0.getPoint()))) {
-					if(panel.getSelected() == Selected.ArrowTurret) {
-						new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 1000, 20, 5);
 
+					if(panel.getSelected() == Selected.ArrowTurret) {
+						
+						//If the player can afford the ArrowTurret:
+						if(map.getBank().canAfford(Map.blockType.ArrowTurret))
+						{
+							new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 1, 20, 1);
+						}
 						//System.out.println(arg0.getPoint());
 					}
 					else if (panel.getSelected() == Selected.Wall) {
-						new Wall(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())));
+						
+						//If the player can afford the Wall:
+						if(map.getBank().canAfford(Map.blockType.Wall))
+						{
+							new Wall(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())));
+						}
 						//System.out.println(arg0.getPoint());
 					}
 					else if(panel.getSelected() == Selected.CannonTurret) {
-
-						new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 1000, 100, 10);
+						
+						//If the player can afford the cannon turret:
+						if(map.getBank().canAfford(Map.blockType.CannonTurret))
+						{
+							new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 2, 1, 20, 1);
+						}
 						//System.out.println(arg0.getPoint());
 					} 
 				}

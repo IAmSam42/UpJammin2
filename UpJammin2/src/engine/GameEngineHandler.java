@@ -24,6 +24,7 @@ import model.enemies.BowlerAlpaca;
 
 import model.Map.blockType;
 //import java.awt.Graphics2D;
+import model.SoundModel;
 
 public class GameEngineHandler {
 
@@ -35,18 +36,22 @@ public class GameEngineHandler {
 	int tickCounter;
 	private Bank bank;
 	private Point hover;
+	private SoundModel soundModel;
 	
 	public GameEngineHandler() throws ParseException, FileNotFoundException, IOException{
 		level = 0;
 		wave = 0;
 		JSONParser parser = new JSONParser();
-
+		
 		String fileContents = ResourceManager.getResourceManager().getFileContents(Config.levels_file);
+		soundModel = new SoundModel();
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
 		bank = new Bank();
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		newWave();
 		hover = null;
+		
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 
 	}
 	
@@ -103,6 +108,7 @@ public class GameEngineHandler {
 //		System.out.println("HEYYY I TICKED");
 //		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
 //		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
+		soundModel.tick();
 		if(map.getEnemies().size() == 0){
 			wave++;
 			newWave();

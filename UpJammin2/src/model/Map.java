@@ -147,7 +147,7 @@ public class Map {
 				//If the (i, j) coordinates are on the map and are not blocked:
 				if(onGrid(new Point(i, j)) && !isBlocked(new Point(i, j)))
 				{
-					//Set the grip point to be blocked.
+					//Set the grid point to be blocked.
 					blocked[i][j] = true;
 					
 					//If a path does not exist from (0, 0):
@@ -305,8 +305,34 @@ public class Map {
 	 * @param point The point to check.
 	 * @return If the point is placeable.
 	 */
-	public boolean isPlaceable(Point point){
-		return placeable[(int) point.getX()][(int) point.getY()];
+	public boolean isPlaceable(Point point)
+	{
+		//Get the x and y coordinates of the point.
+		int x_coord = (int) point.getX();
+		int y_coord = (int) point.getY();
+		
+		//If it has been marked as not placeable:
+		if(!placeable[x_coord][y_coord])
+		{
+			return false;
+		}
+		
+		//Set the grid point to be blocked.
+		blocked[x_coord][y_coord] = true;
+		
+		//If a path does not exist from (0, 0):
+		if(path_finder.calculatePath(new Point(0, 0), goal).isEmpty())
+		{
+			//Set the point to be not placeable.
+			this.placeable[x_coord][y_coord] = false;
+		}
+		
+		//Removed the blocked status.
+		blocked[x_coord][y_coord] = false;
+		
+		
+		//Return if the point is now marked as placeable or not.
+		return this.placeable[x_coord][y_coord];
 	}
 
 	/**
