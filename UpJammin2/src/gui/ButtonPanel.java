@@ -70,6 +70,7 @@ public class ButtonPanel extends JPanel implements Observer {
 			}
 		});
 		
+		
 		cannonTurret.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -122,7 +123,7 @@ public class ButtonPanel extends JPanel implements Observer {
 	});
 		
 		money = new JLabel();
-		money.setText("£" + bank.getBalance());
+		money.setText("ï¿½" + bank.getBalance());
 		buttonPanel.setLayout(new GridLayout(1,3));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
@@ -160,7 +161,8 @@ public class ButtonPanel extends JPanel implements Observer {
 
 		wizard.setText("Wizard - " + bank.getCost(blockType.Wall));
 
-		money.setText("£" + bank.getBalance());
+		money.setText("ï¿½" + bank.getBalance());
+
 		
 	}
 }
