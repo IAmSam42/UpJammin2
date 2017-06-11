@@ -124,7 +124,7 @@ public class ButtonPanel extends JPanel implements Observer {
 	});
 		
 		money = new JLabel();
-		money.setText("£" + bank.getBalance());
+		money.setText("Gold: " + bank.getBalance());
 		buttonPanel.setLayout(new GridLayout(1,2));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
@@ -176,7 +176,7 @@ public class ButtonPanel extends JPanel implements Observer {
 		wall.setText("Wall : " + bank.getCost(blockType.Wall));
 		wizard.setText("Wizard : " + bank.getCost(blockType.Wizard));
 
-		money.setText("£" + bank.getBalance());
+		money.setText("Gold: " + bank.getBalance());
 
 		
 		day.setText("Day: " + bank.getDay());
