@@ -10,6 +10,7 @@ public class FinUpgrade {
 	public FinUpgrade(String title, String subtitle, String imgLoc, boolean exists) {
 		this.title = title;
 		this.subtitle = subtitle;
+		System.out.println(imgLoc);
 		this.imgLoc = imgLoc;
 		this.exists = exists;
 	}

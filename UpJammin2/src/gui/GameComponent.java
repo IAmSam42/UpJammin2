@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,12 +25,11 @@ public class GameComponent extends JPanel {
 		GameEngineHandler handler = game.getGameEngineHandler();
 		
 		Map map = handler.getMap();
-		
 		setLayout(new BorderLayout());
-		
 		add(game, BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
 		
+	
 		game.addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
@@ -58,7 +58,7 @@ public class GameComponent extends JPanel {
 						//If the player can afford the ArrowTurret:
 						if(map.getBank().canAfford(Map.blockType.ArrowTurret))
 						{
-							new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 1, 40, 5);
+							new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 3, 50, 40, 5);
 						}
 						//System.out.println(arg0.getPoint());
 					}
@@ -76,7 +76,7 @@ public class GameComponent extends JPanel {
 						//If the player can afford the cannon turret:
 						if(map.getBank().canAfford(Map.blockType.CannonTurret))
 						{
-							new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 1, 60, 10);
+							new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 200, 200, 20);
 						}
 						//System.out.println(arg0.getPoint());
 					} 

@@ -39,12 +39,15 @@ public class UpgradeWindowModel {
 		for(int i = 0; i <file.size(); i++){
 			JSONArray upgradePath = (JSONArray) file.get(i);
 			if(progress[i]>=upgradePath.size()){
-				JSONObject upgrade = (JSONObject) upgradePath.get(upgradePath.size());
-				x.add(new FinUpgrade((String)upgrade.get("title"), (String)upgrade.get("subtitle"), (String)upgrade.get("imgLoc"), false));
+				JSONObject upgrade = (JSONObject) upgradePath.get(upgradePath.size()-1);
+				
+				x.add(new FinUpgrade((String)upgrade.get("title"), (String)upgrade.get("subtitle"), (String)upgrade.get("image_file"), false));
 				
 			} else {
-				JSONObject upgrade = (JSONObject) upgradePath.get(i);
-				x.add(new FinUpgrade((String)upgrade.get("title"), (String)upgrade.get("subtitle"), (String)upgrade.get("imgLoc"), true));				
+				
+				JSONObject upgrade = (JSONObject) upgradePath.get(progress[i]);
+				
+				x.add(new FinUpgrade((String)upgrade.get("title"), (String)upgrade.get("subtitle"), (String)upgrade.get("image_file"), true));				
 			}
 
 		}

@@ -33,6 +33,8 @@ public class ButtonPanel extends JPanel implements Observer {
 	private JToggleButton wall;
 	private JToggleButton wizard;
 	
+	private JLabel money;
+	
 	public ButtonPanel(Bank bank) {
 		
 		this.button = Selected.None;
@@ -117,15 +119,20 @@ public class ButtonPanel extends JPanel implements Observer {
 		}
 	});
 		
+		money = new JLabel();
+		money.setText("£" + bank.getBalance());
 		buttonPanel.setLayout(new GridLayout(1,3));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
 		buttonPanel.add(wall);
 		buttonPanel.add(wizard);
-		
-		add(buttonPanel,BorderLayout.CENTER);
-		
-	}
+		//buttonPanel.add(money);
+		setLayout(new GridLayout(1,2));
+		add(buttonPanel);
+		JPanel moneyPanel = new JPanel();
+		moneyPanel.add(money, BorderLayout.CENTER);
+		add(moneyPanel);
+
 	
 	public Selected getSelected() {
 		return button;
@@ -136,7 +143,10 @@ public class ButtonPanel extends JPanel implements Observer {
 		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
 		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
 		wall.setText("Wall - " + bank.getCost(blockType.Wall));
+
 		wizard.setText("Wizard - " + bank.getCost(blockType.Wall));
+
+		money.setText("£" + bank.getBalance());
 		
 	}
 }

@@ -8,6 +8,9 @@ public class Bank extends Observable {
 	private double interestRate;
 	private int seperateIncome;
 	
+	//Reward for killing enemies.
+	private int reward;
+	
 	//Cost increase for every tower/wall placed.
 	private int cost_interest;
 	
@@ -22,6 +25,9 @@ public class Bank extends Observable {
 		this.seperateIncome = 0;
 		this.interestRate = 20;
 		
+		//Set the reward for killing enemies.
+		reward = 1;
+		
 		//Set the cost interest,
 		cost_interest = 5;
 		
@@ -32,12 +38,14 @@ public class Bank extends Observable {
 	}
 	
 	public void endDay() {
-		balance *= interestRate;
+		balance += balance*(interestRate/100);
 		balance +=seperateIncome;
 	}
 	
 	public void addBalance(int increment) {
 		balance += increment;
+		setChanged();
+		notifyObservers();
 	}
 	
 	public int getBalance() {
@@ -61,6 +69,14 @@ public class Bank extends Observable {
 
 	public void setSeperateIncome(int seperateIncome) {
 		this.seperateIncome = seperateIncome;
+	}
+	
+	public void setReward(int reward) {
+		this.reward = reward;
+	}
+	
+	public int getReward() {
+		return this.reward;
 	}
 	
 	public void buyBlock(Map.blockType blocktype)

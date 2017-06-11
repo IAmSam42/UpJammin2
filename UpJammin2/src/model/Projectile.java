@@ -36,16 +36,16 @@ public class Projectile extends Entity {
 		distance = Math.sqrt((xdiff*xdiff)+(ydiff*ydiff));
 		if(distance<=15||target.getHealth()<=0)
 		{
-			System.out.println("health before: " + target.getHealth());
+			//System.out.println("health before: " + target.getHealth());
 			this.setHealth(0);
 			target.takeDamage(damage);
-			System.out.println("health after: "+ target.getHealth());
+			//System.out.println("health after: "+ target.getHealth());
 		}
 		else
 		{
 			//System.out.println("xdiff: " + xdiff + " ydiff: " + ydiff);
 			angle = Math.atan((this.getPoint().getY()-target.getPoint().getY())/(this.getPoint().getX()-target.getPoint().getX()));
-			System.out.println(angle);
+			//System.out.println(angle);
 			if (xdiff < 0)
 			{
 				this.setPoint(new Point((int) (this.getPoint().getX()-(speed*Math.cos(angle))), (int)(this.getPoint().getY() - (speed*Math.sin(angle)))));
@@ -55,7 +55,7 @@ public class Projectile extends Entity {
 				this.setPoint(new Point((int) (this.getPoint().getX()+(speed*Math.cos(angle))), (int)(this.getPoint().getY() + (speed*Math.sin(angle)))));
 			}
 			//System.out.println(" target = " + target.getPoint() + "after move = " + this.getPoint());
-			System.out.println("distance = " + Math.sqrt((xdiff*xdiff)+(ydiff*ydiff)));
+			//System.out.println("distance = " + Math.sqrt((xdiff*xdiff)+(ydiff*ydiff)));
 		}
 	}
 	

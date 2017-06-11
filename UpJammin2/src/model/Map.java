@@ -74,6 +74,11 @@ public class Map {
 			placeable[0][i] = false;
 			placeable[width-1][i] = false;
 		}
+		
+		//Set the grid infront of the goal to be none-placeable.
+		placeable[(int)goal.getX() - 1][(int)goal.getY()-1] = false;
+		placeable[(int)goal.getX() - 1][(int)goal.getY()] = false;
+		placeable[(int)goal.getX() - 1][(int)goal.getY()+1] = false;
 	}
 
 	/**
@@ -203,7 +208,7 @@ public class Map {
 	 *            The enemy to add to the game.
 	 */
 	public void addEnemy(Enemy enemy) {
-		System.out.println("enemy added" + enemy);
+		//System.out.println("enemy added" + enemy);
 		// Add the enemy to the enemy array list.
 		enemies.add(enemy);
 	}

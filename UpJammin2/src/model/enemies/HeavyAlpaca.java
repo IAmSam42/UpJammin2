@@ -12,13 +12,14 @@ public class HeavyAlpaca extends Enemy {
 
 	public HeavyAlpaca(Map map, int health, Point point) {
 		super(map, health, point);
-		// TODO Auto-generated constructor stub
+		
+		this.setStolenGold(50);
 	}
 	
 	@Override
 	public void render(Graphics g, boolean hover) 
 	{
-		g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);
+		g.drawImage(new ImageIcon("resources/EnemyAlpacaTopHatTieBriefcaseRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);
 	}
 
 }
