@@ -63,25 +63,28 @@ public class Bank extends Observable {
 		this.seperateIncome = seperateIncome;
 	}
 	
-	public void increaseCost(Map.blockType blocktype)
+	public void buyBlock(Map.blockType blocktype)
 	{
-		System.out.println("increased" + price_wall);
 		switch (blocktype) {
 		case Wall:
+			balance -= price_wall;
 			price_wall += (int)((double)price_wall * ((double)cost_interest / 100.0));
 			break;
 
 		case ArrowTurret:
+			balance -= price_arrow_tower;
 			price_arrow_tower += (int)((double)price_arrow_tower * ((double)cost_interest / 100.0));
 			break;
 		
 		case CannonTurret:
+			balance -= price_cannon_tower;
 			price_cannon_tower += (int)((double)price_cannon_tower * ((double)cost_interest / 100.0));
 			break;
 			
 		default:
 			break;
 		}
+		
 		setChanged();
 		notifyObservers();
 	}
@@ -105,6 +108,28 @@ public class Bank extends Observable {
 			
 		default:
 			return 0;
+		}
+	}
+	
+	/**
+	 * Check if the player can afford a specific type of tower/wall.
+	 * @param blocktype The tower/wall type to check.
+	 * @return If the player can afford that tower/wall.
+	 */
+	public boolean canAfford(Map.blockType blocktype)
+	{
+		switch (blocktype) {
+		case Wall:
+			return price_wall <= balance;
+			
+		case ArrowTurret:
+			return price_arrow_tower <= balance;
+			
+		case CannonTurret:
+			return price_cannon_tower <= balance;
+		
+		default:
+			return false;
 		}
 	}
 }

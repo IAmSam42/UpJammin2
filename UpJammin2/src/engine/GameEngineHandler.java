@@ -50,6 +50,8 @@ public class GameEngineHandler {
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 		newWave();
 		hover = null;
+		
+		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
 
 	}
 	
