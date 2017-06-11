@@ -13,7 +13,7 @@ public class TopHatAlpaca extends Enemy {
 	public TopHatAlpaca(Map map, int health, Point point) {
 		super(map, health, point);
 		
-		this.setStolenGold(30);
+		this.setStolenGold(50);
 	}
 
 	@Override
