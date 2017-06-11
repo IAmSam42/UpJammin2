@@ -45,7 +45,7 @@ public class ButtonPanel extends JPanel implements Observer {
 		this.arrowLabel = "Arrow - " + bank.getCost(blockType.ArrowTurret);
 		this.cannonLabel = "Cannon - " + bank.getCost(blockType.CannonTurret);
 		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
-		this.wizardLabel = "Wizard - " + "";
+		this.wizardLabel = "Wizard - " + bank.getCost(blockType.Wizard);
 		bank.addObserver(this);
 		arrowTurret = new JToggleButton(arrowLabel);
 		cannonTurret = new JToggleButton(cannonLabel);
@@ -174,8 +174,7 @@ public class ButtonPanel extends JPanel implements Observer {
 		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
 		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
 		wall.setText("Wall - " + bank.getCost(blockType.Wall));
-
-		wizard.setText("Wizard - " + bank.getCost(blockType.Wall));
+		wizard.setText("Wizard - " + bank.getCost(blockType.Wizard));
 
 		money.setText("�" + bank.getBalance());
 
