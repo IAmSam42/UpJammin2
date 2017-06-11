@@ -23,7 +23,7 @@ public class BowlerAlpaca extends Enemy{
 	@Override
 	public void render(Graphics g, boolean hover) 
 	{
-		if (this.flip<20)
+		if (this.flip<17)
 		{
 			this.flip++;
 			if (this.current == 0)
