@@ -11,7 +11,7 @@ import model.Turret;
 import model.projectiles.Cannonball;
 import model.projectiles.Lightning;
 
-public class WizardTower extends Turret{
+public class WizardTower extends Turret {
 
 	public WizardTower(Map map, int health, Point location, int range, int damage, int fireRate, int fireSpeed) {
 		super(map, health, location, range, damage, fireRate, fireSpeed);
