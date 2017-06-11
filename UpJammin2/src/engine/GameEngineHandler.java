@@ -111,7 +111,12 @@ public class GameEngineHandler {
 	public void tick() {
 //		System.out.println("HEYYY I TICKED");
 //		System.out.println("Width: " + Main.WIDTH/BLOCKSIZE);
-//		System.out.println("Height: " + Main.HEIGHT/BLOCKSIZE);
+//		System.out.println("Hight: " + Main.HEIGHT/BLOCKSIZE);
+		if(bank.getBalance() <= 0) {
+			gameEngine.stop();
+		}
+		
+
 		soundModel.tick();
 		if(map.getEnemies().size() == 0){
 			wave++;
