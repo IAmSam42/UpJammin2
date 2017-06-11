@@ -17,7 +17,7 @@ public class Main {
 
 	public static int HEIGHT = 750;
 	//public static int WIDTH = ((HEIGHT * 16)/9); 
-	public static int WIDTH = ((HEIGHT * 16)/9) - (((HEIGHT * 16)/9) - ((((HEIGHT * 16)/9)/GameEngine.BLOCKSIZE)*GameEngine.BLOCKSIZE)); 
+	public static int WIDTH = (((HEIGHT * 16)/9)-42) - ((((HEIGHT * 16)/9)-42) - (((((HEIGHT * 16)/9)-42)/GameEngine.BLOCKSIZE)*GameEngine.BLOCKSIZE)); 
 	
 	
 
