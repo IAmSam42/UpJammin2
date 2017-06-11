@@ -41,8 +41,8 @@ public class GameWindow extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) {
-			new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
-	}
+//	public static void main(String[] args) {
+//			new GameWindow(Main.WIDTH, Main.HEIGHT, "Alpaca Attacker", new GameEngine());
+//	}
 
 }
