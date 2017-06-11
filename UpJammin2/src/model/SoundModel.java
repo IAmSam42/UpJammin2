@@ -64,7 +64,7 @@ public class SoundModel {
 			}		
 		
 		tickCount = 0;
-		nextBant = gen.nextInt(1000);
+		nextBant = gen.nextInt(100000);
 		
 	}
 	
@@ -76,7 +76,7 @@ public class SoundModel {
 			if(banterClips.length > 0) {
 				int x = gen.nextInt(banterClips.length-1);
 				banterClips[x].start();
-				nextBant = (int) (tickCount + (banterClips[x].getMicrosecondLength()/600000)) + gen.nextInt(1000);
+				nextBant = (int) (tickCount + (banterClips[x].getMicrosecondLength()/600000)) + gen.nextInt(100000);
 			}
 		} 
 		
