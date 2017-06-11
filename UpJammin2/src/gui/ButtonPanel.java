@@ -41,8 +41,8 @@ public class ButtonPanel extends JPanel implements Observer {
 		this.progress = new JLabel("Evade that tax!");
 		this.button = Selected.None;
 		this.bank = bank;
-		this.arrowLabel = "Arrow Turret - " + bank.getCost(blockType.ArrowTurret);
-		this.cannonLabel = "Cannon Turret - " + bank.getCost(blockType.CannonTurret);
+		this.arrowLabel = "Arrow - " + bank.getCost(blockType.ArrowTurret);
+		this.cannonLabel = "Cannon - " + bank.getCost(blockType.CannonTurret);
 		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
 		this.wizardLabel = "Wizard - " + "";
 		bank.addObserver(this);
@@ -124,14 +124,21 @@ public class ButtonPanel extends JPanel implements Observer {
 		
 		money = new JLabel();
 		money.setText("�" + bank.getBalance());
-		buttonPanel.setLayout(new GridLayout(1,3));
+		buttonPanel.setLayout(new GridLayout(1,2));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
-		buttonPanel.add(wall);
-		buttonPanel.add(wizard);
+
+		JPanel buttonPanel2 = new JPanel();
+		buttonPanel2.setLayout(new GridLayout(1,2));
+		buttonPanel2.add(wall);
+		buttonPanel2.add(wizard);
+		
 		//buttonPanel.add(money);
-		setLayout(new GridLayout(1,2));
+		
+		setLayout(new GridLayout(1,3));
+		
 		add(buttonPanel);
+		add(buttonPanel2);
 		JPanel moneyPanel = new JPanel();
 		moneyPanel.add(money, BorderLayout.CENTER);
 		add(moneyPanel);
