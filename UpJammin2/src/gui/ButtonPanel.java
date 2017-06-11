@@ -18,7 +18,7 @@ import model.Map.blockType;
 
 public class ButtonPanel extends JPanel implements Observer {
 	public enum Selected {
-		None, ArrowTurret, CannonTurret, Wall
+		None, ArrowTurret, CannonTurret, Wall ,Wizard
 	}
 	
 	private Bank bank;
@@ -26,26 +26,30 @@ public class ButtonPanel extends JPanel implements Observer {
 	private String arrowLabel;
 	private String cannonLabel;
 	private String wallLabel;
+	private String wizardLabel;
 	
 	private JToggleButton arrowTurret;
 	private JToggleButton cannonTurret;
 	private JToggleButton wall;
+	private JToggleButton wizard;
 	
+	private JLabel progress;
 	private JLabel money;
 	
 	public ButtonPanel(Bank bank) {
 		
+		this.progress = new JLabel("Evade that tax!");
 		this.button = Selected.None;
 		this.bank = bank;
 		this.arrowLabel = "Arrow Turret - " + bank.getCost(blockType.ArrowTurret);
 		this.cannonLabel = "Cannon Turret - " + bank.getCost(blockType.CannonTurret);
 		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
-		
+		this.wizardLabel = "Wizard - " + "";
 		bank.addObserver(this);
 		arrowTurret = new JToggleButton(arrowLabel);
 		cannonTurret = new JToggleButton(cannonLabel);
 		wall = new JToggleButton(wallLabel);
-	
+		wizard = new JToggleButton(wizardLabel);
 		
 		JPanel buttonPanel = new JPanel();
 		//if not set to tower, set to tower, otherwise set to none
@@ -54,6 +58,7 @@ public class ButtonPanel extends JPanel implements Observer {
 			public void actionPerformed(ActionEvent arg0) {
 					if(button != Selected.ArrowTurret) {
 						button = Selected.ArrowTurret;
+						wizard.setSelected(false);
 						arrowTurret.setSelected(true);
 						wall.setSelected(false);
 						cannonTurret.setSelected(false);
@@ -71,6 +76,7 @@ public class ButtonPanel extends JPanel implements Observer {
 					if(button != Selected.CannonTurret) {
 						button = Selected.CannonTurret;
 						cannonTurret.setSelected(true);
+						wizard.setSelected(false);
 						wall.setSelected(false);
 						arrowTurret.setSelected(false);
 					}
@@ -89,6 +95,7 @@ public class ButtonPanel extends JPanel implements Observer {
 				if(button != Selected.Wall) {
 					button = Selected.Wall;
 					wall.setSelected(true);
+					wizard.setSelected(false);
 					arrowTurret.setSelected(false);
 					cannonTurret.setSelected(false);
 				}
@@ -98,6 +105,21 @@ public class ButtonPanel extends JPanel implements Observer {
 				}
 			}
 		});
+		wizard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(button != Selected.Wizard) {
+					button = Selected.Wizard;
+					wizard.setSelected(true);
+					arrowTurret.setSelected(false);
+					cannonTurret.setSelected(false);
+					wall.setSelected(false);
+			}
+			else {
+				button = Selected.None;
+				wizard.setSelected(false);
+			}
+		}
+	});
 		
 		money = new JLabel();
 		money.setText("£" + bank.getBalance());
@@ -105,12 +127,22 @@ public class ButtonPanel extends JPanel implements Observer {
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
 		buttonPanel.add(wall);
+		buttonPanel.add(wizard);
 		//buttonPanel.add(money);
 		setLayout(new GridLayout(1,2));
 		add(buttonPanel);
 		JPanel moneyPanel = new JPanel();
 		moneyPanel.add(money, BorderLayout.CENTER);
 		add(moneyPanel);
+		
+		JPanel progressPanel = new JPanel();
+		progressPanel.add(progress, BorderLayout.CENTER);
+		
+		JPanel labels = new JPanel();
+		labels.setLayout(new GridLayout(1,2));
+		labels.add(moneyPanel);
+		labels.add(progressPanel);
+		add(labels);
 	}
 	
 	public Selected getSelected() {
@@ -119,9 +151,15 @@ public class ButtonPanel extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(bank.getBalance() <= 0) {
+			progress.setText("YOU LOSE");
+		}
 		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
 		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
 		wall.setText("Wall - " + bank.getCost(blockType.Wall));
+
+		wizard.setText("Wizard - " + bank.getCost(blockType.Wall));
+
 		money.setText("£" + bank.getBalance());
 		
 	}
