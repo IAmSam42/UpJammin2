@@ -203,7 +203,7 @@ public class Map {
 	 *            The enemy to add to the game.
 	 */
 	public void addEnemy(Enemy enemy) {
-		System.out.println("enemy added" + enemy);
+		//System.out.println("enemy added" + enemy);
 		// Add the enemy to the enemy array list.
 		enemies.add(enemy);
 	}

@@ -52,7 +52,7 @@ public class GameEngine extends Canvas implements Runnable {
 	 * Stops the Game
 	 */
 	public synchronized void stop(){
-		System.out.println("STOP");
+		//System.out.println("STOP");
 		running = false;
 	}
 	

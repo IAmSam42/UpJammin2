@@ -58,11 +58,12 @@ public class GameEngineHandler {
 	
 	public void newWave() {		
 		JSONArray currentLevel = null;
-		System.out.println(levelsArray.size() > level);
+		//System.out.println(levelsArray.size() > level);
 		if(levelsArray.size() > level) {
 			currentLevel = ((JSONArray) levelsArray.get(level));
+			System.out.println(currentLevel);
 		} else {
-			System.out.println("GAME WON");
+			//System.out.println("GAME WON");
 			return;
 		}
 		JSONObject currentWave = null;
@@ -84,7 +85,7 @@ public class GameEngineHandler {
 		for(int i = 0; i < x; i++) {
 			new BowlerAlpaca(map, 20, new Point(0, gen.nextInt(map.getHeight() * map.getScale())));
 		}
-		System.out.println(map.getEnemies().size());
+		//System.out.println(map.getEnemies().size());
 		
 		y = (Long) currentWave.get("enemyType2");
 		x = y != null ? y.intValue() : null;

@@ -17,7 +17,7 @@ public class GameWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	public GameWindow(int w, int h, String title, GameEngine game){
-		System.out.println("hello");
+		//System.out.println("hello");
 		Dimension dimention = new Dimension(w, h);
 		setMaximumSize(dimention);
 		setMinimumSize(dimention);

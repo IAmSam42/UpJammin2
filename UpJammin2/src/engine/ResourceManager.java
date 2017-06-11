@@ -83,9 +83,9 @@ public class ResourceManager {
 	}
 	
 	public static void main(String[] args) throws ParseException {
-		System.out.println(ResourceManager.getResourceManager().getFileContents("resources/levels.json"));
+		//System.out.println(ResourceManager.getResourceManager().getFileContents("resources/levels.json"));
 		JSONParser p = new JSONParser();
 		JSONArray a = (JSONArray) p.parse(ResourceManager.getResourceManager().getFileContents("resources/featuresUpgrades.json"));
-		System.out.println(a.toJSONString());
+		//System.out.println(a.toJSONString());
 	}
 }
