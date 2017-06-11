@@ -65,6 +65,7 @@ public class ButtonPanel extends JPanel implements Observer {
 			}
 		});
 		
+		
 		cannonTurret.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -100,7 +101,7 @@ public class ButtonPanel extends JPanel implements Observer {
 		});
 		
 		money = new JLabel();
-		money.setText("£" + bank.getBalance());
+		money.setText("ï¿½" + bank.getBalance());
 		buttonPanel.setLayout(new GridLayout(1,3));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
@@ -122,7 +123,7 @@ public class ButtonPanel extends JPanel implements Observer {
 		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
 		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
 		wall.setText("Wall - " + bank.getCost(blockType.Wall));
-		money.setText("£" + bank.getBalance());
+		money.setText("ï¿½" + bank.getBalance());
 		
 	}
 }
