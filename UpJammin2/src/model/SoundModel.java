@@ -49,6 +49,9 @@ public class SoundModel {
 				audioInputStream = AudioSystem.getAudioInputStream(new File("resources/sounds/banterClip"+i+".wav"));
 					Clip clip = AudioSystem.getClip();
 					clip.open(audioInputStream);	
+					FloatControl gainControl = 
+						    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+						gainControl.setValue(-8.0f);
 					banterClips[i] = clip;
 
 			} catch (UnsupportedAudioFileException e) {

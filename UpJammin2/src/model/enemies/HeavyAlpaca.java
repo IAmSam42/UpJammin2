@@ -13,7 +13,7 @@ public class HeavyAlpaca extends Enemy {
 	public HeavyAlpaca(Map map, int health, Point point) {
 		super(map, health, point);
 		
-		this.setStolenGold(50);
+		this.setStolenGold(100);
 	}
 	
 	@Override
