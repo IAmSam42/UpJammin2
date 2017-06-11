@@ -7,6 +7,7 @@ public class Bank extends Observable {
 	private int balance;
 	private double interestRate;
 	private int seperateIncome;
+	private int day;
 	
 	//Reward for killing enemies.
 	private int reward;
@@ -23,6 +24,7 @@ public class Bank extends Observable {
 	
 	public Bank() {
 		setBalance(500);
+		this.day = 1;
 		this.seperateIncome = 0;
 		this.interestRate = 20;
 		
@@ -40,9 +42,11 @@ public class Bank extends Observable {
 	}
 	
 	public void endDay() {
-		
+
 		balance += balance*(interestRate/100);
 		balance +=seperateIncome;
+
+		day++;
 		setChanged();
 		notifyObservers();
 	}
@@ -163,5 +167,9 @@ public class Bank extends Observable {
 		default:
 			return false;
 		}
+	}
+	
+	public int getDay() {
+		return day;
 	}
 }

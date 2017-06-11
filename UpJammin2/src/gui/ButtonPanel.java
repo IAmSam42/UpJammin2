@@ -35,16 +35,17 @@ public class ButtonPanel extends JPanel implements Observer {
 	
 	private JLabel progress;
 	private JLabel money;
+	private JLabel day;
 	
 	public ButtonPanel(Bank bank) {
 		
 		this.progress = new JLabel("Evade that tax!");
 		this.button = Selected.None;
 		this.bank = bank;
-		this.arrowLabel = "Arrow - " + bank.getCost(blockType.ArrowTurret);
-		this.cannonLabel = "Cannon - " + bank.getCost(blockType.CannonTurret);
-		this.wallLabel = "Wall - " + bank.getCost(blockType.Wall);
-		this.wizardLabel = "Wizard - " + "";
+		this.arrowLabel = "Arrow : " + bank.getCost(blockType.ArrowTurret);
+		this.cannonLabel = "Cannon : " + bank.getCost(blockType.CannonTurret);
+		this.wallLabel = "Wall : " + bank.getCost(blockType.Wall);
+		this.wizardLabel = "Wizard : " + bank.getCost(blockType.Wizard);
 		bank.addObserver(this);
 		arrowTurret = new JToggleButton(arrowLabel);
 		cannonTurret = new JToggleButton(cannonLabel);
@@ -123,7 +124,7 @@ public class ButtonPanel extends JPanel implements Observer {
 	});
 		
 		money = new JLabel();
-		money.setText("�" + bank.getBalance());
+		money.setText("£" + bank.getBalance());
 		buttonPanel.setLayout(new GridLayout(1,2));
 		buttonPanel.add(arrowTurret);
 		buttonPanel.add(cannonTurret);
@@ -138,7 +139,9 @@ public class ButtonPanel extends JPanel implements Observer {
 		setLayout(new GridLayout(1,3));
 		
 		add(buttonPanel);
+
 		add(buttonPanel2);
+
 		JPanel moneyPanel = new JPanel();
 		moneyPanel.add(money, BorderLayout.CENTER);
 		add(moneyPanel);
@@ -146,9 +149,15 @@ public class ButtonPanel extends JPanel implements Observer {
 		JPanel progressPanel = new JPanel();
 		progressPanel.add(progress, BorderLayout.CENTER);
 		
+		day = new JLabel();
+		day.setText("Day: " + bank.getDay());
+		JPanel dayPanel = new JPanel();
+		dayPanel.add(day, BorderLayout.CENTER);
+		
 		JPanel labels = new JPanel();
-		labels.setLayout(new GridLayout(1,2));
+		labels.setLayout(new GridLayout(1,3));
 		labels.add(moneyPanel);
+		labels.add(dayPanel);
 		labels.add(progressPanel);
 		add(labels);
 	}
@@ -162,14 +171,16 @@ public class ButtonPanel extends JPanel implements Observer {
 		if(bank.getBalance() <= 0) {
 			progress.setText("YOU LOSE");
 		}
-		arrowTurret.setText("Arrow Turret - " + bank.getCost(blockType.ArrowTurret));
-		cannonTurret.setText("Cannon Turret - " + bank.getCost(blockType.CannonTurret));
-		wall.setText("Wall - " + bank.getCost(blockType.Wall));
+		arrowTurret.setText("Arrow : " + bank.getCost(blockType.ArrowTurret));
+		cannonTurret.setText("Cannon : " + bank.getCost(blockType.CannonTurret));
+		wall.setText("Wall : " + bank.getCost(blockType.Wall));
+		wizard.setText("Wizard : " + bank.getCost(blockType.Wizard));
 
-		wizard.setText("Wizard - " + bank.getCost(blockType.Wall));
+		money.setText("£" + bank.getBalance());
 
-		money.setText("�" + bank.getBalance());
-
+		
+		day.setText("Day: " + bank.getDay());
+		
 		
 	}
 }
