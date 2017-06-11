@@ -12,7 +12,8 @@ public class BowlerAlpaca extends Enemy{
 
 	public BowlerAlpaca(Map map, int health, Point point) {
 		super(map, health, point);
-		// TODO Auto-generated constructor stub
+		
+		this.setStolenGold(20);
 	}
 
 	@Override

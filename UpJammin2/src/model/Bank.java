@@ -38,6 +38,8 @@ public class Bank extends Observable {
 	
 	public void addBalance(int increment) {
 		balance += increment;
+		
+		System.out.println(balance);
 	}
 	
 	public int getBalance() {

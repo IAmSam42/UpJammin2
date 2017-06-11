@@ -12,7 +12,8 @@ public class TopHatAlpaca extends Enemy {
 
 	public TopHatAlpaca(Map map, int health, Point point) {
 		super(map, health, point);
-		// TODO Auto-generated constructor stub
+		
+		this.setStolenGold(30);
 	}
 
 	@Override
