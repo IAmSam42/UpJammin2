@@ -23,7 +23,7 @@ public class Lightning extends Projectile{
 		}
 		else
 		{
-			g.drawImage(new ImageIcon("resources/lightning.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			g.drawImage(new ImageIcon("resources/lightningFlip.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 		}
 	}
 

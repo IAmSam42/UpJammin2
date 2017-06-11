@@ -22,7 +22,7 @@ public class Arrow extends Projectile{
 			g.drawImage(new ImageIcon("resources/Arrow.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 		}else
 		{
-			g.drawImage(new ImageIcon("resources/Arrow.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
+			g.drawImage(new ImageIcon("resources/ArrowFlip.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 		}
 		
 	}

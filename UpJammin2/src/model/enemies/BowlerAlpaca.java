@@ -32,7 +32,7 @@ public class BowlerAlpaca extends Enemy{
 			}
 			else
 			{
-				g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);
+				g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatLeft.png").getImage(), this.getPoint().x, this.getPoint().y, null);
 			}
 		}
 		else
@@ -46,7 +46,7 @@ public class BowlerAlpaca extends Enemy{
 			else
 			{
 				this.current = 0;
-				g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatRight.png").getImage(), this.getPoint().x, this.getPoint().y, null);
+				g.drawImage(new ImageIcon("resources/EnemyAlpacaBowlerHatLeft.png").getImage(), this.getPoint().x, this.getPoint().y, null);
 			}
 		}
 	}
