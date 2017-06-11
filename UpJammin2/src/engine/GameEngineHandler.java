@@ -121,6 +121,9 @@ public class GameEngineHandler {
 			if(map.getEnemies().get(i).getHealth() <= 0) {
 				map.removeEnemy(map.getEnemies().get(i));
 				i--;
+				
+				//Get a reward for killing the enemy.
+				bank.addBalance(bank.getReward());
 			}
 		}
 		for(int i = 0; i < map.getNonEnemies().size(); i++) {
