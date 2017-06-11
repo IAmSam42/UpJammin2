@@ -63,25 +63,28 @@ public class Bank extends Observable {
 		this.seperateIncome = seperateIncome;
 	}
 	
-	public void increaseCost(Map.blockType blocktype)
+	public void buyBlock(Map.blockType blocktype)
 	{
-		System.out.println("increased" + price_wall);
 		switch (blocktype) {
 		case Wall:
+			balance -= price_wall;
 			price_wall += (int)((double)price_wall * ((double)cost_interest / 100.0));
 			break;
 
 		case ArrowTurret:
+			balance -= price_arrow_tower;
 			price_arrow_tower += (int)((double)price_arrow_tower * ((double)cost_interest / 100.0));
 			break;
 		
 		case CannonTurret:
+			balance -= price_cannon_tower;
 			price_cannon_tower += (int)((double)price_cannon_tower * ((double)cost_interest / 100.0));
 			break;
 			
 		default:
 			break;
 		}
+		
 		setChanged();
 		notifyObservers();
 	}

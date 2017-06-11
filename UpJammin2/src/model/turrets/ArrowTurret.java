@@ -16,7 +16,7 @@ public class ArrowTurret extends Turret
 		super(map, health, location, range, damage, fireRate, fireSpeed);
 		
 		//Increase the cost
-		this.getMap().getBank().increaseCost(Map.blockType.ArrowTurret);
+		this.getMap().getBank().buyBlock(Map.blockType.ArrowTurret);
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ public class CannonTurret extends Turret {
 		super(map, health, location, range, damage, fireRate, fireSpeed);
 		
 		//Increase the cost.
-		this.getMap().getBank().increaseCost(Map.blockType.CannonTurret);
+		this.getMap().getBank().buyBlock(Map.blockType.CannonTurret);
 	}
 
 	@Override
