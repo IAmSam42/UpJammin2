@@ -47,7 +47,7 @@ public class GameEngineHandler {
 		JSONParser parser = new JSONParser();
 		
 		String fileContents = ResourceManager.getResourceManager().getFileContents(Config.levels_file);
-		soundModel = new SoundModel();
+		//soundModel = new SoundModel();
 		levelsArray = (JSONArray) ((JSONObject) parser.parse(fileContents)).get("levels");
 		bank = new Bank();
 		this.map = new Map(Main.WIDTH/BLOCKSIZE, Main.HEIGHT/BLOCKSIZE, BLOCKSIZE, bank);
@@ -124,7 +124,7 @@ public class GameEngineHandler {
 		}
 		
 
-		soundModel.tick();
+		//soundModel.tick();
 		if(map.getEnemies().size() == 0){
 			wave++;
 			newWave();

@@ -15,7 +15,9 @@ public class WizardTower extends Turret{
 
 	public WizardTower(Map map, int health, Point location, int range, int damage, int fireRate, int fireSpeed) {
 		super(map, health, location, range, damage, fireRate, fireSpeed);
-		// TODO Auto-generated constructor stub
+		
+		//Increase the cost.
+		this.getMap().getBank().buyBlock(Map.blockType.Wizard);
 	}
 	public void render(Graphics g, boolean hover) 
 	{
