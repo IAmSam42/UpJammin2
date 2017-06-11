@@ -11,6 +11,8 @@ public class Enemy extends Entity {
 	private ArrayList<Point> path;
 	private Path path_finder;
 	
+	private int stolen_gold;
+	
 	public Enemy(Map map, int health, Point point) {
 		super(map, health, point);
 		
@@ -18,6 +20,10 @@ public class Enemy extends Entity {
 		path = new ArrayList<Point>();
 		
 		path = path_finder.calculatePath(map.toGridPoint(this.getPoint()), map.getGoal());
+		
+		
+		//Setup the amount of gold stolen.
+		stolen_gold = 0;
 
 		map.addEnemy(this);
 	}
@@ -25,6 +31,17 @@ public class Enemy extends Entity {
 	@Override
 	public void tick() 
 	{	
+		Point grid_point = this.getMap().toGridPoint(this.getPoint());
+		
+		if(grid_point.equals(this.getMap().getGoal()))
+		{
+			//Set health to 0.
+			this.setHealth(0);
+			
+			//Take away some gold.
+			this.getMap().getBank().addBalance(-stolen_gold);
+		}
+		
 		//If the path is empty:
 		if(path.isEmpty())
 		{
@@ -82,6 +99,15 @@ public class Enemy extends Entity {
 	public void recalculatePath()
 	{
 		path = path_finder.calculatePath(this.getMap().toGridPoint(this.getPoint()), this.getMap().getGoal());
+	}
+	
+	/**
+	 * Set the amount of gold stolen when the enemy reaches the gold chest.
+	 * @param stolen_gold The amount of gold (positive number) stolen.
+	 */
+	public void setStolenGold(int stolen_gold)
+	{
+		this.stolen_gold = stolen_gold;
 	}
 	
 	/**
