@@ -40,6 +40,6 @@ public class WizardTower extends Turret{
 	}
 	@Override
 	public void createProjectile(Map map, int i, Point point, Enemy targetted, int fireSpeed, int damage) {
-		new Lightning(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
+		new Lightning(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage, this.isFacingRight());
 	}
 }

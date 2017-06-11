@@ -48,6 +48,6 @@ public class ArrowTurret extends Turret
 	@Override
 	public void createProjectile(Map map, int i, Point point, Enemy targetted, int fireSpeed, int damage) 
 	{
-		new Arrow(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
+		new Arrow(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage, this.isFacingRight());
 	}
 }

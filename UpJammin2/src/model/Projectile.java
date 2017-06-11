@@ -10,6 +10,7 @@ public class Projectile extends Entity {
 	private int speed;
 	private int damage;
 	private double angle;
+	private Boolean right;
 	
 	
 	public double getAngle() {
@@ -20,12 +21,21 @@ public class Projectile extends Entity {
 		this.angle = angle;
 	}
 
-	public Projectile(Map map, int health, Point point, Enemy target, int speed, int damage) {
+	public Projectile(Map map, int health, Point point, Enemy target, int speed, int damage,Boolean isFaceingRight) {
 		super(map, health, point);
 		this.target = target;
 		this.speed = speed;
 		this.damage = damage;
+		this.right = isFaceingRight;
 		map.addEntity(this);
+	}
+
+	public Boolean getRight() {
+		return right;
+	}
+
+	public void setRight(Boolean right) {
+		this.right = right;
 	}
 
 	@Override
