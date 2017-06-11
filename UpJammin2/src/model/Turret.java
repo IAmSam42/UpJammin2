@@ -3,7 +3,7 @@ package model;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Turret extends Entity {
+public abstract class Turret extends Entity {
 
 	private int range;
 	private int damage;
@@ -12,6 +12,8 @@ public class Turret extends Entity {
 	private int ttNextFire;
 	private int fireSpeed;
 	private boolean facingRight;
+	
+	public abstract void createProjectile(Map map, int i, Point point, Enemy targetted2, int fireSpeed2, int damage2);
 	
 	public Turret(Map map, int health, Point location, int range, int damage, int fireRate, int fireSpeed) {
 		super(map, health, location);
@@ -30,7 +32,6 @@ public class Turret extends Entity {
 	public void tick() {
 		ttNextFire--;
 		if(targetted == null) {
-			System.out.println("enemies: " + getMap().getEnemies().size());
 			for(Enemy ent : getMap().getEnemies()){
 				//System.out.println("looking for enemy");
 				//System.out.println("Wc "+ent.getPoint()+" fefw "+ this.getPoint() + " ffefe " + ent.getPoint().distance(this.getPoint()));
@@ -57,7 +58,8 @@ public class Turret extends Entity {
 			return;
 		
 		ttNextFire = fireRate;
-		new Projectile(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
+		createProjectile(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
+		
 		setDir();
 	}
 

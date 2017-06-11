@@ -6,7 +6,7 @@ import java.awt.Point;
 public class Projectile extends Entity {
 
 	private Enemy target;
-	private int distance;
+	private double distance;
 	private int speed;
 	private int damage;
 	private double angle;
@@ -15,15 +15,18 @@ public class Projectile extends Entity {
 	public Projectile(Map map, int health, Point point, Enemy target, int speed, int damage) {
 		super(map, health, point);
 		this.target = target;
-		this.speed = 4;
-		this.damage = 1000;
+		this.speed = speed;
+		this.damage = damage;
 		map.addEntity(this);
 	}
 
 	@Override
 	public void tick() 
 	{
-		if((this.getPoint().getX() == target.getPoint().getX())&&(this.getPoint().getY() == target.getPoint().getY()))
+		double xdiff = target.getPoint().getX() - this.getPoint().getX();
+		double ydiff =  target.getPoint().getY() - this.getPoint().getY();
+		distance = Math.sqrt((xdiff*xdiff)+(ydiff*ydiff));
+		if(distance<=15||target.getHealth()<=0)
 		{
 			System.out.println("health before: " + target.getHealth());
 			this.setHealth(0);
@@ -32,14 +35,19 @@ public class Projectile extends Entity {
 		}
 		else
 		{
-			double xdiff = target.getPoint().getX() - this.getPoint().getX();
-			double ydiff =  target.getPoint().getY() - this.getPoint().getY();
-			
 			//System.out.println("xdiff: " + xdiff + " ydiff: " + ydiff);
 			angle = Math.atan((this.getPoint().getY()-target.getPoint().getY())/(this.getPoint().getX()-target.getPoint().getX()));
-			//System.out.println("arrow" + this + "start = " + this.getPoint());
-			this.setPoint(new Point((int) (this.getPoint().getX()-(speed*Math.cos(angle))), (int)(this.getPoint().getY() - (speed*Math.sin(angle)))));
+			System.out.println(angle);
+			if (xdiff < 0)
+			{
+				this.setPoint(new Point((int) (this.getPoint().getX()-(speed*Math.cos(angle))), (int)(this.getPoint().getY() - (speed*Math.sin(angle)))));
+			}
+			else
+			{
+				this.setPoint(new Point((int) (this.getPoint().getX()+(speed*Math.cos(angle))), (int)(this.getPoint().getY() + (speed*Math.sin(angle)))));
+			}
 			//System.out.println(" target = " + target.getPoint() + "after move = " + this.getPoint());
+			System.out.println("distance = " + Math.sqrt((xdiff*xdiff)+(ydiff*ydiff)));
 		}
 	}
 	

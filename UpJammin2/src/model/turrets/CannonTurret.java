@@ -6,8 +6,11 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
+import model.Enemy;
 import model.Map;
 import model.Turret;
+import model.projectiles.Arrow;
+import model.projectiles.Cannonball;
 
 public class CannonTurret extends Turret {
 
@@ -39,5 +42,11 @@ public class CannonTurret extends Turret {
 				g.drawImage(new ImageIcon("resources/greyCannonLeft.jpg").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
 			}
 		}
+	}
+
+	@Override
+	public void createProjectile(Map map, int i, Point point, Enemy targetted, int fireSpeed, int damage) 
+	{
+		new Cannonball(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
 	}
 }

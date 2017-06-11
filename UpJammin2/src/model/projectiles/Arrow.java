@@ -18,6 +18,5 @@ public class Arrow extends Projectile{
 	@Override
 	public void render(Graphics g, boolean hover) {
 		g.drawImage(new ImageIcon("resources/Arrow.png").getImage(), ((this.getPoint())).x, ((this.getPoint())).y, null);
-
 	}
 }

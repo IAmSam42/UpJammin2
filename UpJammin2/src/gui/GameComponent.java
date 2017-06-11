@@ -52,7 +52,7 @@ public class GameComponent extends JPanel {
 
 				if(map.isPlaceable(map.toGridPoint(arg0.getPoint()))) {
 					if(panel.getSelected() == Selected.ArrowTurret) {
-						new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 1, 20, 1);
+						new ArrowTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 5, 1000, 80, 5);
 
 						//System.out.println(arg0.getPoint());
 					}
@@ -62,7 +62,7 @@ public class GameComponent extends JPanel {
 					}
 					else if(panel.getSelected() == Selected.CannonTurret) {
 
-						new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 2, 1, 20, 1);
+						new CannonTurret(map, 1, map.toPixelPoint(map.toGridPoint(arg0.getPoint())), 7, 1000, 100, 1);
 						//System.out.println(arg0.getPoint());
 					} 
 				}

@@ -5,8 +5,11 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
+import model.Enemy;
 import model.Map;
+import model.Projectile;
 import model.Turret;
+import model.projectiles.Arrow;
 
 public class ArrowTurret extends Turret 
 {
@@ -18,6 +21,7 @@ public class ArrowTurret extends Turret
 		//Increase the cost
 		this.getMap().getBank().increaseCost(Map.blockType.ArrowTurret);
 	}
+
 	
 	@Override
 	public void render(Graphics g, boolean hover) 
@@ -40,5 +44,10 @@ public class ArrowTurret extends Turret
 				g.drawImage(new ImageIcon("resources/greyCrossbowLeft.jpg").getImage(), (this.getPoint()).x,(this.getPoint()).y, null);
 			}
 		}
+	}
+	@Override
+	public void createProjectile(Map map, int i, Point point, Enemy targetted, int fireSpeed, int damage) 
+	{
+		new Arrow(getMap(), 1, new Point(getPoint()), targetted, fireSpeed, damage);
 	}
 }
